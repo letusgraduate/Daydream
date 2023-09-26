@@ -1,0 +1,5 @@
+UserSetting은 지속적으로 수정되고 충돌의 위험이 많아서
+해당 파일만을 사용.
+
+프로젝트 실행 전 반드시 위 폴더의 느낌표 3개를 지우고
+~\Daydream\Project Daydream 폴더 안에 넣을 것
