@@ -3,23 +3,31 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Platform
+  - Player
+  - Player Attack
+  - Enemy
+  - Enemy Attack
+  - Bullet
+  - Trap
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - Player Attack
+  - Enemy
+  - Enemy Attack
+  - Object
+  - Platform Pass
+  - Super Armor
+  - Trap
   - 
   - 
   - 
