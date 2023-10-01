@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerB_AttackFront-Sheet_0
+      name: Player_AttackFront-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_AttackFront-Sheet_1
+      name: Player_AttackFront-Sheet_1
       rect:
         serializedVersion: 2
         x: 160
@@ -139,7 +139,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_AttackFront-Sheet_2
+      name: Player_AttackFront-Sheet_2
       rect:
         serializedVersion: 2
         x: 320
@@ -160,7 +160,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_AttackFront-Sheet_3
+      name: Player_AttackFront-Sheet_3
       rect:
         serializedVersion: 2
         x: 480
@@ -181,7 +181,7 @@ TextureImporter:
         width: 160
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerB_AttackFront-Sheet_0: 2026455133
-      PlayerB_AttackFront-Sheet_1: 162193633
-      PlayerB_AttackFront-Sheet_2: -2098259032
-      PlayerB_AttackFront-Sheet_3: -2015211687
+      Player_AttackFront-Sheet_0: 2026455133
+      Player_AttackFront-Sheet_1: 162193633
+      Player_AttackFront-Sheet_2: -2098259032
+      Player_AttackFront-Sheet_3: -2015211687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

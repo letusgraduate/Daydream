@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerB_Idle-Sheet_0
+      name: Player_Idle-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_Idle-Sheet_1
+      name: Player_Idle-Sheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,7 +139,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_Idle-Sheet_2
+      name: Player_Idle-Sheet_2
       rect:
         serializedVersion: 2
         x: 256
@@ -160,7 +160,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerB_Idle-Sheet_3
+      name: Player_Idle-Sheet_3
       rect:
         serializedVersion: 2
         x: 384
@@ -181,7 +181,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerB_Idle-Sheet_0: -1687680733
-      PlayerB_Idle-Sheet_1: -546922979
-      PlayerB_Idle-Sheet_2: 100329823
-      PlayerB_Idle-Sheet_3: -1126038317
+      Player_Idle-Sheet_0: -1687680733
+      Player_Idle-Sheet_1: -546922979
+      Player_Idle-Sheet_2: 100329823
+      Player_Idle-Sheet_3: -1126038317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

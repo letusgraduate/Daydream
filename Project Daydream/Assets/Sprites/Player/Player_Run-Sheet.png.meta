@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d01fa638a39c4140a796bcbc6e505c9
+guid: 38f7406f4245cc049b0287054839f10f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Hit-Sheet_0
+      name: Player_Run-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8db15207ad1d2184f8fa9b3b340f9ea3
-      internalID: 458900850
+      spriteID: e977dad7fc7a4d240badfb06262b14dc
+      internalID: 1941241251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Hit-Sheet_1
+      name: Player_Run-Sheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,14 +139,56 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b01c6dbce44a8b4ab2f35a05c8a52b9
-      internalID: 1791138952
+      spriteID: 9bda4ce27e3b0e34da5e173d7f6008d3
+      internalID: 1261032252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Run-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f4ed5408206f6428642328be148a0d
+      internalID: 536997350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Run-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d45de27b426c6d498691f40b53c98f2
+      internalID: -1386165968
       vertices: []
       indices: 
       edges: []
@@ -162,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Hit-Sheet_0: 458900850
-      Player_Hit-Sheet_1: 1791138952
+      Player_Run-Sheet_0: 1941241251
+      Player_Run-Sheet_1: 1261032252
+      Player_Run-Sheet_2: 536997350
+      Player_Run-Sheet_3: -1386165968
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

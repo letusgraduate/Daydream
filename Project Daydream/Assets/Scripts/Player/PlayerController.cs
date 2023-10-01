@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private GameObject platformObject = null;
 
     /* ------------ 박스 레이 조절 ------------- */
-    private Vector2 boxCastSize = new Vector2(0.6f, 0.05f);
+    private Vector2 boxCastSize = new Vector2(0.5f, 0.05f);
     private float boxCastMaxDistance = 1.0f;
 
     /* ---------------- 인스펙터 --------------- */
@@ -62,9 +62,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        /* 피격/사망 체크 */
-        StateCheck();
-
         /* 입력 값 저장 */
         GetInput();
 
@@ -132,7 +129,7 @@ public class PlayerController : MonoBehaviour
         if (!platformPassInput || platformObject == null || isDash || isAttack || isHit)
             return;
         
-        Debug.Log("아래점프 ON " + platformObject.name); 
+        //Debug.Log("아래점프 ON " + platformObject.name); 
         platformObject.layer = 12; // Pass Ground 레이어
     }
 
@@ -145,8 +142,8 @@ public class PlayerController : MonoBehaviour
         // 점프 없이 낙하
         anim.SetBool("isFalling", true);
 
-        // 바닥 저장(Ground, Pass Ground)
-        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Pass Ground"));
+        // 바닥 저장(Ground, Platform Pass)
+        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
         if (rayHit.collider != null) // 바닥 체크 될 때
         {
@@ -169,7 +166,7 @@ public class PlayerController : MonoBehaviour
             // 플랫폼에서 벗어날 때
             if (platformObject != null)
             {
-                platformObject.layer = 12; // Pass Ground 레이어
+                platformObject.layer = 12; // Platform Pass 레이어
                 platformObject = null;
             }
         }
@@ -236,28 +233,45 @@ public class PlayerController : MonoBehaviour
     }
 
     /* -------------외부참조------------- */
-    private void StateCheck()
+    public void SetIsHit(bool isHit)
     {
-        isHit = playerMain.GetIsHit();
-        isDead = playerMain.GetIsDead();
+        this.isHit = isHit;
+    }
+
+    public void SetIsDead(bool isDead)
+    {
+        this.isDead = isDead;
+    }
+
+    public bool GetIsHit()
+    {
+        return isHit;
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 
     /* ---------------기타--------------- */
 
-    //void OnDrawGizmos() // 사각 레이 기즈모
-    //{
-    //    RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Map"));
+    void OnDrawGizmos() // 사각 레이 기즈모
+    {
+        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
-    //    Gizmos.color = Color.red;
-    //    if (raycastHit.collider != null)
-    //    {
-    //        Gizmos.DrawRay(transform.position, Vector2.down * raycastHit.distance);
-    //        Gizmos.DrawWireCube(transform.position + Vector3.down * raycastHit.distance, boxCastSize);
-    //    }
-    //    else
-    //    {
-    //        Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
-    //    }
-    //}
+        Gizmos.color = Color.red;
+        //if (rayHit.collider != null)
+        //{
+        //    Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
+        //    Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
+        //}
+        //else
+        //{
+        //    Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
+        //}
+
+        Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
+        Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
+    }
 
 }
