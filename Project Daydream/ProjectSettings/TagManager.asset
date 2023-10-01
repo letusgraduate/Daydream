@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Platform
-  - Player
   - Player Attack
   - Enemy
   - Enemy Attack
