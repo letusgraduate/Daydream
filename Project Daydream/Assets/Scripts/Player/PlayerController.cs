@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         isJump = true;
 
         // Y축 속도 초기화
-        //rigid.velocity = new Vector2(rigid.velocity.x, 0);
+        rigid.velocity = new Vector2(rigid.velocity.x, 0);
 
         rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         anim.SetBool("isJumping", true);
@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
+        // 방향키 입력이 있을 때 대시 가능
         if (dashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
             return;
 
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(0f, 0f);
 
         rigid.AddForce(moveInput.normalized * dashPower, ForceMode2D.Impulse);
+        anim.SetBool("isFalling", false);
         anim.SetBool("isDashing", true);
 
         StartCoroutine(DashOut(dashTime));
