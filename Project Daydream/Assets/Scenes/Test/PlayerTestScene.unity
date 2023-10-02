@@ -3334,7 +3334,7 @@ MonoBehaviour:
   dashTime: 0.2
   dashStack: 3
   dashCoolTime: 3
-  attackCoolTime: 2
+  attackCoolTime: 0.5
 --- !u!114 &534065158
 MonoBehaviour:
   m_ObjectHideFlags: 0

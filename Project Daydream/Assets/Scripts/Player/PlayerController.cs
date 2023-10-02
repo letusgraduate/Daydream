@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10f)]
     [SerializeField, Range(0f, 10f)]
-    private float attackCoolTime = 2f;
+    private float attackCoolTime = 0.5f;
 
     void Awake()
     {
