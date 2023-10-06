@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /* ------------- 컴포넌트 변수 ------------- */
     private Rigidbody2D rigid;
     private Animator anim;
     private PlayerMain playerMain;
+    private GameObject platformObject = null;
 
     /* ----------- 입력 값 저장 변수 ----------- */
     private Vector2 moveInput;
@@ -24,9 +26,6 @@ public class PlayerController : MonoBehaviour
     private bool isAttack = false;
     private bool isHit = false;
     private bool isDead = false;
-
-    /* ----------------- 플랫폼 ---------------- */
-    private GameObject platformObject = null;
 
     /* ------------ 박스 레이 조절 ------------- */
     private Vector2 boxCastSize = new Vector2(0.5f, 0.05f);
@@ -53,6 +52,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0f, 10f)]
     private float attackCoolTime = 0.5f;
 
+    /* ---------------- 프로퍼티 --------------- */
+    public bool IsHit
+    {
+        get { return isHit; }
+        set { isHit = value; }
+    }
+
+    public bool IsDead
+    {
+        get { return isDead; }
+        set { isDead = value; }
+    }
+
+    /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -76,6 +89,26 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
     }
 
+    void OnDrawGizmos() // 사각 레이 기즈모
+    {
+        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
+
+        Gizmos.color = Color.red;
+        //if (rayHit.collider != null)
+        //{
+        //    Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
+        //    Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
+        //}
+        //else
+        //{
+        //    Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
+        //}
+
+        Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
+        Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
+    }
+
+    /* --------------- 기능 함수 --------------- */
     private void GetInput()
     {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -131,45 +164,6 @@ public class PlayerController : MonoBehaviour
         
         //Debug.Log("아래점프 ON " + platformObject.name); 
         platformObject.layer = 12; // Pass Ground 레이어
-    }
-
-    private void GroundCheck()
-    {
-        // 추락이 아닐 때
-        if (rigid.velocity.y > 0) 
-            return;
-
-        // 점프 없이 낙하
-        anim.SetBool("isFalling", true);
-
-        // 바닥 저장(Ground, Platform Pass)
-        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
-
-        if (rayHit.collider != null) // 바닥 체크 될 때
-        {
-            if (rayHit.distance < 0.9f)
-            {
-                isJump = false;
-
-                // Platform 태크 체크
-                if (platformObject == null && rayHit.collider.tag == "Platform")
-                {
-                    platformObject = rayHit.collider.gameObject;
-                    platformObject.layer = 6; // Ground 레이어
-                }
-                anim.SetBool("isJumping", false);
-                anim.SetBool("isFalling", false);
-            }
-        }
-        else // 공중에 있을 때
-        {
-            // 플랫폼에서 벗어날 때
-            if (platformObject != null)
-            {
-                platformObject.layer = 12; // Platform Pass 레이어
-                platformObject = null;
-            }
-        }
     }
 
     private void Dash()
@@ -234,46 +228,42 @@ public class PlayerController : MonoBehaviour
         isAttack = false;
     }
 
-    /* -------------외부참조------------- */
-    public void SetIsHit(bool isHit)
+    private void GroundCheck()
     {
-        this.isHit = isHit;
-    }
+        // 추락이 아닐 때
+        if (rigid.velocity.y > 0)
+            return;
 
-    public void SetIsDead(bool isDead)
-    {
-        this.isDead = isDead;
-    }
+        // 점프 없이 낙하
+        anim.SetBool("isFalling", true);
 
-    public bool GetIsHit()
-    {
-        return isHit;
-    }
-
-    public bool GetIsDead()
-    {
-        return isDead;
-    }
-
-    /* ---------------기타--------------- */
-
-    void OnDrawGizmos() // 사각 레이 기즈모
-    {
+        // 바닥 저장(Ground, Platform Pass)
         RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
-        Gizmos.color = Color.red;
-        //if (rayHit.collider != null)
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
-        //    Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
-        //}
-        //else
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
-        //}
+        if (rayHit.collider != null) // 바닥 체크 될 때
+        {
+            if (rayHit.distance < 0.9f)
+            {
+                isJump = false;
 
-        Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
-        Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
+                // Platform 태크 체크
+                if (platformObject == null && rayHit.collider.tag == "Platform")
+                {
+                    platformObject = rayHit.collider.gameObject;
+                    platformObject.layer = 6; // Ground 레이어
+                }
+                anim.SetBool("isJumping", false);
+                anim.SetBool("isFalling", false);
+            }
+        }
+        else // 공중에 있을 때
+        {
+            // 플랫폼에서 벗어날 때
+            if (platformObject != null)
+            {
+                platformObject.layer = 12; // Platform Pass 레이어
+                platformObject = null;
+            }
+        }
     }
-
 }
