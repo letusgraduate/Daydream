@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
 {
+    /* ------------- 컴포넌트 변수 ------------- */
     private Rigidbody2D rigid;
     private Animator anim;
     private SpriteRenderer[] spriteRenderers;
@@ -23,6 +24,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0f, 5f)]
     private float invulnTime = 0.8f;
 
+    /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -50,13 +52,15 @@ public class PlayerMain : MonoBehaviour
             OnHit(collision.transform.position);
     }
 
+    /* --------------- 기능 함수 --------------- */
     void OnHit(Vector2 targetPos)
     {
-        if (playerController.GetIsHit())
+        Debug.Log(playerController.IsHit);
+        if (playerController.IsHit == true)
             return;
         
         gameObject.layer = 13; // Super Armor Layer
-        playerController.SetIsHit(true);
+        playerController.IsHit = true;
 
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f); // 피격당했을 때 색 변경
         for (int i = 0; i < spriteLen; i++)
@@ -73,7 +77,6 @@ public class PlayerMain : MonoBehaviour
         Invoke("OffHit", invulnTime); // invulnTime 후 무적 시간 끝
 
         //gameManager.HpDown();
-        
     }
 
     void OffHit()
@@ -87,13 +90,13 @@ public class PlayerMain : MonoBehaviour
     void ReRotate() // 회전 초기화, 다시 조작 가능
     {
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        playerController.SetIsHit(false);
+        playerController.IsHit = false;
     }
 
     void OnDead()
     {
         gameObject.layer = 9;
-        playerController.SetIsHit(true);
+        playerController.IsHit = true;
 
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f);
         for (int i = 0; i < spriteLen; i++)
@@ -104,6 +107,4 @@ public class PlayerMain : MonoBehaviour
         CancelInvoke("ReRotate");
         CancelInvoke("OffHit");
     }
-
-    /* -------------외부참조------------- */
 }
