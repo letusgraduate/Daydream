@@ -20,9 +20,32 @@ public class PlayerMain : MonoBehaviour
 
     [Header("설정")]
     [SerializeField, Range(0f, 100f)]
+    private int maxHp = 100;
+    [SerializeField, Range(0f, 100f)]
+    private int hp = 100;
+
+    [Space(10f)]
+    [SerializeField, Range(0f, 100f)]
     private float knockBack = 10f;
     [SerializeField, Range(0f, 5f)]
     private float invulnTime = 0.8f;
+
+    /* ---------------- 프로퍼티 --------------- */
+    public int Hp
+    {
+        get { return hp; }
+        set // hp 변동 값 입력
+        {
+            int varhp = hp + value;
+
+            if (varhp <= 0)
+                hp = 0;
+            else if (varhp > maxHp)
+                hp = maxHp;
+            else
+                hp += varhp;
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
@@ -76,7 +99,14 @@ public class PlayerMain : MonoBehaviour
         anim.SetTrigger("doHit"); // 애니메이션 트리거
         StartCoroutine(OffHit(invulnTime)); // invulnTime 후 무적 시간 끝
 
-        //gameManager.HpDown();
+        Hp = -10; // 차후 공격력 받아와 변수 대입
+    }
+
+    IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
+    {
+        yield return new WaitForSeconds(second);
+        this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        playerController.IsHit = false;
     }
 
     IEnumerator OffHit(float second)
@@ -86,13 +116,6 @@ public class PlayerMain : MonoBehaviour
         for (int i = 0; i < spriteLen; i++)
             spriteRenderers[i].color = new Color(1, 1, 1, 1f);
         //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
-    }
-
-    IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
-    {
-        yield return new WaitForSeconds(second);
-        this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        playerController.IsHit = false;
     }
 
     void OnDead()
