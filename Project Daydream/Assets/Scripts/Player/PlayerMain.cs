@@ -16,8 +16,6 @@ public class PlayerMain : MonoBehaviour
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
-    private GameManager gameManager;
-    [SerializeField]
     private GameObject hitArea;
 
     [Header("설정")]
