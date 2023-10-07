@@ -15,14 +15,84 @@ public class PlayerMain : MonoBehaviour
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
-    //[SerializeField]
-    //private GameManager gameManager;
+    [SerializeField]
+    private GameObject hitArea;
 
     [Header("설정")]
+    [SerializeField, Range(0, 100)]
+    private int maxHp = 100;
+    [SerializeField, Range(0, 100)]
+    private int hp = 100;
+    [SerializeField, Range(0, 10)]
+    private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
+
+    [Space(10f)]
+    [SerializeField, Range(0, 10000)]
+    private int maxCoin = 0;
+    [SerializeField, Range(0, 10000)]
+    private int coin = 0;
+    [SerializeField, Range(0, 100)]
+    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 100)]
+    private int moonRock = 0;
+
+    [Space(10f)]
     [SerializeField, Range(0f, 100f)]
     private float knockBack = 10f;
     [SerializeField, Range(0f, 5f)]
-    private float invulnTime = 0.8f;
+    private float superArmorTime = 0.8f;
+
+    /* ---------------- 프로퍼티 --------------- */
+    public int Hp
+    {
+        get { return hp; }
+        set // hp 변동 값 입력
+        {
+            if (value <= 0)
+                hp = 0;
+            else if (value > maxHp)
+                hp = maxHp;
+            else
+                hp = value;
+        }
+    }
+
+    public int DashStack
+    {
+        get { return dashStack; }
+        set
+        {
+            dashStack += value;
+        }
+    }
+
+    public int Coin
+    {
+        get { return coin; }
+        set
+        {
+            if (value <= 0)
+                coin = 0;
+            else if (value > maxCoin)
+                coin = maxCoin;
+            else
+                coin = value;
+        }
+    }
+
+    public int MoonRock
+    {
+        get { return moonRock; }
+        set
+        {
+            if (value <= 0)
+                moonRock = 0;
+            else if (value > maxMoonRock)
+                moonRock = maxMoonRock;
+            else
+                moonRock = value;
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
@@ -55,11 +125,10 @@ public class PlayerMain : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     void OnHit(Vector2 targetPos)
     {
-        Debug.Log(playerController.IsHit);
         if (playerController.IsHit == true)
             return;
         
-        gameObject.layer = 13; // Super Armor Layer
+        hitArea.layer = 13; // Super Armor Layer
         playerController.IsHit = true;
 
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f); // 피격당했을 때 색 변경
@@ -71,26 +140,28 @@ public class PlayerMain : MonoBehaviour
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
-        Invoke("ReRotate", 0.4f);
+        StartCoroutine(ReRotate(0.4f));
 
         anim.SetTrigger("doHit"); // 애니메이션 트리거
-        Invoke("OffHit", invulnTime); // invulnTime 후 무적 시간 끝
+        StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
 
-        //gameManager.HpDown();
+        Hp -= 10; // 차후 공격력 받아와 변수 대입
     }
 
-    void OffHit()
+    IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
     {
-        gameObject.layer = 7; // Player Layer
-        //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
-        for (int i = 0; i < spriteLen; i++)
-            spriteRenderers[i].color = new Color(1, 1, 1, 1f);
-    }
-
-    void ReRotate() // 회전 초기화, 다시 조작 가능
-    {
+        yield return new WaitForSeconds(second);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
         playerController.IsHit = false;
+    }
+
+    IEnumerator OffHit(float second)
+    {
+        yield return new WaitForSeconds(second);
+        hitArea.layer = 7; // Player Layer
+        for (int i = 0; i < spriteLen; i++)
+            spriteRenderers[i].color = new Color(1, 1, 1, 1f);
+        //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
     }
 
     void OnDead()
