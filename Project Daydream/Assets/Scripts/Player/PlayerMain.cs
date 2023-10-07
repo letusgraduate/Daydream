@@ -29,6 +29,16 @@ public class PlayerMain : MonoBehaviour
     private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
 
     [Space(10f)]
+    [SerializeField, Range(0, 10000)]
+    private int maxCoin = 0;
+    [SerializeField, Range(0, 10000)]
+    private int coin = 0;
+    [SerializeField, Range(0, 100)]
+    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 100)]
+    private int moonRock = 0;
+
+    [Space(10f)]
     [SerializeField, Range(0f, 100f)]
     private float knockBack = 10f;
     [SerializeField, Range(0f, 5f)]
@@ -58,6 +68,33 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
+    public int Coin
+    {
+        get { return coin; }
+        set
+        {
+            if (value <= 0)
+                coin = 0;
+            else if (value > maxCoin)
+                coin = maxCoin;
+            else
+                coin = value;
+        }
+    }
+
+    public int MoonRock
+    {
+        get { return moonRock; }
+        set
+        {
+            if (value <= 0)
+                moonRock = 0;
+            else if (value > maxMoonRock)
+                moonRock = maxMoonRock;
+            else
+                moonRock = value;
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
