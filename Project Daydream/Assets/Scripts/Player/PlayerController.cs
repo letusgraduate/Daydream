@@ -43,10 +43,9 @@ public class PlayerController : MonoBehaviour
     private float dashPower = 20f;
     [SerializeField, Range(0f, 1f)]
     private float dashTime = 0.2f;
-    [SerializeField, Range(0, 10)]
-    private int dashStack = 3;
+    
     [SerializeField, Range(0f, 10f)]
-    private float dashCoolTime = 3f;
+    private float dashChargeTime = 3f;
 
     [Space(10f)]
     [SerializeField, Range(0f, 10f)]
@@ -169,11 +168,11 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         // 방향키 입력이 있을 때 대시 가능
-        if (dashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
+        if (playerMain.DashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
             return;
 
         isDash = true;
-        dashStack -= 1;
+        playerMain.DashStack -= 1;
 
         // 대시 중 이동,포물선,가속 방지
         moveSpeed = 0f;
@@ -184,16 +183,14 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isFalling", false);
         anim.SetBool("isDashing", true);
 
+        StartCoroutine(DashCharge(dashChargeTime));
         StartCoroutine(DashOut(dashTime));
-        StartCoroutine(DashCoolDown(dashCoolTime));
     }
 
-    IEnumerator DashCoolDown(float second)
+    IEnumerator DashCharge(float second) // 대시 충전
     {
-        // Max값을 지정하고 비교하는 방향으로 코드 수정 해야함
-
         yield return new WaitForSeconds(second);
-        dashStack += 1;
+        playerMain.DashStack += 1;
     }
 
     IEnumerator DashOut(float second)

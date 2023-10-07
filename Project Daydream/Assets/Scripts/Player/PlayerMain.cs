@@ -15,14 +15,16 @@ public class PlayerMain : MonoBehaviour
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
-    //[SerializeField]
-    //private GameManager gameManager;
+    [SerializeField]
+    private GameManager gameManager;
 
     [Header("설정")]
-    [SerializeField, Range(0f, 100f)]
+    [SerializeField, Range(0, 100)]
     private int maxHp = 100;
-    [SerializeField, Range(0f, 100f)]
+    [SerializeField, Range(0, 100)]
     private int hp = 100;
+    [SerializeField, Range(0, 10)]
+    private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
 
     [Space(10f)]
     [SerializeField, Range(0f, 100f)]
@@ -36,16 +38,24 @@ public class PlayerMain : MonoBehaviour
         get { return hp; }
         set // hp 변동 값 입력
         {
-            int varhp = hp + value;
-
-            if (varhp <= 0)
+            if (value <= 0)
                 hp = 0;
-            else if (varhp > maxHp)
+            else if (value > maxHp)
                 hp = maxHp;
             else
-                hp += varhp;
+                hp = value;
         }
     }
+
+    public int DashStack
+    {
+        get { return dashStack; }
+        set
+        {
+            dashStack += value;
+        }
+    }
+
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
@@ -99,7 +109,7 @@ public class PlayerMain : MonoBehaviour
         anim.SetTrigger("doHit"); // 애니메이션 트리거
         StartCoroutine(OffHit(invulnTime)); // invulnTime 후 무적 시간 끝
 
-        Hp = -10; // 차후 공격력 받아와 변수 대입
+        Hp -= 10; // 차후 공격력 받아와 변수 대입
     }
 
     IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
