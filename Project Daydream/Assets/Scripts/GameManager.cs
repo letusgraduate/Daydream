@@ -22,6 +22,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playerMain.Hp);
+        //Debug.Log(playerMain.Hp);
     }
 }

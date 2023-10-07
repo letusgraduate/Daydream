@@ -17,6 +17,8 @@ public class PlayerMain : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameManager gameManager;
+    [SerializeField]
+    private GameObject hitArea;
 
     [Header("설정")]
     [SerializeField, Range(0, 100)]
@@ -30,7 +32,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0f, 100f)]
     private float knockBack = 10f;
     [SerializeField, Range(0f, 5f)]
-    private float invulnTime = 0.8f;
+    private float superArmorTime = 0.8f;
 
     /* ---------------- 프로퍼티 --------------- */
     public int Hp
@@ -88,11 +90,10 @@ public class PlayerMain : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     void OnHit(Vector2 targetPos)
     {
-        Debug.Log(playerController.IsHit);
         if (playerController.IsHit == true)
             return;
         
-        gameObject.layer = 13; // Super Armor Layer
+        hitArea.layer = 13; // Super Armor Layer
         playerController.IsHit = true;
 
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f); // 피격당했을 때 색 변경
@@ -107,7 +108,7 @@ public class PlayerMain : MonoBehaviour
         StartCoroutine(ReRotate(0.4f));
 
         anim.SetTrigger("doHit"); // 애니메이션 트리거
-        StartCoroutine(OffHit(invulnTime)); // invulnTime 후 무적 시간 끝
+        StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
 
         Hp -= 10; // 차후 공격력 받아와 변수 대입
     }
@@ -122,7 +123,7 @@ public class PlayerMain : MonoBehaviour
     IEnumerator OffHit(float second)
     {
         yield return new WaitForSeconds(second);
-        gameObject.layer = 7; // Player Layer
+        hitArea.layer = 7; // Player Layer
         for (int i = 0; i < spriteLen; i++)
             spriteRenderers[i].color = new Color(1, 1, 1, 1f);
         //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경

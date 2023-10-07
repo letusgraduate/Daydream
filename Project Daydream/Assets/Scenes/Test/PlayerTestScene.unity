@@ -3347,6 +3347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1629908115}
+  hitArea: {fileID: 1851523158}
   maxHp: 100
   hp: 100
   dashStack: 3
