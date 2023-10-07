@@ -71,24 +71,26 @@ public class PlayerMain : MonoBehaviour
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
-        Invoke("ReRotate", 0.4f);
+        StartCoroutine(ReRotate(0.4f));
 
         anim.SetTrigger("doHit"); // 애니메이션 트리거
-        Invoke("OffHit", invulnTime); // invulnTime 후 무적 시간 끝
+        StartCoroutine(OffHit(invulnTime)); // invulnTime 후 무적 시간 끝
 
         //gameManager.HpDown();
     }
 
-    void OffHit()
+    IEnumerator OffHit(float second)
     {
+        yield return new WaitForSeconds(second);
         gameObject.layer = 7; // Player Layer
-        //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
         for (int i = 0; i < spriteLen; i++)
             spriteRenderers[i].color = new Color(1, 1, 1, 1f);
+        //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
     }
 
-    void ReRotate() // 회전 초기화, 다시 조작 가능
+    IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
     {
+        yield return new WaitForSeconds(second);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
         playerController.IsHit = false;
     }
