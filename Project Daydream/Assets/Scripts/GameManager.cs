@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    /* -------------- 싱글톤 변수 -------------- */
+    public static GameManager instance = null;
+
     /* ------------- 컴포넌트 변수 ------------- */
     private PlayerMain playerMain;
     private PlayerController playerController;
@@ -13,8 +16,26 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    /* -------------- 싱글톤 변수 -------------- */
-    public static GameManager instance = null;
+    [Header("설정")]
+    [SerializeField, Range(0, 100)]
+    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 100)]
+    private int moonRock = 0;
+
+    /* ---------------- 프로퍼티 --------------- */
+    public int MoonRock
+    {
+        get { return moonRock; }
+        set
+        {
+            if (value <= 0)
+                moonRock = 0;
+            else if (value > maxMoonRock)
+                moonRock = maxMoonRock;
+            else
+                moonRock = value;
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
