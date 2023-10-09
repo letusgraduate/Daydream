@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,6 +62,16 @@ public class GameManager : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     public void GameOver()
     {
-        dataManager.Save();
+        dataManager.Save(); // 세이브 파일 저장
+
+        StartCoroutine(ReStart());
+    }
+
+    IEnumerator ReStart()
+    {
+        yield return new WaitForSeconds(5f);
+
+        // 현재 씬 재시작 (나중에 수정)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
