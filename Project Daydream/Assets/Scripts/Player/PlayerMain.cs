@@ -43,6 +43,12 @@ public class PlayerMain : MonoBehaviour
     private float superArmorTime = 0.8f;
 
     /* ---------------- 프로퍼티 --------------- */
+    public int MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+
     public int Hp
     {
         get { return hp; }
