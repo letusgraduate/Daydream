@@ -39,6 +39,12 @@ public class PlayerMain : MonoBehaviour
     private float superArmorTime = 0.8f;
 
     /* ---------------- 프로퍼티 --------------- */
+    public int MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+
     public int Hp
     {
         get { return hp; }
@@ -56,10 +62,7 @@ public class PlayerMain : MonoBehaviour
     public int DashStack
     {
         get { return dashStack; }
-        set
-        {
-            dashStack += value;
-        }
+        set { dashStack = value; }
     }
 
     public int Coin
