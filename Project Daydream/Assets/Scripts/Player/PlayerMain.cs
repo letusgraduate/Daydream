@@ -93,6 +93,7 @@ public class PlayerMain : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        /* 피격 */
         if (collision.gameObject.tag == "Enemy")
             OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
         if (collision.gameObject.tag == "Bullet")
@@ -101,18 +102,17 @@ public class PlayerMain : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        /* 피격 */
         if (collision.gameObject.tag == "Enemy Attack")
             OnHit(collision.transform.position);
         if (collision.gameObject.tag == "Trap")
             OnHit(collision.transform.position);
 
+        /* 아이템 획득 */
         if (collision.gameObject.layer == 15) // Currency
-        {
             GetCurrency(collision.gameObject);
-        }
-            
     }
-
+    
     /* --------------- 피격 관련 --------------- */
     void OnHit(Vector2 targetPos)
     {
@@ -170,13 +170,14 @@ public class PlayerMain : MonoBehaviour
         CancelInvoke("OffHit");
     }
 
-    /* --------------- 피격 관련 --------------- */
+    /* -------------- 아이템 관련 -------------- */
     void GetCurrency(GameObject gameObject)
     {
-        GameManager.instance.MoonRock += 1;
-        Debug.Log(GameManager.instance.MoonRock);
+        if (gameObject.tag == "Moon Rock")
+            GameManager.instance.MoonRock += 1;
+        if (gameObject.tag == "Coin")
+            Coin += 1;
 
         Destroy(gameObject);
     }
-
 }
