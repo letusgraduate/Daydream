@@ -130,13 +130,20 @@ public class PlayerMain : MonoBehaviour
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
-        this.transform.Rotate(0, 0, dir * (-10)); // 회전
-        StartCoroutine(ReRotate(0.4f));
-
-        anim.SetTrigger("doHit"); // 애니메이션 트리거
-        StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
-
         Hp -= 10; // 차후 공격력 받아와 변수 대입
+
+        if (hp <= 0)
+        {
+            this.transform.Rotate(0, 0, dir * (-90)); // 회전
+            OnDead();
+            return;
+        }
+
+        this.transform.Rotate(0, 0, dir * (-10)); // 회전
+        anim.SetTrigger("doHit"); // 애니메이션 트리거
+
+        StartCoroutine(ReRotate(0.4f));
+        StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
     }
 
     IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
@@ -157,17 +164,9 @@ public class PlayerMain : MonoBehaviour
 
     void OnDead()
     {
-        gameObject.layer = 9;
-        playerController.IsHit = true;
-
-        //spriteRenderer.color = new Color(1, 1, 1, 0.4f);
-        for (int i = 0; i < spriteLen; i++)
-            spriteRenderers[i].color = new Color(1, 1, 1, 0.4f);
-
-        anim.SetTrigger("doDead");
-
-        CancelInvoke("ReRotate");
-        CancelInvoke("OffHit");
+        anim.SetTrigger("doDie");
+        playerController.IsDead = true;
+        rigid.velocity = new Vector2(0f, rigid.velocity.y);
     }
 
     /* -------------- 아이템 관련 -------------- */
