@@ -11,22 +11,25 @@ public class SaveData
 
 public class DataManager : MonoBehaviour
 {
+    /* ------------ 저장 위치 변수 ------------- */
     private string path;
 
+    /* -------------- 이벤트 함수 -------------- */
     void Start()
     {
         path = Path.Combine(Application.dataPath, "SaveData.json");
-        JsonLoad();
+        Load();
     }
 
-    public void JsonLoad()
+    /* --------------- 기능 함수 --------------- */
+    public void Load()
     {
         SaveData saveData = new SaveData();
 
         if (!File.Exists(path))
         {
             GameManager.instance.MoonRock = 0;
-            JsonSave();
+            Save();
         }
         else
         {
@@ -40,7 +43,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void JsonSave()
+    public void Save()
     {
         SaveData saveData = new SaveData();
 

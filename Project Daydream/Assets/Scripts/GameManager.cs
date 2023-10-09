@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     /* ------------- 컴포넌트 변수 ------------- */
     private PlayerMain playerMain;
     private PlayerController playerController;
+    private DataManager dataManager;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
                 moonRock = value;
         }
     }
-
+    
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {
@@ -51,12 +52,15 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
 
+        dataManager = GetComponent<DataManager>();
+
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
     }
 
-    void Update()
+    /* --------------- 기능 함수 --------------- */
+    public void GameOver()
     {
-        //Debug.Log(playerMain.Hp);
+        dataManager.Save();
     }
 }

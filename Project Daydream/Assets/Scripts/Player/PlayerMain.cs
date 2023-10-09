@@ -167,6 +167,8 @@ public class PlayerMain : MonoBehaviour
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
+
+        GameManager.instance.GameOver();
     }
 
     /* -------------- 아이템 관련 -------------- */
