@@ -60,10 +60,7 @@ public class PlayerMain : MonoBehaviour
     public int DashStack
     {
         get { return dashStack; }
-        set
-        {
-            dashStack += value;
-        }
+        set { dashStack = value; }
     }
 
     public int Coin
