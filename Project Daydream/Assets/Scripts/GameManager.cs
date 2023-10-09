@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     [Header("설정")]
-    [SerializeField, Range(0, 100)]
-    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 1000)]
+    private int maxMoonRock = 1000;
     [SerializeField, Range(0, 100)]
     private int moonRock = 0;
 

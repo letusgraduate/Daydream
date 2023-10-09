@@ -105,9 +105,15 @@ public class PlayerMain : MonoBehaviour
             OnHit(collision.transform.position);
         if (collision.gameObject.tag == "Trap")
             OnHit(collision.transform.position);
+
+        if (collision.gameObject.layer == 15) // Currency
+        {
+            GetCurrency(collision.gameObject);
+        }
+            
     }
 
-    /* --------------- 기능 함수 --------------- */
+    /* --------------- 피격 관련 --------------- */
     void OnHit(Vector2 targetPos)
     {
         if (playerController.IsHit == true)
@@ -163,4 +169,14 @@ public class PlayerMain : MonoBehaviour
         CancelInvoke("ReRotate");
         CancelInvoke("OffHit");
     }
+
+    /* --------------- 피격 관련 --------------- */
+    void GetCurrency(GameObject gameObject)
+    {
+        GameManager.instance.MoonRock += 1;
+        Debug.Log(GameManager.instance.MoonRock);
+
+        Destroy(gameObject);
+    }
+
 }
