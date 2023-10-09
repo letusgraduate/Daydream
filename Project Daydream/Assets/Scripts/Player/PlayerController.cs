@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     private float dashPower = 20f;
     [SerializeField, Range(0f, 1f)]
     private float dashTime = 0.2f;
-    
     [SerializeField, Range(0f, 10f)]
     private float dashChargeTime = 3f;
 
