@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private PlayerMain playerMain;
     private GameObject platformObject = null;
+    private UIManager uiManager;
 
     /* ----------- 입력 값 저장 변수 ----------- */
     private Vector2 moveInput;
@@ -32,6 +33,10 @@ public class PlayerController : MonoBehaviour
     private float boxCastMaxDistance = 1.0f;
 
     /* ---------------- 인스펙터 --------------- */
+    [Header("오브젝트 연결")]
+    [SerializeField]
+    private GameObject UIManager;
+
     [Header("설정")]
     [SerializeField, Range(0f, 10f)]
     private float moveSpeed = 5f;
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMain = GetComponent<PlayerMain>();
+        uiManager = UIManager.GetComponent<UIManager>();
     }
 
     void Update()
@@ -172,6 +178,7 @@ public class PlayerController : MonoBehaviour
 
         isDash = true;
         playerMain.DashStack -= 1;
+        uiManager.DashStackUI_Control();
 
         // 대시 중 이동,포물선,가속 방지
         moveSpeed = 0f;
@@ -190,6 +197,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
+        
+        uiManager.DashStackUI_Control();
     }
 
     IEnumerator DashOut(float second)
