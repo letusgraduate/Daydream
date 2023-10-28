@@ -43,18 +43,20 @@ public class UIManager : MonoBehaviour
 
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
-        
+
         DashStackUI_Control();
     }
     // Update is called once per frame
     void Update()
     {
+        /*
         HP_Gage_Control();
         CoinUI_Control();
         MoonRockUI_Control();
+        */
     }
 
-    private void HP_Gage_Control()
+    public void HP_Gage_Control()
     {
 
         HPUI.transform.GetChild(1).GetComponent<Image>().fillAmount = (float)playerMain.Hp / (float)playerMain.MaxHp;
@@ -62,12 +64,12 @@ public class UIManager : MonoBehaviour
     }
 
 
-    private void CoinUI_Control()
+    public void CoinUI_Control()
     {
         CoinUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + playerMain.Coin;
     }
 
-    private void MoonRockUI_Control()
+    public void MoonRockUI_Control()
     {
         MoonRockUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + playerMain.MoonRock;
     }

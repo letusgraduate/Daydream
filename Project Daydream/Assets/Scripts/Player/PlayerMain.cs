@@ -9,6 +9,7 @@ public class PlayerMain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
+    private UIManager uiManager;
 
     /* --------------- 스프라이트 -------------- */
     private int spriteLen = 0;
@@ -17,6 +18,8 @@ public class PlayerMain : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject hitArea;
+    [SerializeField]
+    private GameObject UIManager;
 
     [Header("설정")]
     [SerializeField, Range(0, 100)]
@@ -46,7 +49,12 @@ public class PlayerMain : MonoBehaviour
     public int MaxHp
     {
         get { return maxHp; }
-        set { maxHp = value; }
+        set
+        {
+            maxHp = value;
+
+            uiManager.HP_Gage_Control();
+        }
     }
 
     public int Hp
@@ -60,13 +68,19 @@ public class PlayerMain : MonoBehaviour
                 hp = maxHp;
             else
                 hp = value;
+
+            uiManager.HP_Gage_Control();
         }
     }
 
     public int DashStack
     {
         get { return dashStack; }
-        set { dashStack = value; }
+        set
+        {
+            dashStack = value;
+            uiManager.DashStackUI_Control();
+        }
     }
 
     public int Coin
@@ -80,6 +94,8 @@ public class PlayerMain : MonoBehaviour
                 coin = maxCoin;
             else
                 coin = value;
+
+            uiManager.CoinUI_Control();
         }
     }
 
@@ -94,6 +110,8 @@ public class PlayerMain : MonoBehaviour
                 moonRock = maxMoonRock;
             else
                 moonRock = value;
+
+            uiManager.MoonRockUI_Control();
         }
     }
 
@@ -107,6 +125,7 @@ public class PlayerMain : MonoBehaviour
 
         spriteLen = spriteRenderers.Length;
         //OffHit();
+        uiManager = UIManager.GetComponent<UIManager>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -130,7 +149,7 @@ public class PlayerMain : MonoBehaviour
     {
         if (playerController.IsHit == true)
             return;
-        
+
         hitArea.layer = 13; // Super Armor Layer
         playerController.IsHit = true;
 
