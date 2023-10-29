@@ -6,6 +6,10 @@ public class SkillController : MonoBehaviour
 {
     SpriteRenderer sr;
     public GameObject go;
+
+    [Header("설정")]
+    [SerializeField, Range(0f, 10f)]
+    private float SkillCoolTime = 3f;
     // Start is called before the first frame update
     void Start()
     {
