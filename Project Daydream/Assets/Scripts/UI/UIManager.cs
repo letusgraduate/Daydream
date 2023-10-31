@@ -44,16 +44,10 @@ public class UIManager : MonoBehaviour
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
 
-        DashStackUI_Control();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        /*
         HP_Gage_Control();
+        DashStackUI_Control();
         CoinUI_Control();
         MoonRockUI_Control();
-        */
     }
 
     public void HP_Gage_Control()
