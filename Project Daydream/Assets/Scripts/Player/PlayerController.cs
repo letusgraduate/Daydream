@@ -93,15 +93,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
         Gizmos.color = Color.red;
-        //if (rayHit.collider != null)
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
-        //    Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
-        //}
-        //else
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
-        //}
 
         Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
         Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
@@ -110,6 +101,9 @@ public class PlayerController : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     private void GetInput()
     {
+        if (IsDead == true)
+            return;
+
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         jumpInput = Input.GetButtonDown("Jump");
         dashInput = Input.GetButtonDown("Dash");
@@ -174,7 +168,7 @@ public class PlayerController : MonoBehaviour
         isDash = true;
         playerMain.DashStack -= 1;
 
-        // 대시 중 이동,포물선,가속 방지
+        /* 대시 중 이동, 포물선, 가속 방지 */
         moveSpeed = 0f;
         rigid.gravityScale = 0f;
         rigid.velocity = new Vector2(0f, 0f);
@@ -196,12 +190,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashOut(float second)
     {
-        // 대시 탈출
+        /* 대시 탈출 */
         yield return new WaitForSeconds(second);
         isDash = false;
         rigid.velocity = new Vector2(0f, -1f);
 
-        // 대시 탈출 후 회복
+        /* 대시 탈출 후 회복 */
         yield return new WaitForSeconds(0.1f);
         moveSpeed = 5f;
         rigid.gravityScale = 1f;

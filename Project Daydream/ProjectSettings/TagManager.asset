@@ -11,6 +11,10 @@ TagManager:
   - Enemy Attack
   - Bullet
   - Trap
+  - Moon Rock
+  - Coin
+  - Skill
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -27,8 +31,8 @@ TagManager:
   - Platform Pass
   - Super Armor
   - Trap
-  - 
-  - 
+  - Currency
+  - Item
   - 
   - 
   - 
