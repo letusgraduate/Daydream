@@ -43,10 +43,8 @@ public class PlayerController : MonoBehaviour
     private float dashPower = 20f;
     [SerializeField, Range(0f, 1f)]
     private float dashTime = 0.2f;
-    [SerializeField, Range(0, 10)]
-    private int dashStack = 3;
     [SerializeField, Range(0f, 10f)]
-    private float dashCoolTime = 3f;
+    private float dashChargeTime = 3f;
 
     [Space(10f)]
     [SerializeField, Range(0f, 10f)]
@@ -94,15 +92,6 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
         Gizmos.color = Color.red;
-        //if (rayHit.collider != null)
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
-        //    Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
-        //}
-        //else
-        //{
-        //    Gizmos.DrawRay(transform.position, Vector2.down * boxCastMaxDistance);
-        //}
 
         Gizmos.DrawRay(transform.position, Vector2.down * rayHit.distance);
         Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
@@ -111,6 +100,9 @@ public class PlayerController : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     private void GetInput()
     {
+        if (IsDead == true)
+            return;
+
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         jumpInput = Input.GetButtonDown("Jump");
         dashInput = Input.GetButtonDown("Dash");
@@ -169,13 +161,13 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         // 방향키 입력이 있을 때 대시 가능
-        if (dashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
+        if (playerMain.DashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
             return;
 
         isDash = true;
-        dashStack -= 1;
+        playerMain.DashStack -= 1;
 
-        // 대시 중 이동,포물선,가속 방지
+        /* 대시 중 이동, 포물선, 가속 방지 */
         moveSpeed = 0f;
         rigid.gravityScale = 0f;
         rigid.velocity = new Vector2(0f, 0f);
@@ -184,26 +176,24 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isFalling", false);
         anim.SetBool("isDashing", true);
 
+        StartCoroutine(DashCharge(dashChargeTime));
         StartCoroutine(DashOut(dashTime));
-        StartCoroutine(DashCoolDown(dashCoolTime));
     }
 
-    IEnumerator DashCoolDown(float second)
+    IEnumerator DashCharge(float second) // 대시 충전
     {
-        // Max값을 지정하고 비교하는 방향으로 코드 수정 해야함
-
         yield return new WaitForSeconds(second);
-        dashStack += 1;
+        playerMain.DashStack += 1;
     }
 
     IEnumerator DashOut(float second)
     {
-        // 대시 탈출
+        /* 대시 탈출 */
         yield return new WaitForSeconds(second);
         isDash = false;
         rigid.velocity = new Vector2(0f, -1f);
 
-        // 대시 탈출 후 회복
+        /* 대시 탈출 후 회복 */
         yield return new WaitForSeconds(0.1f);
         moveSpeed = 5f;
         rigid.gravityScale = 1f;
