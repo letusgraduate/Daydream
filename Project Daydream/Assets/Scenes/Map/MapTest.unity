@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 9431923}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 81081083}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 237114674}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 277356534}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 349268077}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2146,7 +2146,7 @@ GameObject:
   - component: {fileID: 488074283}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2650,7 +2650,7 @@ GameObject:
   - component: {fileID: 637686355}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3060,7 +3060,7 @@ GameObject:
   - component: {fileID: 750141232}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3398,7 +3398,7 @@ GameObject:
   - component: {fileID: 821398593}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4933,19 +4933,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302c36efdd7626545ad3cc4745a2e8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left:
+  leftMaps:
   - {fileID: 2135589895}
   - {fileID: 1263843364}
   - {fileID: 698204078}
   - {fileID: 7102823}
   - {fileID: 267217537}
-  center:
+  centerMaps:
   - {fileID: 45571185}
   - {fileID: 190344476}
   - {fileID: 567851538}
   - {fileID: 995447234}
   - {fileID: 654829922}
-  right:
+  rightMaps:
   - {fileID: 944056002}
   - {fileID: 486444680}
   - {fileID: 750483753}
@@ -5444,7 +5444,7 @@ GameObject:
   - component: {fileID: 1248966155}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6152,7 +6152,7 @@ GameObject:
   - component: {fileID: 1426826828}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6236,7 +6236,7 @@ GameObject:
   - component: {fileID: 1454991102}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6405,7 +6405,7 @@ GameObject:
   - component: {fileID: 1474798502}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6618,7 +6618,7 @@ GameObject:
   - component: {fileID: 1475585855}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7038,7 +7038,7 @@ GameObject:
   - component: {fileID: 1584663251}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7672,7 +7672,7 @@ GameObject:
   - component: {fileID: 1771592637}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7840,7 +7840,7 @@ GameObject:
   - component: {fileID: 1821365566}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7924,7 +7924,7 @@ GameObject:
   - component: {fileID: 1824156792}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8260,7 +8260,7 @@ GameObject:
   - component: {fileID: 1862483540}
   m_Layer: 0
   m_Name: CenterToRightPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8559,7 +8559,7 @@ GameObject:
   - component: {fileID: 1959885500}
   m_Layer: 0
   m_Name: LeftToCenterPivot
-  m_TagString: Untagged
+  m_TagString: MapPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
