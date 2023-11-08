@@ -34,6 +34,10 @@ public class PlayerMain : MonoBehaviour
     private int maxCoin = 0;
     [SerializeField, Range(0, 10000)]
     private int coin = 0;
+    [SerializeField, Range(0, 100)]
+    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 100)]
+    private int moonRock = 0;
 
     [Space(10f)]
     [SerializeField, Range(0f, 100f)]
