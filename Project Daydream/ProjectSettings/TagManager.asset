@@ -15,7 +15,8 @@ TagManager:
   - Coin
   - Skill
   - Item
-  - MapPivot
+  - MapPivotIn
+  - MapPivotOut
   layers:
   - Default
   - TransparentFX
