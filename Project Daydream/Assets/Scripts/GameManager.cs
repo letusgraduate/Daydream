@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int moonRock = 0;
 
+    [Header("포탈")]
+    [SerializeField]
+    private GameObject normalPortalPrefab;
+    [SerializeField]
+    private GameObject bonusPortalPrefab;
+
     /* ---------------- 프로퍼티 --------------- */
     public int MoonRock
     {
@@ -38,7 +44,7 @@ public class GameManager : MonoBehaviour
                 moonRock = value;
         }
     }
-    
+
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {
@@ -73,5 +79,17 @@ public class GameManager : MonoBehaviour
 
         // 현재 씬 재시작 (나중에 수정)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void StageClear()
+    {
+        Instantiate(normalPortalPrefab, new Vector3(0, 0, 0), Quaternion.identity); // 나중에 생성 위치 바꾸겠음
+
+        int probability = Random.Range(0, 101); // 보너스 맵 포탈 스폰 확률
+
+        if (probability <= 60)
+        {
+            Instantiate(bonusPortalPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        }
     }
 }
