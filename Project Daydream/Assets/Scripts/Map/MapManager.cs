@@ -51,6 +51,9 @@ public class MapManager : MonoBehaviour
         secendInPivot = getPivot(secendMaps[nowSecendMap], "MapPivotIn");
         thirdOutPivot = getPivot(thirdMaps[nowThirdMap], "MapPivotOut");
 
+        /* 1섹터 위치 초기화 */
+        firstMaps[nowFirstMap].position = new Vector2(0, 0);
+
         /* 1섹터 2섹터 연결 */
         Vector3 secendPivotPos = secendMaps[nowSecendMap].position;
         secendPivotPos.x += firstInPivot.position.x - secendOutPivot.position.x
