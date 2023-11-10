@@ -31,6 +31,10 @@ public class PlayerMain : MonoBehaviour
     private int maxCoin = 0;
     [SerializeField, Range(0, 10000)]
     private int coin = 0;
+    [SerializeField, Range(0, 100)]
+    private int maxMoonRock = 0;
+    [SerializeField, Range(0, 100)]
+    private int moonRock = 0;
 
     [Space(10f)]
     [SerializeField, Range(0f, 100f)]
@@ -42,7 +46,12 @@ public class PlayerMain : MonoBehaviour
     public int MaxHp
     {
         get { return maxHp; }
-        set { maxHp = value; }
+        set
+        {
+            maxHp = value;
+
+            UIManager.instance.SetHpUI();
+        }
     }
 
     public int Hp
@@ -56,13 +65,19 @@ public class PlayerMain : MonoBehaviour
                 hp = maxHp;
             else
                 hp = value;
+
+            UIManager.instance.SetHpUI();
         }
     }
 
     public int DashStack
     {
         get { return dashStack; }
-        set { dashStack = value; }
+        set
+        {
+            dashStack = value;
+            UIManager.instance.SetDashStackUI();
+        }
     }
 
     public int Coin
@@ -76,6 +91,24 @@ public class PlayerMain : MonoBehaviour
                 coin = maxCoin;
             else
                 coin = value;
+
+            UIManager.instance.SetCoinUI();
+        }
+    }
+
+    public int MoonRock
+    {
+        get { return moonRock; }
+        set
+        {
+            if (value <= 0)
+                moonRock = 0;
+            else if (value > maxMoonRock)
+                moonRock = maxMoonRock;
+            else
+                moonRock = value;
+
+            UIManager.instance.SetMoonRockUI();
         }
     }
 
@@ -118,7 +151,7 @@ public class PlayerMain : MonoBehaviour
     {
         if (playerController.IsHit == true)
             return;
-        
+
         hitArea.layer = 13; // Super Armor Layer
         playerController.IsHit = true;
 
