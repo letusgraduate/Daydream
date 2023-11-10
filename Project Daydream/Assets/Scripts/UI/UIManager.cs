@@ -73,6 +73,8 @@ public class UIManager : MonoBehaviour
     private GameObject Skill;
     [SerializeField]
     private GameObject Item;
+    [SerializeField]
+    private GameObject MiniMap;
 
     /* -------------- 싱글톤 변수 -------------- */
     public static UIManager instance = null;
@@ -105,8 +107,20 @@ public class UIManager : MonoBehaviour
         DashStackUI_Control();
         CoinUI_Control();
         MoonRockUI_Control();
+        MiniMap.SetActive(false);
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            MiniMap.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.M))
+        {
+            MiniMap.SetActive(false);
+        }
 
+    }
     private void FixedUpdate()
     {
         ShowItemUI();
