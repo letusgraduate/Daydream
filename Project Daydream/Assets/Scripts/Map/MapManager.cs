@@ -67,6 +67,8 @@ public class MapManager : MonoBehaviour
         int randomNum = Random.Range(0, map.Count);
         map[randomNum].gameObject.SetActive(true);
 
+        Debug.Log("Selected "+ map[randomNum]);
+
         return randomNum;
     }
 
