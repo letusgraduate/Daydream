@@ -9,7 +9,6 @@ public class PlayerMain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
-    private UIManager uiManager;
 
     /* --------------- 스프라이트 -------------- */
     private int spriteLen = 0;
@@ -18,8 +17,6 @@ public class PlayerMain : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject hitArea;
-    [SerializeField]
-    private GameObject UIManager;
 
     [Header("설정")]
     [SerializeField, Range(0, 100)]
@@ -53,7 +50,7 @@ public class PlayerMain : MonoBehaviour
         {
             maxHp = value;
 
-            uiManager.SetHpUI();
+            UIManager.instance.SetHpUI();
         }
     }
 
@@ -69,7 +66,7 @@ public class PlayerMain : MonoBehaviour
             else
                 hp = value;
 
-            uiManager.SetHpUI();
+            UIManager.instance.SetHpUI();
         }
     }
 
@@ -79,7 +76,7 @@ public class PlayerMain : MonoBehaviour
         set
         {
             dashStack = value;
-            uiManager.SetDashStackUI();
+            UIManager.instance.SetDashStackUI();
         }
     }
 
@@ -95,7 +92,7 @@ public class PlayerMain : MonoBehaviour
             else
                 coin = value;
 
-            uiManager.SetCoinUI();
+            UIManager.instance.SetCoinUI();
         }
     }
 
@@ -111,7 +108,7 @@ public class PlayerMain : MonoBehaviour
             else
                 moonRock = value;
 
-            uiManager.SetMoonRockUI();
+            UIManager.instance.SetMoonRockUI();
         }
     }
 
@@ -125,7 +122,6 @@ public class PlayerMain : MonoBehaviour
 
         spriteLen = spriteRenderers.Length;
         //OffHit();
-        uiManager = UIManager.GetComponent<UIManager>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
