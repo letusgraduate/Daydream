@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool dashInput;
     private bool attackInput;
     private bool platformPassInput;
-    
+
     /* ------------ 동작 확인 변수 ------------- */
     private bool isMove = false;
     private bool isJump = false;
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!jumpInput || platformPassInput || isJump || isDash || isAttack || isHit)
             return;
-        
+
         isJump = true;
 
         // Y축 속도 초기화
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!platformPassInput || platformObject == null || isDash || isAttack || isHit)
             return;
-        
+
         //Debug.Log("아래점프 ON " + platformObject.name); 
         platformObject.layer = 12; // Pass Ground 레이어
     }
@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
+
     }
 
     IEnumerator DashOut(float second)
