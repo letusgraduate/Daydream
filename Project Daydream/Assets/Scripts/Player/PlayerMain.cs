@@ -53,7 +53,7 @@ public class PlayerMain : MonoBehaviour
         {
             maxHp = value;
 
-            uiManager.HP_Gage_Control();
+            uiManager.SetHpUI();
         }
     }
 
@@ -69,7 +69,7 @@ public class PlayerMain : MonoBehaviour
             else
                 hp = value;
 
-            uiManager.HP_Gage_Control();
+            uiManager.SetHpUI();
         }
     }
 
@@ -79,7 +79,7 @@ public class PlayerMain : MonoBehaviour
         set
         {
             dashStack = value;
-            uiManager.DashStackUI_Control();
+            uiManager.SetDashStackUI();
         }
     }
 
@@ -95,7 +95,7 @@ public class PlayerMain : MonoBehaviour
             else
                 coin = value;
 
-            uiManager.CoinUI_Control();
+            uiManager.SetCoinUI();
         }
     }
 
@@ -111,7 +111,7 @@ public class PlayerMain : MonoBehaviour
             else
                 moonRock = value;
 
-            uiManager.MoonRockUI_Control();
+            uiManager.SetMoonRockUI();
         }
     }
 

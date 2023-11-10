@@ -1582,7 +1582,7 @@ GameObject:
   - component: {fileID: 143413900}
   - component: {fileID: 143413899}
   m_Layer: 5
-  m_Name: SKILL
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1659,7 +1659,7 @@ GameObject:
   - component: {fileID: 154990149}
   - component: {fileID: 154990148}
   m_Layer: 5
-  m_Name: A_Skill
+  m_Name: Skill A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2877,7 +2877,7 @@ GameObject:
   - component: {fileID: 292102526}
   - component: {fileID: 292102525}
   m_Layer: 5
-  m_Name: S_Skill
+  m_Name: Skill S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8463,7 +8463,7 @@ GameObject:
   - component: {fileID: 777005551}
   - component: {fileID: 777005550}
   m_Layer: 5
-  m_Name: Ultimate_Skill
+  m_Name: Ultimate Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9258,7 +9258,7 @@ GameObject:
   - component: {fileID: 811512675}
   - component: {fileID: 811512674}
   m_Layer: 5
-  m_Name: D_Skill
+  m_Name: Skill D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12044,7 +12044,7 @@ GameObject:
   - component: {fileID: 1025224030}
   - component: {fileID: 1025224029}
   m_Layer: 5
-  m_Name: Skill
+  m_Name: Normal Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14458,7 +14458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1334521729
 Camera:
   m_ObjectHideFlags: 0
@@ -14549,7 +14549,7 @@ GameObject:
   - component: {fileID: 1350781982}
   - component: {fileID: 1350781983}
   m_Layer: 5
-  m_Name: Goods
+  m_Name: Currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18378,7 +18378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1742871851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20289,7 +20289,7 @@ GameObject:
   - component: {fileID: 1939403129}
   - component: {fileID: 1939403128}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20673,27 +20673,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce5759391c0e4542823f793644ef610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 0
-  availableItem1: 0
-  availableItem2: 0
-  availableItem3: 0
-  isASkill: 0
-  isSSkill: 0
-  isDSkill: 0
-  isUltimateSkill: 0
-  aSkillColltime: 3
-  sSkillColltime: 3
-  dSkillColltime: 3
-  ultimateSkillColltime: 5
   player: {fileID: 534065154}
-  HPUI: {fileID: 547815260}
-  CoinUI: {fileID: 1621908358}
-  MoonRockUI: {fileID: 470102049}
-  DashStackUI: {fileID: 616437934}
-  UltimitSkill: {fileID: 777005548}
-  Skill: {fileID: 1025224027}
-  Item: {fileID: 2105552644}
-  MiniMap: {fileID: 1742871850}
+  hpUI: {fileID: 547815260}
+  coinUI: {fileID: 1621908358}
+  moonRockUI: {fileID: 470102049}
+  dashStackUI: {fileID: 616437934}
+  ultimitSkill: {fileID: 777005548}
+  normalSkill: {fileID: 1025224027}
+  item: {fileID: 2105552644}
+  itemCount: 0
+  isActiveItem1: 0
+  isActiveItem2: 0
+  isActiveItem3: 0
+  SkillACoolTime: 3
+  SkillSCoolTime: 3
+  SkillDCoolTime: 3
+  ultimateSkillColltime: 5
+  isSkillA: 0
+  isSkillS: 0
+  isSkillD: 0
+  isUltimateSkill: 0
 --- !u!4 &1977689452
 Transform:
   m_ObjectHideFlags: 0

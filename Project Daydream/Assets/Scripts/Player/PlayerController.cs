@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private float boxCastMaxDistance = 1.0f;
 
     /* ---------------- 인스펙터 --------------- */
-
     [Header("설정")]
     [SerializeField, Range(0f, 10f)]
     private float moveSpeed = 5f;
