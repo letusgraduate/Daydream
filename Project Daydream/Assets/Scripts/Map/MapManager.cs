@@ -46,27 +46,15 @@ public class MapManager : MonoBehaviour
         nowThirdMap = SelectMap(thirdMaps);
 
         /* 피벗 참조 */
-        firstInPivot = getPivot(firstMaps[nowFirstMap], "MapPivotIn");
-        secendOutPivot = getPivot(secendMaps[nowSecendMap], "MapPivotOut");
-        secendInPivot = getPivot(secendMaps[nowSecendMap], "MapPivotIn");
-        thirdOutPivot = getPivot(thirdMaps[nowThirdMap], "MapPivotOut");
+        firstInPivot = GetPivot(firstMaps[nowFirstMap], "MapPivotIn");
+        secendOutPivot = GetPivot(secendMaps[nowSecendMap], "MapPivotOut");
+        secendInPivot = GetPivot(secendMaps[nowSecendMap], "MapPivotIn");
+        thirdOutPivot = GetPivot(thirdMaps[nowThirdMap], "MapPivotOut");
 
-        /* 1섹터 위치 초기화 */
+        /* 섹터들 위치 조정 */
         firstMaps[nowFirstMap].position = new Vector2(0, 0);
-
-        /* 1섹터 2섹터 연결 */
-        Vector3 secendPivotPos = secendMaps[nowSecendMap].position;
-        secendPivotPos.x += firstInPivot.position.x - secendOutPivot.position.x
-            + secendOutPivot.localScale.x / 2 + firstInPivot.localScale.x / 2; // 피벗 크기들의 절반씩 이동해 옆에 붙게
-        secendPivotPos.y += firstInPivot.position.y - secendOutPivot.position.y;
-        secendMaps[nowSecendMap].position = secendPivotPos;
-
-        /* 2섹터 3섹터 연결 */
-        Vector3 thirdPivotPos = thirdMaps[nowThirdMap].position;
-        thirdPivotPos.x += secendInPivot.position.x - thirdOutPivot.position.x
-            + secendInPivot.localScale.x / 2 + thirdOutPivot.localScale.x / 2;
-        thirdPivotPos.y += secendInPivot.position.y - thirdOutPivot.position.y;
-        thirdMaps[nowThirdMap].position = thirdPivotPos;
+        ConnectMap(secendMaps[nowSecendMap], firstInPivot, secendOutPivot);
+        ConnectMap(thirdMaps[nowThirdMap], secendInPivot, thirdOutPivot);
 
         /* 리스트에서 맵 삭제 */
         RemoveMapList(firstMaps, nowFirstMap);
@@ -82,7 +70,7 @@ public class MapManager : MonoBehaviour
         return randomNum;
     }
 
-    private Transform getPivot(Transform parent, string tagName)
+    private Transform GetPivot(Transform parent, string tagName)
     {
         Transform[] children = parent.GetComponentsInChildren<Transform>();
 
@@ -92,6 +80,17 @@ public class MapManager : MonoBehaviour
                 return children[i];
         }
         return null;
+    }
+
+    private void ConnectMap(Transform map, Transform inPivot, Transform outPivot)
+    {
+        Vector3 pivotPos = map.position;
+
+        pivotPos.x += inPivot.position.x - outPivot.position.x
+            + outPivot.localScale.x / 2 + inPivot.localScale.x / 2; // 피벗 크기들의 절반씩 이동해 옆에 붙게
+        pivotPos.y += inPivot.position.y - outPivot.position.y;
+
+        map.position = pivotPos;
     }
 
     private void RemoveMapList(List<Transform> map, int index)
