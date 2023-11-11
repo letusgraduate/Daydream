@@ -9,7 +9,7 @@ public class SkillItem : MonoBehaviour
     private int skillNumber;
 
     [Space(10f)]
-    [Header("아이템 번호")]
+    [Header("스킬 쿨타임")]
     [SerializeField, Range(0f, 100f)]
     private float skillCoolTime = 5f;
 
@@ -23,16 +23,4 @@ public class SkillItem : MonoBehaviour
         get { return skillCoolTime; }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

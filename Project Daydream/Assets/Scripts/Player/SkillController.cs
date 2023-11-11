@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
+    private SkillManager skillManager;
     //스킬 아이템
     private bool isUltimateSkill;
 
@@ -18,17 +19,33 @@ public class SkillController : MonoBehaviour
     private bool dSkillInput;
     [Header("오브젝트")]
     [SerializeField]
-    private GameObject skillManager;
+    private GameObject skillManagerObject;
     // Start is called before the first frame update
 
     public bool IsUltimateSkill
     {
-        get { return IsUltimateSkill; }
+        get { return isUltimateSkill; }
     }
+    public bool IsASkill
+    {
+        get { return isASkill; }
+    }
+
+    public bool IsSSkill
+    {
+        get { return isSSkill; }
+    }
+
+    public bool IsDSkill
+    {
+        get { return isDSkill; }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        skillManager = skillManagerObject.GetComponent<SkillManager>();
         ultimateSkillInput = Input.GetKeyDown(KeyCode.F);
         aSkillInput = Input.GetKeyDown(KeyCode.Z);
         sSkillInput = Input.GetKeyDown(KeyCode.X);
@@ -43,18 +60,18 @@ public class SkillController : MonoBehaviour
 
     private void UltimateSkill()
     {
-        if (!ultimateSkillInput || skillManager.transform.childCount <= 0 || isUltimateSkill)
+        if (!ultimateSkillInput || skillManagerObject.transform.childCount <= 0 || isUltimateSkill)
             return;
         isUltimateSkill = true;
-        skillManager.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-        StartCoroutine(UltimateSkillCoolOut(skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime));
+        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillCoolTime));
     }
 
     IEnumerator UltimateSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
         isUltimateSkill = false;
-        skillManager.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     private void ASkill()
@@ -63,7 +80,7 @@ public class SkillController : MonoBehaviour
             return;
         isASkill = true;
         Debug.Log("ASkill Start");
-        StartCoroutine(ASkillCoolOut(skillManager.GetComponent<SkillManager>().ASkillCoolTime));
+        StartCoroutine(ASkillCoolOut(skillManager.ASkillCoolTime));
     }
 
     IEnumerator ASkillCoolOut(float second)
@@ -78,7 +95,7 @@ public class SkillController : MonoBehaviour
             return;
         isSSkill = true;
         Debug.Log("SSkill Start");
-        StartCoroutine(SSkillCoolOut(skillManager.GetComponent<SkillManager>().SSkillCoolTime));
+        StartCoroutine(SSkillCoolOut(skillManager.SSkillCoolTime));
     }
 
     IEnumerator SSkillCoolOut(float second)
@@ -94,7 +111,7 @@ public class SkillController : MonoBehaviour
             return;
         isDSkill = true;
         Debug.Log("DSkill Start");
-        StartCoroutine(DSkillCoolOut(skillManager.GetComponent<SkillManager>().DSkillCoolTime));
+        StartCoroutine(DSkillCoolOut(skillManager.DSkillCoolTime));
     }
 
     IEnumerator DSkillCoolOut(float second)

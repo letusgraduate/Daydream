@@ -32,15 +32,4 @@ public class SkillManager : MonoBehaviour
         get { return dSkillCoolTime; }
     }
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
-
 }
