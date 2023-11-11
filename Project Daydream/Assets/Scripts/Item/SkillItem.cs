@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkillItem : MonoBehaviour
+{
+    [Header("아이템 번호")]
+    [SerializeField, Range(0, 100)]
+    private int skillNumber;
+
+    [Space(10f)]
+    [Header("아이템 번호")]
+    [SerializeField, Range(0f, 100f)]
+    private float skillCoolTime = 5f;
+
+
+    public int SkillNumber
+    {
+        get { return skillNumber; }
+    }
+    public float SkillCoolTime
+    {
+        get { return skillCoolTime; }
+    }
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+}

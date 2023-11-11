@@ -13,6 +13,12 @@ public class SkillActive : MonoBehaviour
     [SerializeField]
     private GameObject SkillPivot;
 
+    private float skillCoolTime;
+    public float SkillCoolTime
+    {
+        get { return skillCoolTime; }
+    }
+
     void Start()
     {
 
@@ -33,14 +39,11 @@ public class SkillActive : MonoBehaviour
             }
 
             int skillNumber = other.gameObject.GetComponent<SkillItem>().SkillNumber;
+            skillCoolTime = other.gameObject.GetComponent<SkillItem>().SkillCoolTime;
             GameObject skill = Instantiate(SkillPrefabs[skillNumber], SkillPivot.transform);
             skill.transform.localPosition = Vector3.zero;
             Destroy(other.gameObject);
         }
     }
 
-    public class SkillItem : MonoBehaviour
-    {
-        public int SkillNumber;
-    }
 }
