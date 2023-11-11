@@ -83,13 +83,13 @@ public class GameManager : MonoBehaviour
 
     public void StageClear()
     {
-        Instantiate(normalPortalPrefab, new Vector3(0, 0, 0), Quaternion.identity); // 나중에 생성 위치 바꾸겠음
+        Instantiate(normalPortalPrefab, new Vector3(-4, 0, 0), Quaternion.identity); // 나중에 생성 위치 바꾸겠음
 
         int probability = Random.Range(0, 101); // 보너스 맵 포탈 스폰 확률
 
         if (probability <= 60)
         {
-            Instantiate(bonusPortalPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(bonusPortalPrefab, new Vector3(4, 0, 0), Quaternion.identity);
         }
     }
 }

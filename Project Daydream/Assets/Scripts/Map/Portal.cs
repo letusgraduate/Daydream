@@ -16,29 +16,29 @@ public class Portal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (this.name == "NormalPortal")
+            if (this.name == "NormalPortal(Clone)")
             {
-                Debug.Log("포탈 접촉, 맵 이동");
-                //SceneManager.LoadScene(normalMap);
+                Debug.Log("포탈 접촉, 일반맵 이동");
+                SceneManager.LoadScene(normalMap);
             }
-            else if (this.name == "BonusPortal")
+            else if (this.name == "BonusPortal(Clone)")
             {
                 int randomNumber = Random.Range(1, 100);
 
                 if (randomNumber <= 33)
                 {
                     Debug.Log("포탈 접촉, 코인맵 이동");
-                    //SceneManager.LoadScene(coinMap);
+                    SceneManager.LoadScene(coinMap);
                 }
                 else if (randomNumber <= 66)
                 {
                     Debug.Log("포탈 접촉, 회복맵 이동");
-                    //SceneManager.LoadScene(healingMap);
+                    SceneManager.LoadScene(healingMap);
                 }
                 else
                 {
                     Debug.Log("포탈 접촉, 상점맵 이동");
-                    //SceneManager.LoadScene(storeMap);
+                    SceneManager.LoadScene(storeMap);
                 }
             }
             else { }

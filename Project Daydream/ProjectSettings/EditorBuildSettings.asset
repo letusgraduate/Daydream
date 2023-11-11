@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Test/Map/CoinMap.unity
+    guid: cf2f857a0a8e45e4c904400981b85fad
+  - enabled: 1
+    path: Assets/Scenes/Test/Map/HealingMap.unity
+    guid: 860f9ad0d3528364b8db872aaafb7e0f
+  - enabled: 1
+    path: Assets/Scenes/Test/Map/NormalMap.unity
+    guid: 091332f1c3c60ee439d0882fa057b231
+  - enabled: 1
+    path: Assets/Scenes/Test/Map/StoreMap.unity
+    guid: 84d483558e1afb449b09da90b50fa0cf
   m_configObjects: {}
