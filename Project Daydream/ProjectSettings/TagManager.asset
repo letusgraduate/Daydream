@@ -17,6 +17,7 @@ TagManager:
   - Item
   - MapPivotIn
   - MapPivotOut
+  - SkillItem
   layers:
   - Default
   - TransparentFX
