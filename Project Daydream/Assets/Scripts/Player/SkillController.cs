@@ -9,7 +9,7 @@ public class SkillController : MonoBehaviour
 
     [Header("설정")]
     [SerializeField, Range(0f, 10f)]
-    private float SkillCoolTime = 3f;
+    public float SkillCoolTime = 3f;
     // Start is called before the first frame update
     void Start()
     {

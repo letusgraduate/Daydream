@@ -14,12 +14,15 @@ public class SkillCoolTimeTest : MonoBehaviour
     public float skillCoolTime = 10.0f;
 
     public Image skillFillAmount;
+    public GameObject SkillObject;
+    GameObject SkillPrefab;
 
     bool isUseSkill = true;
 
     private void Awake()
     {
-     
+        SkillPrefab = SkillObject.transform.GetChild(0).gameObject;
+        skillCoolTime = SkillPrefab.GetComponent<SkillController>().SkillCoolTime;
     }
 
     public void UseSkill() //스킬 사용
