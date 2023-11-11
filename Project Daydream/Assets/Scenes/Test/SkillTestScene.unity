@@ -3537,9 +3537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df0041d26de57c48a2098ee53af054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefabs:
-  - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
-  SkillPivot: {fileID: 1751177937}
 --- !u!114 &534065163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,7 +3549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4eff3a7c623adc4098518054f2b3e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPivot: {fileID: 1751177937}
+  skillManager: {fileID: 1751177937}
 --- !u!1 &540101410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9467,6 +9464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751177940}
+  - component: {fileID: 1751177941}
   m_Layer: 0
   m_Name: SkillPivot
   m_TagString: Untagged
@@ -9489,6 +9487,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 534065155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751177941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751177937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df0041d26de57c48a2098ee53af054e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752251474
 GameObject:
   m_ObjectHideFlags: 0

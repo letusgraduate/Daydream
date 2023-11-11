@@ -31,9 +31,13 @@ public class SkillController : MonoBehaviour
     {
         ultimateSkillInput = Input.GetKeyDown(KeyCode.F);
         aSkillInput = Input.GetKeyDown(KeyCode.Z);
+        sSkillInput = Input.GetKeyDown(KeyCode.X);
+        dSkillInput = Input.GetKeyDown(KeyCode.C);
 
         UltimateSkill();
         ASkill();
+        SSkill();
+        DSkill();
 
     }
 
@@ -67,5 +71,36 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(second);
         Debug.Log("ASkill End");
         isASkill = false;
+    }
+    private void SSkill()
+    {
+        if (!sSkillInput || isSSkill)
+            return;
+        isSSkill = true;
+        Debug.Log("SSkill Start");
+        StartCoroutine(SSkillCoolOut(skillManager.GetComponent<SkillManager>().SSkillCoolTime));
+    }
+
+    IEnumerator SSkillCoolOut(float second)
+    {
+        yield return new WaitForSeconds(second);
+        Debug.Log("SSkill End");
+        isSSkill = false;
+    }
+
+    private void DSkill()
+    {
+        if (!dSkillInput || isDSkill)
+            return;
+        isDSkill = true;
+        Debug.Log("DSkill Start");
+        StartCoroutine(DSkillCoolOut(skillManager.GetComponent<SkillManager>().DSkillCoolTime));
+    }
+
+    IEnumerator DSkillCoolOut(float second)
+    {
+        yield return new WaitForSeconds(second);
+        Debug.Log("DSkill End");
+        isDSkill = false;
     }
 }
