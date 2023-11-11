@@ -11,7 +11,7 @@ public class SkillActive : MonoBehaviour
     private GameObject[] SkillPrefabs; // GameObject 배열로 수정
 
     [SerializeField]
-    private Transform SkillPivot;
+    private GameObject SkillPivot;
 
     void Start()
     {
@@ -27,13 +27,13 @@ public class SkillActive : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SkillItem"))
         {
-            if (SkillPivot.childCount > 0)
+            if (SkillPivot.transform.childCount > 0)
             {
-                Destroy(SkillPivot.GetChild(0).gameObject);
+                Destroy(SkillPivot.transform.GetChild(0).gameObject);
             }
 
             int skillNumber = other.gameObject.GetComponent<SkillItem>().SkillNumber;
-            GameObject skill = Instantiate(SkillPrefabs[skillNumber], SkillPivot);
+            GameObject skill = Instantiate(SkillPrefabs[skillNumber], SkillPivot.transform);
             skill.transform.localPosition = Vector3.zero;
             Destroy(other.gameObject);
         }

@@ -17,7 +17,7 @@ public class SkillCoolTimeTest : MonoBehaviour
     public GameObject SkillObject;
     GameObject SkillPrefab;
 
-    bool isUseSkill = true;
+    public bool isUseSkill;
 
     private void Awake()
     {
