@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
+    /* --------------컴포넌트 변수-------------- */
     private SkillManager skillManager;
+
+    /* --------------스킬 확인 변수-------------- */
     //스킬 아이템
     private bool isUltimateSkill;
-
     // 일반 스킬
     private bool isASkill;
     private bool isSSkill;
     private bool isDSkill;
-    // 스킬 입역 변수
+
+    /* ----------- 입력 값 저장 변수 ----------- */
     private bool ultimateSkillInput;
     private bool aSkillInput;
     private bool sSkillInput;
     private bool dSkillInput;
+    /* ---------------- 인스펙터 --------------- */
+
     [Header("오브젝트")]
     [SerializeField]
     private GameObject skillManagerObject;
     [SerializeField]
     private GameObject[] bulletPrefab;
-    // Start is called before the first frame update
 
+    /* ---------------- 프로퍼티 --------------- */
     public bool IsUltimateSkill
     {
         get { return isUltimateSkill; }
@@ -44,7 +49,7 @@ public class SkillController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    /* -------------- 이벤트 함수 -------------- */
     void Update()
     {
         skillManager = skillManagerObject.GetComponent<SkillManager>();
@@ -53,6 +58,7 @@ public class SkillController : MonoBehaviour
         sSkillInput = Input.GetKeyDown(KeyCode.X);
         dSkillInput = Input.GetKeyDown(KeyCode.C);
 
+        //스킬 사용
         UltimateSkill();
         ASkill();
         SSkill();
@@ -60,18 +66,23 @@ public class SkillController : MonoBehaviour
 
     }
 
+    /* --------------- 기능 함수 --------------- */
     private void UltimateSkill()
     {
+        //키입력과 스킬 사용중이 아니고 궁스킬이 있을 때 스킬 사용 가능
         if (!ultimateSkillInput || skillManagerObject.transform.childCount <= 0 || isUltimateSkill)
             return;
         isUltimateSkill = true;
-        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
+
+        // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[3]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
-        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
         StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillCoolTime));
     }
 
+    //스킬 쿨타임
     IEnumerator UltimateSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
@@ -81,57 +92,63 @@ public class SkillController : MonoBehaviour
 
     private void ASkill()
     {
+        //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
         if (!aSkillInput || isASkill)
             return;
         isASkill = true;
-        Debug.Log("ASkill Start");
+
+        // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[0]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
-        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
         StartCoroutine(ASkillCoolOut(skillManager.ASkillCoolTime));
     }
 
+    //스킬 쿨타임
     IEnumerator ASkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        Debug.Log("ASkill End");
         isASkill = false;
     }
     private void SSkill()
     {
+        //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
         if (!sSkillInput || isSSkill)
             return;
         isSSkill = true;
-        Debug.Log("SSkill Start");
+
+        // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[1]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
-        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
         StartCoroutine(SSkillCoolOut(skillManager.SSkillCoolTime));
     }
 
+    //스킬 쿨타임
     IEnumerator SSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        Debug.Log("SSkill End");
         isSSkill = false;
     }
 
     private void DSkill()
     {
+        //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
         if (!dSkillInput || isDSkill)
             return;
         isDSkill = true;
-        Debug.Log("DSkill Start");
+
+        // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[2]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
-        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
         StartCoroutine(DSkillCoolOut(skillManager.DSkillCoolTime));
     }
 
+    //스킬 쿨타임
     IEnumerator DSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        Debug.Log("DSkill End");
         isDSkill = false;
     }
 }

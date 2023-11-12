@@ -70,9 +70,6 @@ public class UIManager : MonoBehaviour
     private float SkillSCoolTime;
     [SerializeField, Range(0f, 100f)]
     private float SkillDCoolTime;
-    [SerializeField, Range(0f, 100f)]
-    private float ultimateSkillColltime;
-
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {

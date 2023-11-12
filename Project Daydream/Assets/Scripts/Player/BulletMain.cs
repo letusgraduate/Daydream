@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class BulletMain : MonoBehaviour
 {
-    private float direction;
+    /* --------------컴포넌트 변수-------------- */
     private Rigidbody2D rigid;
+    /* --------------불렛 변수-------------- */
+    private float bulletSpeed = 5f;
+    private float direction;
+    /* ---------------- 인스펙터 --------------- */
     [Header("설정")]
     [SerializeField, Range(0f, 10f)]
-    private float bulletSpeed = 5f;
 
+    /* ---------------- 프로퍼티 --------------- */
     public float Direction
     {
         set { direction = value; }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    /* -------------- 이벤트 함수 -------------- */
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = 0;
         Destroy(this.gameObject, 1.0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //불렛 이동
         rigid.velocity = new Vector2(bulletSpeed * direction, 0f);
     }
 }
