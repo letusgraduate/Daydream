@@ -20,6 +20,8 @@ public class SkillController : MonoBehaviour
     [Header("오브젝트")]
     [SerializeField]
     private GameObject skillManagerObject;
+    [SerializeField]
+    private GameObject[] bulletPrefab;
     // Start is called before the first frame update
 
     public bool IsUltimateSkill
@@ -64,6 +66,9 @@ public class SkillController : MonoBehaviour
             return;
         isUltimateSkill = true;
         skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        GameObject bullet = Instantiate(bulletPrefab[3]);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
         StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillCoolTime));
     }
 
@@ -80,6 +85,9 @@ public class SkillController : MonoBehaviour
             return;
         isASkill = true;
         Debug.Log("ASkill Start");
+        GameObject bullet = Instantiate(bulletPrefab[0]);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
         StartCoroutine(ASkillCoolOut(skillManager.ASkillCoolTime));
     }
 
@@ -95,6 +103,9 @@ public class SkillController : MonoBehaviour
             return;
         isSSkill = true;
         Debug.Log("SSkill Start");
+        GameObject bullet = Instantiate(bulletPrefab[1]);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
         StartCoroutine(SSkillCoolOut(skillManager.SSkillCoolTime));
     }
 
@@ -111,6 +122,9 @@ public class SkillController : MonoBehaviour
             return;
         isDSkill = true;
         Debug.Log("DSkill Start");
+        GameObject bullet = Instantiate(bulletPrefab[2]);
+        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;
+        bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);
         StartCoroutine(DSkillCoolOut(skillManager.DSkillCoolTime));
     }
 

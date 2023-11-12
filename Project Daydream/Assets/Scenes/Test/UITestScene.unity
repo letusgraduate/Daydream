@@ -6141,7 +6141,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 131071
+    m_Bits: 393215
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6601,6 +6601,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillManagerObject: {fileID: 966656940}
+  bulletPrefab:
+  - {fileID: 7913623570821215943, guid: fb69ad836d2ef074e9fc5d2a4a7461e6, type: 3}
+  - {fileID: 7913623570821215943, guid: 86b4135446081574d807817033caeb14, type: 3}
+  - {fileID: 7913623570821215943, guid: 899d460a10096dc448a0bc88c1652533, type: 3}
+  - {fileID: 7913623570821215943, guid: 324e9bb291e8dc74096a485ab6c242e5, type: 3}
 --- !u!1 &540101410
 GameObject:
   m_ObjectHideFlags: 0
