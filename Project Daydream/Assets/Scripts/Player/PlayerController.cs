@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerMain = GetComponent<PlayerMain>();
     }
 
