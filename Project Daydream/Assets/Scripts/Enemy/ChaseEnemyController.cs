@@ -9,6 +9,7 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
 
     protected bool isAggro;
     protected bool isEdge;
+    protected bool isAttackRange;
 
     protected int saveEdgeDir;
 
@@ -28,14 +29,14 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
     }
 
     /* --------------- 인터페이스 -------------- */
-    public void InAggro()
+    public void InAggro() // 어그로 풀링
     {
         StopAllCoroutines();
         isAggro = true;
         Debug.Log(gameObject.name + " chase start");
     }
 
-    public void OutAggro()
+    public void OutAggro() // 어그로 해제
     {
         StartCoroutine(Think(2f));
         isAggro = false;
@@ -47,14 +48,14 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
     /* --------------- 추격 관련 --------------- */
     protected void ChaseTarget()
     {
-        if (!isAggro)
+        if (!isAggro) // 논어그로 시
             return;
         
-        if (!isEdge)
+        if (!isEdge) // 구석이 아닐 시
         {
             moveDir = PlayerDir;
         }
-        else if (saveEdgeDir != PlayerDir)
+        else if (saveEdgeDir != PlayerDir) // 구석이고 플레이어와 방향이 다를 시
         {
             isEdge = false;
         }
@@ -68,7 +69,7 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
         }
         else // 어그로 시 모서리에 멈춤
         {
-            saveEdgeDir = moveDir;
+            saveEdgeDir = moveDir; // 구석을 바라보던 방향
             moveDir = 0;
             isEdge = true;
 
