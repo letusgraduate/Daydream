@@ -10,20 +10,24 @@ public class EnemyController : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected EnemyMain enemyMain;
 
-    /* ---------------- AI 관련 ---------------- */
-    protected int nextMove;
-    protected Vector2 frontVec;
+    /* ---------------- AI 변수 ---------------- */
+    protected int moveDir;
+    protected float thinkTime;
+    protected bool canMove = true;
+
+    /* --------------- 레이 변수 --------------- */
+    protected Vector2 rayPos;
     protected RaycastHit2D rayHit;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("설정")]
-    [SerializeField, Range(0, 10)]
-    protected float maxSpeed = 2.5f;
-    [SerializeField, Range(0, 10)]
-    protected float raycastDistance = 1f;
+    [SerializeField, Range(0f, 10f)]
+    protected float moveSpeed = 2.5f;
+    [SerializeField, Range(0f, 10f)]
+    protected float rayDis = 1f;
 
     /* -------------- 이벤트 함수 -------------- */
-    protected void Awake()
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -33,10 +37,10 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        StartCoroutine(Think(3f));
+        StartCoroutine(Think(2f));
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
@@ -44,40 +48,37 @@ public class EnemyController : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     protected IEnumerator Think(float time)
     {
-        Debug.Log("Start Think");
-
         yield return new WaitForSeconds(time);
 
-        nextMove = Random.Range(-1, 2); // (-1, 0, 1)
-        float nextThinkTime = Random.Range(2f, 5f); // 2.0 ~ 5.0
+        moveDir = Random.Range(-1, 2); // 이동 방향 (-1, 0, 1)
+        thinkTime = Random.Range(2f, 5f); // 다음 생각 시간 (2.0 ~ 5.0)
 
-        StartCoroutine(Think(nextThinkTime));
+        StartCoroutine(Think(thinkTime));
     }
 
     protected void Move()
     {
-        if (enemyMain.IsHit)
+        if (enemyMain.IsHit || !canMove)
             return;
 
-        rigid.velocity = new Vector2(nextMove * maxSpeed, rigid.velocity.y);
+        rigid.velocity = new Vector2(moveDir * moveSpeed, rigid.velocity.y);
 
-        //지형 체크
-        frontVec = new Vector2(rigid.position.x + nextMove * raycastDistance, rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, raycastDistance, 0));
-        rayHit = Physics2D.Raycast(frontVec, Vector3.down, raycastDistance, LayerMask.GetMask("Ground"));
+        /* 지형 체크 */
+        rayPos = new Vector2(rigid.position.x + moveDir * rayDis, rigid.position.y);
+        Debug.DrawRay(rayPos, Vector3.down, new Color(0, rayDis, 0));
+        rayHit = Physics2D.Raycast(rayPos, Vector3.down, rayDis, LayerMask.GetMask("Ground"));
         if (rayHit.collider == null) // 바닥 감지가 없을 때
-            TurnEdge();
+            EcountEdge();
 
-        anim.SetInteger("runSpeed", nextMove);
+        anim.SetInteger("runSpeed", moveDir);
 
-        if (nextMove != 0)
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -nextMove, transform.localScale.y, transform.localScale.z);
+        if (moveDir != 0)
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -moveDir, transform.localScale.y, transform.localScale.z);
     }
 
-    protected void TurnEdge()
+    protected virtual void EcountEdge()
     {
-        Debug.Log("trun edge");
-        nextMove *= -1;
+        moveDir *= -1;
 
         StopAllCoroutines();
         StartCoroutine(Think(2f));

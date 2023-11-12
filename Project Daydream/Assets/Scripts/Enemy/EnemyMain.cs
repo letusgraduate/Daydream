@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMain : MonoBehaviour
 {
+    /* ------------- 컴포넌트 변수 ------------- */
     private Rigidbody2D rigid;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
@@ -16,7 +17,7 @@ public class EnemyMain : MonoBehaviour
     [SerializeField, Range(0, 10)]
     private int hp = 2;
     [SerializeField, Range(0f, 10f)]
-    private float bouncPower = 3f;
+    private float knockBackPower = 3f;
     [SerializeField, Range(0f, 10f)]
     private float superArmorTime = 0.5f;
 
@@ -59,7 +60,7 @@ public class EnemyMain : MonoBehaviour
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
-        rigid.AddForce(new Vector2(dir, 1) * bouncPower, ForceMode2D.Impulse); // 튕겨나가기
+        rigid.AddForce(new Vector2(dir, 1) * knockBackPower, ForceMode2D.Impulse); // 튕겨나가기
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
 
         HpDown();
