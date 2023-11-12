@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4562862401216237759}
   - component: {fileID: 341688037730449916}
   m_Layer: 9
-  m_Name: Test Enemy B
+  m_Name: Test Enemy Chase
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 3305557991670246110}
   - component: {fileID: 6059204966265277806}
   m_Layer: 18
-  m_Name: Aggro
+  m_Name: Aggro Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -310,7 +310,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15, y: 3}
+  m_Size: {x: 12, y: 6}
   m_EdgeRadius: 0
 --- !u!114 &6059204966265277806
 MonoBehaviour:

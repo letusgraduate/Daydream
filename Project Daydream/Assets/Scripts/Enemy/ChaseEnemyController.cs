@@ -7,10 +7,9 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
     /* ------------- 컴포넌트 변수 ------------- */
     protected AggroArea aggroArea;
 
+    /* -------------- 어그로 관련 -------------- */
     protected bool isAggro;
     protected bool isEdge;
-    protected bool isAttackRange;
-
     protected int saveEdgeDir;
 
     /* -------------- 이벤트 함수 -------------- */
@@ -31,14 +30,17 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
     /* --------------- 인터페이스 -------------- */
     public void InAggro() // 어그로 풀링
     {
-        StopAllCoroutines();
+        if (thinkCoroutine != null)
+            StopCoroutine(thinkCoroutine);
+
         isAggro = true;
         Debug.Log(gameObject.name + " chase start");
     }
 
     public void OutAggro() // 어그로 해제
     {
-        StartCoroutine(Think(2f));
+        thinkCoroutine = StartCoroutine(Think(2f));
+
         isAggro = false;
         Debug.Log(gameObject.name + " chase stop");
     }
