@@ -7,11 +7,8 @@ public class BulletMain : MonoBehaviour
     /* --------------컴포넌트 변수-------------- */
     private Rigidbody2D rigid;
     /* --------------불렛 변수-------------- */
-    private float bulletSpeed = 5f;
     private float direction;
-    /* ---------------- 인스펙터 --------------- */
-    [Header("설정")]
-    [SerializeField, Range(0f, 10f)]
+    private float bulletSpeed = 5f;
 
     /* ---------------- 프로퍼티 --------------- */
     public float Direction
