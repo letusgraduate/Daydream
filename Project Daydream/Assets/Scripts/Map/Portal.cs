@@ -7,39 +7,37 @@ public class Portal : MonoBehaviour
 {
     /* ---------------- 인스펙터 --------------- */
     [Header("Scene Name")]
-    [SerializeField] private string normalMap;
-    [SerializeField] private string coinMap;
-    [SerializeField] private string healingMap;
-    [SerializeField] private string storeMap;
+    [SerializeField]
+    private string normalMap;
+    [SerializeField]
+    private string coinMap;
+    [SerializeField]
+    private string healingMap;
+    [SerializeField]
+    private string storeMap;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /* 포탈에 플레이어가 접촉하면 맵 이동 */
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (this.name == "NormalPortal(Clone)")
+            // 일반 포탈에 접촉 시 다음 일반맵으로 이동
+            if (this.name == "NormalPortal(Clone)") // 프리팹으로 포탈을 생성해서 (Clone) 붙임
             {
-                Debug.Log("포탈 접촉, 일반맵 이동");
                 SceneManager.LoadScene(normalMap);
+                // SceneManager.LoadScene(3); // 씬 번호로 이동
             }
+            // 보너스 포탈에 접촉 시 랜덤한 맵으로 이동
             else if (this.name == "BonusPortal(Clone)")
             {
                 int randomNumber = Random.Range(1, 100);
 
                 if (randomNumber <= 33)
-                {
-                    Debug.Log("포탈 접촉, 코인맵 이동");
                     SceneManager.LoadScene(coinMap);
-                }
                 else if (randomNumber <= 66)
-                {
-                    Debug.Log("포탈 접촉, 회복맵 이동");
                     SceneManager.LoadScene(healingMap);
-                }
                 else
-                {
-                    Debug.Log("포탈 접촉, 상점맵 이동");
                     SceneManager.LoadScene(storeMap);
-                }
             }
             else { }
         }
