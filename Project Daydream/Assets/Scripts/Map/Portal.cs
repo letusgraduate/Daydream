@@ -22,13 +22,13 @@ public class Portal : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // 일반 포탈에 접촉 시 다음 일반맵으로 이동
-            if (this.name == "NormalPortal(Clone)") // 프리팹으로 포탈을 생성해서 (Clone) 붙임
+            if (this.CompareTag("PortalNormal")) // 프리팹으로 포탈을 생성해서 (Clone) 붙임
             {
                 SceneManager.LoadScene(normalMap);
                 // SceneManager.LoadScene(3); // 씬 번호로 이동
             }
             // 보너스 포탈에 접촉 시 랜덤한 맵으로 이동
-            else if (this.name == "BonusPortal(Clone)")
+            else if (this.CompareTag("PortalBonus"))
             {
                 int randomNumber = Random.Range(1, 100);
 
@@ -39,7 +39,6 @@ public class Portal : MonoBehaviour
                 else
                     SceneManager.LoadScene(storeMap);
             }
-            else { }
         }
     }
 }
