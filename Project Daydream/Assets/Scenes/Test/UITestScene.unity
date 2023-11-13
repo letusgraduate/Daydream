@@ -6587,7 +6587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillPrefabs:
   - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
-  - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
+  - {fileID: 4546800279777462089, guid: 5c6cf15896c84014faa2f27563fdfca5, type: 3}
   skillManager: {fileID: 966656940}
 --- !u!114 &534065161
 MonoBehaviour:

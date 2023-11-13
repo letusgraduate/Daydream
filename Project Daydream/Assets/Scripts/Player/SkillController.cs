@@ -87,7 +87,7 @@ public class SkillController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         isUltimateSkill = false;
-        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        skillManagerObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void ASkill()
