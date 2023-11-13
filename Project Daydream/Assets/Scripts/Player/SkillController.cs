@@ -11,15 +11,15 @@ public class SkillController : MonoBehaviour
     //스킬 아이템
     private bool isUltimateSkill;
     // 일반 스킬
-    private bool isASkill;
-    private bool isSSkill;
-    private bool isDSkill;
+    private bool isSkillA;
+    private bool isSkillS;
+    private bool isSkillD;
 
     /* ----------- 입력 값 저장 변수 ----------- */
     private bool ultimateSkillInput;
-    private bool aSkillInput;
-    private bool sSkillInput;
-    private bool dSkillInput;
+    private bool skillAInput;
+    private bool skillSInput;
+    private bool skillDInput;
     /* ---------------- 인스펙터 --------------- */
 
     [Header("오브젝트")]
@@ -33,19 +33,19 @@ public class SkillController : MonoBehaviour
     {
         get { return isUltimateSkill; }
     }
-    public bool IsASkill
+    public bool IsSkillA
     {
-        get { return isASkill; }
+        get { return isSkillA; }
     }
 
-    public bool IsSSkill
+    public bool IsSkillS
     {
-        get { return isSSkill; }
+        get { return isSkillS; }
     }
 
-    public bool IsDSkill
+    public bool IsSkillD
     {
-        get { return isDSkill; }
+        get { return isSkillD; }
     }
 
 
@@ -54,9 +54,9 @@ public class SkillController : MonoBehaviour
     {
         skillManager = skillManagerObject.GetComponent<SkillManager>();
         ultimateSkillInput = Input.GetKeyDown(KeyCode.F);
-        aSkillInput = Input.GetKeyDown(KeyCode.Z);
-        sSkillInput = Input.GetKeyDown(KeyCode.X);
-        dSkillInput = Input.GetKeyDown(KeyCode.C);
+        skillAInput = Input.GetKeyDown(KeyCode.Z);
+        skillSInput = Input.GetKeyDown(KeyCode.X);
+        skillDInput = Input.GetKeyDown(KeyCode.C);
 
         //스킬 사용
         UltimateSkill();
@@ -93,62 +93,62 @@ public class SkillController : MonoBehaviour
     private void ASkill()
     {
         //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
-        if (!aSkillInput || isASkill)
+        if (!skillAInput || isSkillA)
             return;
-        isASkill = true;
+        isSkillA = true;
 
         // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[0]);
         bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
         bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
-        StartCoroutine(ASkillCoolOut(skillManager.ASkillCoolTime));
+        StartCoroutine(ASkillCoolOut(skillManager.SkillACoolTime));//불렛 방향
     }
 
     //스킬 쿨타임
     IEnumerator ASkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        isASkill = false;
+        isSkillA = false;
     }
     private void SSkill()
     {
         //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
-        if (!sSkillInput || isSSkill)
+        if (!skillSInput || isSkillS)
             return;
-        isSSkill = true;
+        isSkillS = true;
 
         // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[1]);
         bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
         bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
-        StartCoroutine(SSkillCoolOut(skillManager.SSkillCoolTime));
+        StartCoroutine(SSkillCoolOut(skillManager.SkillSCoolTime));
     }
 
     //스킬 쿨타임
     IEnumerator SSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        isSSkill = false;
+        isSkillS = false;
     }
 
     private void DSkill()
     {
         //키입력과 스킬 사용중이 아닐 때 스킬 사용 가능
-        if (!dSkillInput || isDSkill)
+        if (!skillDInput || isSkillD)
             return;
-        isDSkill = true;
+        isSkillD = true;
 
         // 불렛 소환
         GameObject bullet = Instantiate(bulletPrefab[2]);
         bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x;//불렛 방향 설정
         bullet.transform.position = new Vector3(this.transform.position.x + this.transform.localScale.x, this.transform.position.y, 0);//소환 위치 조정
-        StartCoroutine(DSkillCoolOut(skillManager.DSkillCoolTime));
+        StartCoroutine(DSkillCoolOut(skillManager.SkillDCoolTime));
     }
 
     //스킬 쿨타임
     IEnumerator DSkillCoolOut(float second)
     {
         yield return new WaitForSeconds(second);
-        isDSkill = false;
+        isSkillD = false;
     }
 }

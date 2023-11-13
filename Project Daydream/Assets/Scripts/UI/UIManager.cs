@@ -19,9 +19,9 @@ public class UIManager : MonoBehaviour
     private GameObject item2;
     private GameObject item3;
 
-    private GameObject aSkill;
-    private GameObject sSkill;
-    private GameObject dSkill;
+    private GameObject skillA;
+    private GameObject skillS;
+    private GameObject skillD;
 
     /* ---------------- 인스펙터 --------------- */
     private float skillATimer;
@@ -65,11 +65,11 @@ public class UIManager : MonoBehaviour
 
     [Header("스킬 쿨타임")]
     [SerializeField, Range(0f, 100f)]
-    private float SkillACoolTime;
+    private float skillACoolTime;
     [SerializeField, Range(0f, 100f)]
-    private float SkillSCoolTime;
+    private float skillSCoolTime;
     [SerializeField, Range(0f, 100f)]
-    private float SkillDCoolTime;
+    private float skillDCoolTime;
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {
@@ -93,13 +93,13 @@ public class UIManager : MonoBehaviour
         item2 = item.transform.GetChild(1).gameObject;
         item3 = item.transform.GetChild(2).gameObject;
 
-        aSkill = normalSkill.transform.GetChild(0).gameObject;
-        sSkill = normalSkill.transform.GetChild(1).gameObject;
-        dSkill = normalSkill.transform.GetChild(2).gameObject;
+        skillA = normalSkill.transform.GetChild(0).gameObject;
+        skillS = normalSkill.transform.GetChild(1).gameObject;
+        skillD = normalSkill.transform.GetChild(2).gameObject;
 
-        SkillACoolTime = skillManager.ASkillCoolTime;
-        SkillSCoolTime = skillManager.SSkillCoolTime;
-        SkillDCoolTime = skillManager.DSkillCoolTime;
+        skillACoolTime = skillManager.SkillACoolTime;
+        skillSCoolTime = skillManager.SkillSCoolTime;
+        skillDCoolTime = skillManager.SkillDCoolTime;
 
         SetHpUI();
         SetDashStackUI();
@@ -124,27 +124,27 @@ public class UIManager : MonoBehaviour
     {
         ShowItemUI();
 
-        if (skillController.IsASkill)
+        if (skillController.IsSkillA)
         {
             skillATimer += Time.deltaTime;
-            ASkillUI();
+            skillAUI();
         }
         else
         {
             skillATimer = 0;
-            aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+            skillA.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
         }
-        if (skillController.IsSSkill)
+        if (skillController.IsSkillS)
         {
             skillSTimer += Time.deltaTime;
-            SSkillUI();
+            skillSUI();
         }
         else
         {
             skillSTimer = 0;
-            sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+            skillS.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
         }
-        if (skillController.IsDSkill)
+        if (skillController.IsSkillD)
         {
             skillDTimer += Time.deltaTime;
             DSkillUI();
@@ -152,7 +152,7 @@ public class UIManager : MonoBehaviour
         else
         {
             skillDTimer = 0;
-            dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+            skillD.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
         }
         if (skillController.IsUltimateSkill)
         {
@@ -206,22 +206,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ASkillUI()
+    public void skillAUI()
     {
-        aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillATimer / SkillACoolTime;
+        skillA.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillA.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillATimer / skillACoolTime;
     }
 
-    public void SSkillUI()
+    public void skillSUI()
     {
-        sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillSTimer / SkillSCoolTime;
+        skillS.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillS.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillSTimer / skillSCoolTime;
     }
 
     public void DSkillUI()
     {
-        dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillDTimer / SkillDCoolTime;
+        skillD.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillD.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillDTimer / skillDCoolTime;
     }
 
     public void UltimateSkillUI()

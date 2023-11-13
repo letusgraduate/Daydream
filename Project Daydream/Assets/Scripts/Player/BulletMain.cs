@@ -6,7 +6,7 @@ public class BulletMain : MonoBehaviour
 {
     /* --------------컴포넌트 변수-------------- */
     private Rigidbody2D rigid;
-    /* --------------불렛 변수-------------- */
+    /* --------------불렛 변수------------------ */
     private float direction;
     private float bulletSpeed = 5f;
 

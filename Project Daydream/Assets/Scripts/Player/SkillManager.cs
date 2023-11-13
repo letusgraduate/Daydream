@@ -9,9 +9,9 @@ public class SkillManager : MonoBehaviour
     /* --------------스킬 쿨타임-------------- */
     private float ultimateSkillCoolTime;
 
-    private float aSkillCoolTime = 2f;
-    private float sSkillCoolTime = 3f;
-    private float dSkillCoolTime = 4f;
+    private float skillACoolTime = 2f;
+    private float skillSCoolTime = 3f;
+    private float skillDCoolTime = 4f;
 
     /* ---------------- 프로퍼티 --------------- */
     public float UltimateSkillCoolTime
@@ -20,18 +20,18 @@ public class SkillManager : MonoBehaviour
         set { ultimateSkillCoolTime = value; }
     }
 
-    public float ASkillCoolTime
+    public float SkillACoolTime
     {
-        get { return aSkillCoolTime; }
+        get { return skillACoolTime; }
     }
 
-    public float SSkillCoolTime
+    public float SkillSCoolTime
     {
-        get { return sSkillCoolTime; }
+        get { return skillSCoolTime; }
     }
-    public float DSkillCoolTime
+    public float SkillDCoolTime
     {
-        get { return dSkillCoolTime; }
+        get { return skillDCoolTime; }
     }
 
 }
