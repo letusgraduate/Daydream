@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(0f, 0f);
 
         rigid.AddForce(moveInput.normalized * dashPower, ForceMode2D.Impulse);
-        anim.SetBool("isFalling", false);
+        //anim.SetBool("isFalling", false);
         anim.SetBool("isDashing", true);
 
         StartCoroutine(DashCharge(dashChargeTime));
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Attack");
         isAttack = true;
-        anim.SetTrigger("doAttack");
+        anim.SetTrigger("isAttack");
 
         StartCoroutine(AttackCoolOut(attackCoolTime));
     }
@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         // 점프 없이 낙하
-        anim.SetBool("isFalling", true);
+        anim.SetBool("isJumping", true);
 
         // 바닥 저장(Ground, Platform Pass)
         RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
                     platformObject.layer = 6; // Ground 레이어
                 }
                 anim.SetBool("isJumping", false);
-                anim.SetBool("isFalling", false);
+                //anim.SetBool("isFalling", false);
             }
         }
         else // 공중에 있을 때

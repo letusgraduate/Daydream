@@ -173,7 +173,7 @@ public class PlayerMain : MonoBehaviour
         }
 
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
-        anim.SetTrigger("doHit"); // 애니메이션 트리거
+        anim.SetTrigger("isHit"); // 애니메이션 트리거
 
         StartCoroutine(ReRotate(0.4f));
         StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
@@ -197,7 +197,7 @@ public class PlayerMain : MonoBehaviour
 
     void OnDead()
     {
-        anim.SetTrigger("doDie");
+        anim.SetTrigger("isDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
 
