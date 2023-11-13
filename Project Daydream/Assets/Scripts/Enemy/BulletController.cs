@@ -4,17 +4,90 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    private Rigidbody2D bulletRgidbody;
-    Transform playerPos;
-    Vector2 dir;
+    /* ---------------- 컴포넌트 --------------- */
+    private Rigidbody2D rigid;
 
-    void Start()
+    /* ---------------- 인스펙터 --------------- */
+    [Header("오브젝트 연결")]
+    [SerializeField]
+    private GameObject explosionPrefab;
+
+    [Header("설정")]
+    [SerializeField]
+    private bool isReflect = true;
+    [SerializeField]
+    private float forceX = 4f;
+    [SerializeField]
+    private float forceY = 0f; // 설정하면 포물선 이동
+
+    /* ---------------- 프로퍼티 --------------- */
+    public float ForceX
     {
-        playerPos = GameObject.Find("Player").GetComponent<Transform>();
-        dir = playerPos.position - transform.position; //플레이어 위치 - 몹 위치
+        get { return forceX; }
+        set { forceX = value; }
+    }
 
-        GetComponent<Rigidbody2D>().AddForce(dir.normalized * Time.deltaTime * 100000);
+    public float ForceY
+    {
+        get { return forceY; }
+        set { forceY = value; }
+    }
 
-        Destroy(gameObject, 3f); // 오브젝트에 부딪히면 없어지게 수정 예정 *****
+    /* --------------- 이벤트 함수 -------------- */
+    private void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Explosion(); // 피격 혹은 투사체 파괴
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player Attack") && isReflect)
+        {
+            if (isReflect)
+                Reflect(collision.transform.position); // 투사체 반사
+            else
+                Explosion(); // 투사체 파괴
+        }
+    }
+
+    /* --------------- 투사체 관련 -------------- */
+    private void Reflect(Vector2 targetPos)
+    {
+        gameObject.layer = 8; // Player Attack
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+        int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 충돌 반대로
+        
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
+        rigid.AddForce(new Vector2(ForceX * dir, ForceY), ForceMode2D.Impulse);
+    }
+
+    private void Explosion()
+    {
+        if (explosionPrefab != null)
+        {
+            Vector3 spawnArea = GetComponent<SpriteRenderer>().bounds.size;
+
+            Vector3 spawnPos = transform.position;
+            spawnPos.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
+            spawnPos.y += Random.Range(-spawnArea.y / 2, spawnArea.y / 2);
+
+            GameObject explosion = Instantiate(explosionPrefab);
+            explosion.transform.position = spawnPos;
+        }
+
+        Destroy(gameObject);
+    }
+
+    /* --------------- 외부 호출 --------------- */
+    public void Shot(int dir)
+    {
+        transform.localScale = new Vector2(transform.localScale.x * dir, transform.localScale.y);
+        rigid.AddForce(new Vector2(ForceX * dir, ForceY), ForceMode2D.Impulse);
     }
 }

@@ -45,7 +45,7 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
         Debug.Log(gameObject.name + " chase stop");
     }
 
-    public int PlayerDir { get; set; }
+    public int PlayerDir { get; set; } // 어그로에서 방향 받아옴
 
     /* --------------- 추격 관련 --------------- */
     protected void ChaseTarget()
@@ -54,13 +54,9 @@ public class ChaseEnemyController : EnemyController, IAggroCheck
             return;
         
         if (!isEdge) // 구석이 아닐 시
-        {
             moveDir = PlayerDir;
-        }
         else if (saveEdgeDir != PlayerDir) // 구석이고 플레이어와 방향이 다를 시
-        {
             isEdge = false;
-        }
     }
 
     protected override void EcountEdge()

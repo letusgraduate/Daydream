@@ -16,6 +16,8 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
 
     [Space(10)]
     [SerializeField, Range(0f, 10f)]
+    protected float AttackActiveTime = 0.45f;
+    [SerializeField, Range(0f, 10f)]
     protected float AttackCoolTime = 3f;
     [SerializeField, Range(0, 100)]
     protected int Damage = 20;
@@ -24,7 +26,7 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
     public void InAttackRange() // 공격 범위 내
     {
         isAttackRange = true;
-
+        
         if (attackCoroutine == null) // 공격 중이 아닐 때
             attackCoroutine = StartCoroutine(Attack(AttackCoolTime));
     }
@@ -41,12 +43,15 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
         anim.SetBool("isAttack", true);
         attackArea.SetActive(true);
 
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(AttackActiveTime); // 공격 활성화 시간
         anim.SetBool("isAttack", false);
         attackArea.SetActive(false);
         canMove = true;
 
         yield return new WaitForSeconds(time);
-        attackCoroutine = StartCoroutine(Attack(AttackCoolTime));
+        if (isAttackRange)
+            attackCoroutine = StartCoroutine(Attack(AttackCoolTime));
+        else
+            attackCoroutine = null; // 코루틴 초기화
     }
 }
