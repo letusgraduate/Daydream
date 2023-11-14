@@ -17,6 +17,8 @@ TagManager:
   - Item
   - MapPivotIn
   - MapPivotOut
+  - PortalNormal
+  - PortalBonus
   - SkillItem
   layers:
   - Default
