@@ -17,7 +17,7 @@ public class SkillController : MonoBehaviour
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
-    private GameObject[] bulletPrefab;
+    private GameObject[] bulletPrefabs;
 
     /* ---------------- 프로퍼티 --------------- */
     public bool IsUltimateSkill
@@ -58,9 +58,11 @@ public class SkillController : MonoBehaviour
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
 
         /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefab[3], transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefabs[3], transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+
+        StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillCoolTime));
     }
 
     public void SkillA()
@@ -71,9 +73,11 @@ public class SkillController : MonoBehaviour
         isSkillA = true;
 
         /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefab[0], transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefabs[0], transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+
+        StartCoroutine(SkillACoolOut(skillManager.SkillACoolTime));
     }
 
     public void SkillS()
@@ -84,9 +88,11 @@ public class SkillController : MonoBehaviour
         isSkillS = true;
 
         /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefab[1], transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefabs[1], transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+
+        StartCoroutine(SkillSCoolOut(skillManager.SkillSCoolTime));
     }
 
     public void SkillD()
@@ -97,9 +103,11 @@ public class SkillController : MonoBehaviour
         isSkillD = true;
 
         /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefab[2], transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefabs[2], transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+
+        StartCoroutine(SkillDCoolOut(skillManager.SkillDCoolTime));
     }
 
     /* ------------- 쿨타임 코루틴 ------------- */

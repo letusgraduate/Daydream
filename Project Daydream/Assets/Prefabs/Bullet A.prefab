@@ -163,5 +163,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   isReflect: 0
-  forceX: 4
+  forceX: 8
   forceY: 0
