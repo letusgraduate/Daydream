@@ -19,6 +19,7 @@ TagManager:
   - MapPivotOut
   - PortalNormal
   - PortalBonus
+  - UltimateSkillItem
   layers:
   - Default
   - TransparentFX
