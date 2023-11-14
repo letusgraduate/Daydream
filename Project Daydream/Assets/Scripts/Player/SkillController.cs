@@ -57,11 +57,10 @@ public class SkillController : MonoBehaviour
         isUltimateSkill = true;
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
 
-        // 불렛 소환
-        GameObject bullet = Instantiate(bulletPrefab[3]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x; //불렛 방향 설정
-        bullet.transform.position = new Vector2(this.transform.position.x + this.transform.localScale.x, this.transform.position.y);//소환 위치 조정
-        StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillCoolTime));
+        /* 투사체 발사 */
+        GameObject bullet = Instantiate(bulletPrefab[3], transform.position, transform.rotation);
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
     }
 
     public void SkillA()
@@ -71,11 +70,10 @@ public class SkillController : MonoBehaviour
 
         isSkillA = true;
 
-        /* 불릿 소환 */
-        GameObject bullet = Instantiate(bulletPrefab[0]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x; //불렛 방향 설정
-        bullet.transform.position = new Vector2(this.transform.position.x + this.transform.localScale.x, this.transform.position.y);//소환 위치 조정
-        StartCoroutine(SkillACoolOut(skillManager.SkillACoolTime)); //불렛 방향
+        /* 투사체 발사 */
+        GameObject bullet = Instantiate(bulletPrefab[0], transform.position, transform.rotation);
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
     }
 
     public void SkillS()
@@ -85,11 +83,10 @@ public class SkillController : MonoBehaviour
 
         isSkillS = true;
 
-        /* 불릿 소환 */
-        GameObject bullet = Instantiate(bulletPrefab[1]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x; //불렛 방향 설정
-        bullet.transform.position = new Vector2(this.transform.position.x + this.transform.localScale.x, this.transform.position.y);//소환 위치 조정
-        StartCoroutine(SkillSCoolOut(skillManager.SkillSCoolTime));
+        /* 투사체 발사 */
+        GameObject bullet = Instantiate(bulletPrefab[1], transform.position, transform.rotation);
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
     }
 
     public void SkillD()
@@ -99,11 +96,10 @@ public class SkillController : MonoBehaviour
 
         isSkillD = true;
 
-        /* 불릿 소환 */
-        GameObject bullet = Instantiate(bulletPrefab[2]);
-        bullet.GetComponent<BulletMain>().Direction = this.transform.localScale.x; //불렛 방향 설정
-        bullet.transform.position = new Vector2(this.transform.position.x + this.transform.localScale.x, this.transform.position.y);//소환 위치 조정
-        StartCoroutine(SkillDCoolOut(skillManager.SkillDCoolTime));
+        /* 투사체 발사 */
+        GameObject bullet = Instantiate(bulletPrefab[2], transform.position, transform.rotation);
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
     }
 
     /* ------------- 쿨타임 코루틴 ------------- */

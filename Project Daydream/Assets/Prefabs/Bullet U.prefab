@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1057771110682618084}
   - component: {fileID: 1438291518064180578}
   - component: {fileID: 597027507105757183}
-  - component: {fileID: 5273359798800674606}
+  - component: {fileID: 5975866529705461270}
   m_Layer: 8
   m_Name: Bullet U
   m_TagString: Player Attack
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5273359798800674606
+--- !u!114 &5975866529705461270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +158,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7913623570821215943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237192e247f028b499794943cee721ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 9304f4cf6a5afa84c9f84bd733a6737c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 0}
+  isReflect: 0
+  forceX: 4
+  forceY: 0
