@@ -10,16 +10,19 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     /* ------------- 컴포넌트 변수 ------------- */
+    private GameObject player;
     private PlayerMain playerMain;
     private PlayerController playerController;
+    private SkillController skillController;
+    private SkillManager skillManager;
 
     private GameObject item1;
     private GameObject item2;
     private GameObject item3;
 
-    private GameObject aSkill;
-    private GameObject sSkill;
-    private GameObject dSkill;
+    private GameObject skillA;
+    private GameObject skillS;
+    private GameObject skillD;
 
     /* ---------------- 인스펙터 --------------- */
     private float skillATimer;
@@ -28,10 +31,7 @@ public class UIManager : MonoBehaviour
     private float ultimateSkillTimer;
 
     /* ---------------- 인스펙터 --------------- */
-    [Space(10f)]
     [Header("오브젝트 연결")]
-    [SerializeField]
-    private GameObject player;
     [SerializeField]
     private GameObject hpUI;
     [SerializeField]
@@ -61,26 +61,14 @@ public class UIManager : MonoBehaviour
 
     [Header("스킬 쿨타임")]
     [SerializeField, Range(0f, 100f)]
-    private float SkillACoolTime = 3f;
+    private float skillACoolTime;
     [SerializeField, Range(0f, 100f)]
-    private float SkillSCoolTime = 3f;
+    private float skillSCoolTime;
     [SerializeField, Range(0f, 100f)]
-    private float SkillDCoolTime = 3f;
-    [SerializeField, Range(0f, 100f)]
-    private float ultimateSkillColltime = 5f;
-
-    [Header("스킬 관련 테스트 변수")]
-    [SerializeField]
-    private bool isSkillA; // 임시 A스킬 사용 유무 변수 
-    [SerializeField]
-    private bool isSkillS; // 임시 S스킬 사용 유무 변수 
-    [SerializeField]
-    private bool isSkillD; // 임시 D스킬 사용 유무 변수 
-    [SerializeField]
-    private bool isUltimateSkill; // 임시 궁스킬 사용 유무 변수 
+    private float skillDCoolTime;
 
     /* -------------- 이벤트 함수 -------------- */
-    void Awake()
+    private void Awake()
     {
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
@@ -92,16 +80,28 @@ public class UIManager : MonoBehaviour
             if (instance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
-
-        playerMain = player.GetComponent<PlayerMain>();
-        playerController = player.GetComponent<PlayerController>();
+        
         item1 = item.transform.GetChild(0).gameObject;
         item2 = item.transform.GetChild(1).gameObject;
         item3 = item.transform.GetChild(2).gameObject;
 
-        aSkill = normalSkill.transform.GetChild(0).gameObject;
-        sSkill = normalSkill.transform.GetChild(1).gameObject;
-        dSkill = normalSkill.transform.GetChild(2).gameObject;
+        skillA = normalSkill.transform.GetChild(0).gameObject;
+        skillS = normalSkill.transform.GetChild(1).gameObject;
+        skillD = normalSkill.transform.GetChild(2).gameObject;
+    }
+
+    private void Start()
+    {
+        player = GameManager.instance.Player;
+        skillManager = GameManager.instance.SkillManager;
+
+        playerMain = player.GetComponent<PlayerMain>();
+        playerController = player.GetComponent<PlayerController>();
+        skillController = player.GetComponent<SkillController>();
+
+        skillACoolTime = skillManager.SkillACoolTime;
+        skillSCoolTime = skillManager.SkillSCoolTime;
+        skillDCoolTime = skillManager.SkillDCoolTime;
 
         SetHpUI();
         SetDashStackUI();
@@ -125,59 +125,11 @@ public class UIManager : MonoBehaviour
     private void FixedUpdate()
     {
         ShowItemUI();
-
-        if (isSkillA)
-        {
-            skillATimer += Time.deltaTime;
-            ASkillUI();
-            if (skillATimer >= SkillACoolTime)
-            {
-                isSkillA = false;
-                skillATimer = 0;
-                aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
-                return;
-            }
-        }
-        if (isSkillS)
-        {
-            skillSTimer += Time.deltaTime;
-            SSkillUI();
-            if (skillSTimer >= SkillSCoolTime)
-            {
-                isSkillS = false;
-                skillSTimer = 0;
-                sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
-                return;
-            }
-        }
-        if (isSkillD)
-        {
-            skillDTimer += Time.deltaTime;
-            DSkillUI();
-            if (skillDTimer >= SkillDCoolTime)
-            {
-                isSkillD = false;
-                skillDTimer = 0;
-                dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
-                return;
-            }
-        }
-        if (isUltimateSkill)
-        {
-            ultimateSkillTimer += Time.deltaTime;
-            UltimateSkillUI();
-            if (ultimateSkillTimer >= ultimateSkillColltime)
-            {
-                isUltimateSkill = false;
-                ultimateSkillTimer = 0;
-                ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
-                return;
-            }
-        }
+        ShowSkillCoolTime();
     }
 
     /* --------------- 기능 함수 --------------- */
-    public void ShowItemUI()
+    private void ShowItemUI()
     {
         switch (itemCount)
         {
@@ -216,28 +168,76 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ASkillUI()
+    private void ShowSkillCoolTime()
     {
-        aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        aSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillATimer / SkillACoolTime;
+        if (skillController.IsSkillA)
+        {
+            skillATimer += Time.deltaTime;
+            skillAUI();
+        }
+        else
+        {
+            skillATimer = 0;
+            skillA.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+        }
+
+        if (skillController.IsSkillS)
+        {
+            skillSTimer += Time.deltaTime;
+            skillSUI();
+        }
+        else
+        {
+            skillSTimer = 0;
+            skillS.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+        }
+
+        if (skillController.IsSkillD)
+        {
+            skillDTimer += Time.deltaTime;
+            DSkillUI();
+        }
+        else
+        {
+            skillDTimer = 0;
+            skillD.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+        }
+
+        if (skillController.IsUltimateSkill)
+        {
+            ultimateSkillTimer += Time.deltaTime;
+            UltimateSkillUI();
+        }
+        else
+        {
+            ultimateSkillTimer = 0;
+            ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+        }
     }
 
-    public void SSkillUI()
+    /* --------------- 콜백 함수 --------------- */
+    private void skillAUI()
     {
-        sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        sSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillSTimer / SkillSCoolTime;
+        skillA.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillA.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillATimer / skillACoolTime;
     }
 
-    public void DSkillUI()
+    private void skillSUI()
     {
-        dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        dSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillDTimer / SkillDCoolTime;
+        skillS.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillS.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillSTimer / skillSCoolTime;
     }
 
-    public void UltimateSkillUI()
+    private void DSkillUI()
+    {
+        skillD.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
+        skillD.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = skillDTimer / skillDCoolTime;
+    }
+
+    private void UltimateSkillUI()
     {
         ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.gray;
-        ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = ultimateSkillTimer / ultimateSkillColltime;
+        ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = ultimateSkillTimer / skillManager.UltimateSkillCoolTime;
     }
 
     /* --------------- 콜백 함수 --------------- */
