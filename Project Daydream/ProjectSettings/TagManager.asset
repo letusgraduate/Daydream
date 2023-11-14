@@ -20,6 +20,7 @@ TagManager:
   - PortalNormal
   - PortalBonus
   - UltimateSkillItem
+  - ITEM
   layers:
   - Default
   - TransparentFX
