@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     private DataManager dataManager;
     private SkillManager skillManager;
+    private ItemManager itemManager;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player { get { return player; } }
 
     public SkillManager SkillManager { get { return skillManager; } }
+    public ItemManager ItemManager { get { return itemManager; } }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
 
         dataManager = GetComponent<DataManager>();
         skillManager = GetComponentInChildren<SkillManager>();
+        itemManager = GetComponentInChildren<ItemManager>();
     }
 
     /* --------------- 기능 함수 --------------- */

@@ -10,6 +10,7 @@ public class PlayerMain : MonoBehaviour
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
     private SkillManager skillManager;
+    private ItemManager itemManager;
 
     /* --------------- 스프라이트 -------------- */
     private int spriteLen = 0;
@@ -115,7 +116,6 @@ public class PlayerMain : MonoBehaviour
             UIManager.instance.SetMoonRockUI();
         }
     }
-
     public Transform UltimateSkillAnchor { get { return ultimateSkillAnchor; } }
 
     /* -------------- 이벤트 함수 -------------- */
@@ -133,6 +133,7 @@ public class PlayerMain : MonoBehaviour
     private void Start()
     {
         skillManager = GameManager.instance.SkillManager;
+        itemManager = GameManager.instance.ItemManager;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -157,6 +158,8 @@ public class PlayerMain : MonoBehaviour
             GetCurrency(collision.gameObject);
         if (collision.CompareTag("UltimateSkillItem"))
             GetUltimateSkill(collision.gameObject);
+        if (collision.CompareTag("Item"))
+            GetItem(collision.gameObject);
     }
 
     /* --------------- 피격 관련 --------------- */
@@ -240,6 +243,22 @@ public class PlayerMain : MonoBehaviour
         skill.transform.localPosition = Vector3.zero;
 
         //스킬 아이템 삭제
+        Destroy(gameObject);
+    }
+
+    private void GetItem(GameObject gameObject)
+    {
+        //아이템 습득
+        //아이템이 3보다 적으면 아이템 카운트 1 증가
+        if (itemManager.ItemCount >= 3)
+        {
+            return;
+        }
+        int itemNum = gameObject.GetComponent<ItemMain>().ItemNum; // 먹은 아이템의 종류 파악
+        UIManager.instance.SetItemUI(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage);
+        UIManager.instance.SetActiveItemBool(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().IsUsisngItem);
+        itemManager.ItemCount++;
+        //아이템 삭제
         Destroy(gameObject);
     }
 }
