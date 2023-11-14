@@ -129,7 +129,7 @@ public class PlayerMain : MonoBehaviour
         /* 피격 */
         if (collision.gameObject.tag == "Enemy")
             OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Enemy Attack")
             OnHit(collision.transform.position);
     }
 
