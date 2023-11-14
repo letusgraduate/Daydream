@@ -9,6 +9,7 @@ public class PlayerMain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
+    private SkillManager skillManager;
 
     /* --------------- 스프라이트 -------------- */
     private int spriteLen = 0;
@@ -17,6 +18,8 @@ public class PlayerMain : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject hitArea;
+    [SerializeField]
+    private Transform ultimateSkillAnchor;
 
     [Header("설정")]
     [SerializeField, Range(0, 100)]
@@ -76,6 +79,7 @@ public class PlayerMain : MonoBehaviour
         set
         {
             dashStack = value;
+
             UIManager.instance.SetDashStackUI();
         }
     }
@@ -112,8 +116,10 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
+    public Transform UltimateSkillAnchor { get { return ultimateSkillAnchor; } }
+
     /* -------------- 이벤트 함수 -------------- */
-    void Awake()
+    private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -124,7 +130,12 @@ public class PlayerMain : MonoBehaviour
         //OffHit();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void Start()
+    {
+        skillManager = GameManager.instance.SkillManager;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         /* 피격 */
         if (collision.gameObject.CompareTag("Enemy"))
@@ -133,7 +144,7 @@ public class PlayerMain : MonoBehaviour
             OnHit(collision.transform.position);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         /* 피격 */
         if (collision.CompareTag("Enemy Attack"))
@@ -144,12 +155,12 @@ public class PlayerMain : MonoBehaviour
         /* 아이템 획득 */
         if (collision.gameObject.layer == 15) // Currency
             GetCurrency(collision.gameObject);
-        if (collision.CompareTag("SkillItem"))
-            GetSkill(collision.gameObject);
+        if (collision.CompareTag("UltimateSkillItem"))
+            GetUltimateSkill(collision.gameObject);
     }
-    
+
     /* --------------- 피격 관련 --------------- */
-    void OnHit(Vector2 targetPos)
+    private void OnHit(Vector2 targetPos)
     {
         if (playerController.IsHit == true)
             return;
@@ -181,14 +192,14 @@ public class PlayerMain : MonoBehaviour
         StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
     }
 
-    IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
+    private IEnumerator ReRotate(float second) // 회전 초기화, 다시 조작 가능
     {
         yield return new WaitForSeconds(second);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
         playerController.IsHit = false;
     }
 
-    IEnumerator OffHit(float second)
+    private IEnumerator OffHit(float second)
     {
         yield return new WaitForSeconds(second);
         hitArea.layer = 7; // Player Layer
@@ -197,7 +208,7 @@ public class PlayerMain : MonoBehaviour
         //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
     }
 
-    void OnDead()
+    private void OnDead()
     {
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
@@ -207,7 +218,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* -------------- 아이템 관련 -------------- */
-    void GetCurrency(GameObject gameObject)
+    private void GetCurrency(GameObject gameObject)
     {
         if (gameObject.tag == "Moon Rock")
             GameManager.instance.MoonRock += 1;
@@ -217,18 +228,18 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void GetSkill(GameObject gameObject)
+    private void GetUltimateSkill(GameObject gameObject)
     {
-        ////현재 가지고 있는 궁스킬 삭제
-        //if (skillManager.transform.childCount > 0)
-        //    Destroy(skillManager.transform.GetChild(0).gameObject);
+        //현재 가지고 있는 궁스킬 삭제
+        if (skillManager.transform.childCount > 0)
+            Destroy(skillManager.transform.GetChild(0).gameObject);
 
-        //int skillNumber = other.gameObject.GetComponent<SkillMain>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
-        //skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillMain>().SkillCoolTime; //궁스킬 쿨타임 설정
-        //GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform); // 궁스킬 프리팹 소환
-        //skill.transform.localPosition = Vector3.zero;
+        int skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
+        skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
+        GameObject skill = Instantiate(skillManager.GetUltimateSkill(skillNum), ultimateSkillAnchor); // 궁스킬 프리팹 소환
+        skill.transform.localPosition = Vector3.zero;
 
-        ////스킬 아이템 삭제
-        //Destroy(other.gameObject);
+        //스킬 아이템 삭제
+        Destroy(gameObject);
     }
 }

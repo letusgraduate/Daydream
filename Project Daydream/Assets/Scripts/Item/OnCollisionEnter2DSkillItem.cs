@@ -9,7 +9,7 @@ public class OnCollisionEnter2DSkillItem : MonoBehaviour
     [SerializeField]
     private GameObject[] skillPrefabs; // GameObject 배열로 수정
     [SerializeField]
-    private GameObject skillManager;
+    private SkillManager skillManager;
 
     /* -------------- 이벤트 함수 -------------- */
     private void OnCollisionEnter2D(Collision2D other)
@@ -22,9 +22,9 @@ public class OnCollisionEnter2DSkillItem : MonoBehaviour
                 Destroy(skillManager.transform.GetChild(0).gameObject);
             }
 
-            int skillNumber = other.gameObject.GetComponent<SkillMain>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
-            skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillMain>().SkillCoolTime; //궁스킬 쿨타임 설정
-            GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform); // 궁스킬 프리팹 소환
+            int num = other.gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
+            skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
+            GameObject skill = Instantiate(skillManager.GetUltimateSkill(num), skillManager.transform); // 궁스킬 프리팹 소환
             skill.transform.localPosition = Vector3.zero;
 
             //스킬 아이템 삭제

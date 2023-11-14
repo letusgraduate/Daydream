@@ -19,7 +19,7 @@ TagManager:
   - MapPivotOut
   - PortalNormal
   - PortalBonus
-  - SkillItem
+  - UltimateSkillItem
   layers:
   - Default
   - TransparentFX
@@ -39,7 +39,7 @@ TagManager:
   - Currency
   - Item
   - MiniMap
-  - Bullet
+  - 
   - 
   - 
   - 

@@ -140,6 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df0041d26de57c48a2098ee53af054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultimateSkills:
+  - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
+  - {fileID: 4546800279777462089, guid: 5c6cf15896c84014faa2f27563fdfca5, type: 3}
+  skillACoolTime: 4
+  skillSCoolTime: 2
+  skillDCoolTime: 0.5
 --- !u!1 &8790606199078665984
 GameObject:
   m_ObjectHideFlags: 0

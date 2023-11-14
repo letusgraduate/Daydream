@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1392527854831891722}
   - component: {fileID: 4934756720107922298}
   - component: {fileID: 5378540515364237079}
-  - component: {fileID: 8303181082925810227}
   m_Layer: 7
   m_Name: Player_Skill
   m_TagString: Untagged
@@ -38,6 +37,7 @@ Transform:
   - {fileID: 8988127805166639232}
   - {fileID: 2212916684403020886}
   - {fileID: 5384914524188925012}
+  - {fileID: 7035657077666463100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1184147791750141851
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitArea: {fileID: 6611823019649743137}
+  ultimateSkillAnchor: {fileID: 7035657077666463100}
   maxHp: 100
   hp: 100
   dashStack: 3
@@ -127,7 +128,6 @@ MonoBehaviour:
   dashPower: 20
   dashTime: 0.2
   dashChargeTime: 3
-  attackCoolTime: 0.5
 --- !u!114 &5378540515364237079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,22 +146,6 @@ MonoBehaviour:
   - {fileID: 7913623570821215943, guid: 86b4135446081574d807817033caeb14, type: 3}
   - {fileID: 7913623570821215943, guid: 899d460a10096dc448a0bc88c1652533, type: 3}
   - {fileID: 7913623570821215943, guid: 324e9bb291e8dc74096a485ab6c242e5, type: 3}
---- !u!114 &8303181082925810227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272543819169922917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5411e9d5da8edbb4fb007ff63d298f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPrefabs:
-  - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
-  - {fileID: 4546800279777462089, guid: 5c6cf15896c84014faa2f27563fdfca5, type: 3}
-  skillManager: {fileID: 0}
 --- !u!1 &3847663180119033240
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,3 +364,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7926196205309819028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7035657077666463100}
+  m_Layer: 7
+  m_Name: Ultimate Skill Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7035657077666463100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926196205309819028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.48, y: 1.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3336727915731492384}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

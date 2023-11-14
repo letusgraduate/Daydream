@@ -104,6 +104,8 @@ MonoBehaviour:
   dashStack: 3
   maxCoin: 0
   coin: 0
+  maxMoonRock: 0
+  moonRock: 0
   knockBack: 10
   superArmorTime: 0.8
 --- !u!114 &4934756720107922298

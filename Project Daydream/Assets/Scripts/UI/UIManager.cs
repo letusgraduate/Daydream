@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     private PlayerMain playerMain;
     private PlayerController playerController;
     private SkillController skillController;
+    private SkillManager skillManager;
 
     private GameObject item1;
     private GameObject item2;
@@ -45,8 +46,6 @@ public class UIManager : MonoBehaviour
     private GameObject normalSkill;
     [SerializeField]
     private GameObject item;
-    [SerializeField]
-    private SkillManager skillManager;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -69,7 +68,7 @@ public class UIManager : MonoBehaviour
     private float skillDCoolTime;
 
     /* -------------- 이벤트 함수 -------------- */
-    void Awake()
+    private void Awake()
     {
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
@@ -81,12 +80,7 @@ public class UIManager : MonoBehaviour
             if (instance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
-
-        player = GameManager.instance.Player;
-        playerMain = player.GetComponent<PlayerMain>();
-        playerController = player.GetComponent<PlayerController>();
-        skillController = player.GetComponent<SkillController>();
-
+        
         item1 = item.transform.GetChild(0).gameObject;
         item2 = item.transform.GetChild(1).gameObject;
         item3 = item.transform.GetChild(2).gameObject;
@@ -94,6 +88,16 @@ public class UIManager : MonoBehaviour
         skillA = normalSkill.transform.GetChild(0).gameObject;
         skillS = normalSkill.transform.GetChild(1).gameObject;
         skillD = normalSkill.transform.GetChild(2).gameObject;
+    }
+
+    private void Start()
+    {
+        player = GameManager.instance.Player;
+        skillManager = GameManager.instance.SkillManager;
+
+        playerMain = player.GetComponent<PlayerMain>();
+        playerController = player.GetComponent<PlayerController>();
+        skillController = player.GetComponent<SkillController>();
 
         skillACoolTime = skillManager.SkillACoolTime;
         skillSCoolTime = skillManager.SkillSCoolTime;

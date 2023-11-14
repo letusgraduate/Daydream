@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,13 +10,19 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private PlayerMain playerMain;
     private GameObject platformObject = null;
+    private SkillController skillController;
 
     /* ----------- 입력 값 저장 변수 ----------- */
     private Vector2 moveInput;
     private bool jumpInput;
     private bool dashInput;
-    private bool attackInput;
     private bool passPlatformInput;
+
+    private bool attackInputs;
+    private bool ultimateSkillInput;
+    private bool skillAInput;
+    private bool skillSInput;
+    private bool skillDInput;
 
     /* ------------ 동작 확인 변수 ------------- */
     private bool isMove = false;
@@ -46,10 +51,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0f, 10f)]
     private float dashChargeTime = 3f;
 
-    [Space(10f)]
-    [SerializeField, Range(0f, 10f)]
-    private float attackCoolTime = 0.5f;
-
     /* ---------------- 프로퍼티 --------------- */
     public bool IsHit
     {
@@ -63,31 +64,40 @@ public class PlayerController : MonoBehaviour
         set { isDead = value; }
     }
 
+    public bool IsAttack
+    {
+        get { return isAttack; }
+        set { isAttack = value; }
+    }
+
     /* -------------- 이벤트 함수 -------------- */
-    void Awake()
+    private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMain = GetComponent<PlayerMain>();
+        skillController = GetComponent<SkillController>();
     }
 
-    void Update()
+    private void Update()
     {
         /* 입력 값 저장 */
         GetInput();
 
-        /* 플레이어 조작 */
+        /* 바닥 체크 */
+        GroundCheck();
+
+        /* 플레이어 이동 조작 */
         Move();
         Jump();
         PassPlatform();
         Dash();
-        Attack();
 
-        /* 바닥 체크 */
-        GroundCheck();
+        /* 공격 함수 */
+        Attack();
     }
 
-    void OnDrawGizmos() // 사각 레이 기즈모
+    private void OnDrawGizmos() // 사각 레이 기즈모
     {
         RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
 
@@ -97,7 +107,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + Vector3.down * rayHit.distance, boxCastSize);
     }
 
-    /* --------------- 기능 함수 --------------- */
+    /* --------------- 입력 함수 --------------- */
     private void GetInput()
     {
         if (IsDead == true)
@@ -106,10 +116,56 @@ public class PlayerController : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         jumpInput = Input.GetButtonDown("Jump");
         dashInput = Input.GetButtonDown("Dash");
-        attackInput = Input.GetButtonDown("Fire1");
         passPlatformInput = Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") < 0f;
+
+        ultimateSkillInput = Input.GetButtonDown("Ultimate Skill");
+        skillAInput = Input.GetButtonDown("Skill A");
+        skillSInput = Input.GetButtonDown("Skill S");
+        skillDInput = Input.GetButtonDown("Skill D");
+        attackInputs = skillDInput || skillSInput || skillAInput || ultimateSkillInput;
     }
 
+    /* ------------- 바닥 체크 함수 ------------- */
+    private void GroundCheck()
+    {
+        // 추락이 아닐 때
+        if (rigid.velocity.y > 0)
+            return;
+
+        // 점프 없이 낙하
+        anim.SetBool("isFalling", true);
+
+        // 바닥 저장(Ground, Platform Pass)
+        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
+
+        if (rayHit.collider != null) // 바닥 체크 될 때
+        {
+            if (rayHit.distance < 0.9f)
+            {
+                isJump = false;
+
+                // Platform 태크 체크
+                if (platformObject == null && rayHit.collider.tag == "Platform")
+                {
+                    platformObject = rayHit.collider.gameObject;
+                    platformObject.layer = 6; // Ground 레이어
+                }
+                anim.SetBool("isJumping", false);
+                anim.SetBool("isFalling", false);
+            }
+        }
+        else // 공중에 있을 때
+        {
+            // 플랫폼에서 벗어날 때
+            if (platformObject != null)
+            {
+                platformObject.layer = 12; // Platform Pass 레이어
+                platformObject = null;
+            }
+        }
+    }
+
+    /* --------------- 이동 함수 --------------- */
     private void Move()
     {
         if (isDash || isHit)
@@ -180,14 +236,14 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DashOut(dashTime));
     }
 
-    IEnumerator DashCharge(float second) // 대시 충전
+    private IEnumerator DashCharge(float second) // 대시 충전
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
 
     }
 
-    IEnumerator DashOut(float second)
+    private IEnumerator DashOut(float second)
     {
         /* 대시 탈출 */
         yield return new WaitForSeconds(second);
@@ -201,60 +257,43 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isDashing", false);
     }
 
+    /* --------------- 공격 함수 --------------- */
     private void Attack()
     {
-        if (!attackInput || isAttack || isDash || isHit)
+        if (!attackInputs || isAttack || isDash || isHit)
             return;
 
         Debug.Log("Attack");
         isAttack = true;
-        anim.SetTrigger("doAttack");
 
-        StartCoroutine(AttackCoolOut(attackCoolTime));
+        if (skillDInput)
+        {
+            skillController.SkillD();
+            anim.SetTrigger("doAttack");
+        }
+            
+        if (skillSInput)
+        {
+            skillController.SkillS();
+            anim.SetTrigger("doAttack");
+        }
+            
+        if (skillAInput)
+        {
+            skillController.SkillA();
+            anim.SetTrigger("doAttack");
+        }
+            
+        if (ultimateSkillInput)
+        {
+            skillController.UltimateSkill();
+            anim.SetTrigger("doAttack");
+        }
     }
 
-    IEnumerator AttackCoolOut(float second)
+    public void EndAttack() // 애니메이션 끝에 호출
     {
-        yield return new WaitForSeconds(second);
         isAttack = false;
-    }
-
-    private void GroundCheck()
-    {
-        // 추락이 아닐 때
-        if (rigid.velocity.y > 0)
-            return;
-
-        // 점프 없이 낙하
-        anim.SetBool("isFalling", true);
-
-        // 바닥 저장(Ground, Platform Pass)
-        RaycastHit2D rayHit = Physics2D.BoxCast(transform.position, boxCastSize, 0f, Vector2.down, boxCastMaxDistance, LayerMask.GetMask("Ground", "Platform Pass"));
-
-        if (rayHit.collider != null) // 바닥 체크 될 때
-        {
-            if (rayHit.distance < 0.9f)
-            {
-                isJump = false;
-
-                // Platform 태크 체크
-                if (platformObject == null && rayHit.collider.tag == "Platform")
-                {
-                    platformObject = rayHit.collider.gameObject;
-                    platformObject.layer = 6; // Ground 레이어
-                }
-                anim.SetBool("isJumping", false);
-                anim.SetBool("isFalling", false);
-            }
-        }
-        else // 공중에 있을 때
-        {
-            // 플랫폼에서 벗어날 때
-            if (platformObject != null)
-            {
-                platformObject.layer = 12; // Platform Pass 레이어
-                platformObject = null;
-            }
-        }
+        Debug.Log("End Attack");
     }
 }

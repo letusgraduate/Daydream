@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3992157110127394414}
   - component: {fileID: 8073480069136130078}
   m_Layer: 0
-  m_Name: Skill Test Prefab2
+  m_Name: Skill Test Prefab 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
