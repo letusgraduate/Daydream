@@ -42,13 +42,13 @@ public class EnemyMain : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.CompareTag("Player Attack"))
             OnHit(collision.transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player Attack")
+        if (collision.CompareTag("Player Attack"))
             OnHit(collision.transform.position);
     }
 
