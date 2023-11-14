@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour
     private float ultimateSkillTimer;
 
     /* ---------------- 인스펙터 --------------- */
-    [Space(10f)]
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject player;

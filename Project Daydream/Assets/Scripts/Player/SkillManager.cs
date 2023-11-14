@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
-    /* --------------스킬 쿨타임-------------- */
+    /* -------------- 스킬 쿨타임 -------------- */
     private float ultimateSkillCoolTime;
 
     private float skillACoolTime = 2f;
@@ -29,6 +29,7 @@ public class SkillManager : MonoBehaviour
     {
         get { return skillSCoolTime; }
     }
+
     public float SkillDCoolTime
     {
         get { return skillDCoolTime; }

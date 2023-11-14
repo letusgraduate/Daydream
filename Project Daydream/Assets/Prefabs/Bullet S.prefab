@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1057771110682618084}
   - component: {fileID: 1438291518064180578}
   - component: {fileID: 597027507105757183}
-  - component: {fileID: -6219581631188103031}
+  - component: {fileID: 977502614347636518}
   m_Layer: 18
-  m_Name: ABullet
+  m_Name: Bullet S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.06957388, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6219581631188103031
+--- !u!114 &977502614347636518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

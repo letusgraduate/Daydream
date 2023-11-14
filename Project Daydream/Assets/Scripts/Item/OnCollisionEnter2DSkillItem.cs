@@ -5,7 +5,7 @@ using UnityEngine;
 public class OnCollisionEnter2DSkillItem : MonoBehaviour
 {
     /* ---------------- 인스펙터 --------------- */
-    [Header("오브젝트")]
+    [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject[] skillPrefabs; // GameObject 배열로 수정
     [SerializeField]
@@ -22,9 +22,9 @@ public class OnCollisionEnter2DSkillItem : MonoBehaviour
                 Destroy(skillManager.transform.GetChild(0).gameObject);
             }
 
-            int skillNumber = other.gameObject.GetComponent<SkillItem>().SkillNumber;//억은 스킬 아이템의 종류 파악
+            int skillNumber = other.gameObject.GetComponent<SkillItem>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
             skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillItem>().SkillCoolTime; //궁스킬 쿨타임 설정
-            GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform);//궁스킬 프리팹 소환
+            GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform); // 궁스킬 프리팹 소환
             skill.transform.localPosition = Vector3.zero;
 
             //스킬 아이템 삭제

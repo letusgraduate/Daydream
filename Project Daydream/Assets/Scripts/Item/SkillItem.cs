@@ -9,7 +9,6 @@ public class SkillItem : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int skillNumber;
 
-    [Space(10f)]
     [Header("스킬 쿨타임")]
     [SerializeField, Range(0f, 100f)]
     private float skillCoolTime = 5f;
@@ -23,5 +22,4 @@ public class SkillItem : MonoBehaviour
     {
         get { return skillCoolTime; }
     }
-
 }
