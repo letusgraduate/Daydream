@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     private bool jumpInput;
     private bool dashInput;
     private bool attackInput;
-    private bool platformPassInput;
-    
+    private bool passPlatformInput;
+
     /* ------------ 동작 확인 변수 ------------- */
     private bool isMove = false;
     private bool isJump = false;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         /* 플레이어 조작 */
         Move();
         Jump();
-        PlatformPass();
+        PassPlatform();
         Dash();
         Attack();
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         jumpInput = Input.GetButtonDown("Jump");
         dashInput = Input.GetButtonDown("Dash");
         attackInput = Input.GetButtonDown("Fire1");
-        platformPassInput = Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") < 0f;
+        passPlatformInput = Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") < 0f;
     }
 
     private void Move()
@@ -137,9 +137,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!jumpInput || platformPassInput || isJump || isDash || isAttack || isHit)
+        if (!jumpInput || passPlatformInput || isJump || isDash || isAttack || isHit)
             return;
-        
+
         isJump = true;
 
         // Y축 속도 초기화
@@ -149,11 +149,11 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isJumping", true);
     }
 
-    private void PlatformPass()
+    private void PassPlatform()
     {
-        if (!platformPassInput || platformObject == null || isDash || isAttack || isHit)
+        if (!passPlatformInput || platformObject == null || isDash || isAttack || isHit)
             return;
-        
+
         //Debug.Log("아래점프 ON " + platformObject.name); 
         platformObject.layer = 12; // Pass Ground 레이어
     }
@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
+
     }
 
     IEnumerator DashOut(float second)
