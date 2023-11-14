@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject Player { get { return player; } }
+
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
     {

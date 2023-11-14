@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("오브젝트 연결")]
-    [SerializeField]
+    /* ------------- 컴포넌트 변수 ------------- */
     private Transform player;
 
+    /* ---------------- 인스펙터 --------------- */
     [Header("설정")]
     [SerializeField, Range(0f, 10f)]
     private float xPos = 0f;
     [SerializeField, Range(0f, 10f)]
     private float yPos = 2.5f;
 
-    void Update()
+    /* -------------- 이벤트 함수 -------------- */
+    private void Awake()
+    {
+        player = GameManager.instance.Player.GetComponent<Transform>();
+    }
+
+    private void Update()
     {
         transform.position = new Vector3(player.position.x + xPos, player.position.y + yPos, transform.position.z);
     }

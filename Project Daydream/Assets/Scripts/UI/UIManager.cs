@@ -10,10 +10,10 @@ public class UIManager : MonoBehaviour
     public static UIManager instance = null;
 
     /* ------------- 컴포넌트 변수 ------------- */
+    private GameObject player;
     private PlayerMain playerMain;
     private PlayerController playerController;
     private SkillController skillController;
-    private SkillManager skillManager;
 
     private GameObject item1;
     private GameObject item2;
@@ -32,8 +32,6 @@ public class UIManager : MonoBehaviour
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
     private GameObject hpUI;
     [SerializeField]
     private GameObject coinUI;
@@ -48,7 +46,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject item;
     [SerializeField]
-    private GameObject skillManagerObject;
+    private SkillManager skillManager;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -84,10 +82,10 @@ public class UIManager : MonoBehaviour
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
 
+        player = GameManager.instance.Player;
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
         skillController = player.GetComponent<SkillController>();
-        skillManager = skillManagerObject.GetComponent<SkillManager>();
 
         item1 = item.transform.GetChild(0).gameObject;
         item2 = item.transform.GetChild(1).gameObject;

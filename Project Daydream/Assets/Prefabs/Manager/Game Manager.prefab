@@ -221,6 +221,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+      propertyPath: skillManager
+      value: 
+      objectReference: {fileID: 4720881566441793388}
+    - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
       propertyPath: skillManagerObject
       value: 
       objectReference: {fileID: 8418527464290741277}

@@ -22,8 +22,8 @@ public class OnCollisionEnter2DSkillItem : MonoBehaviour
                 Destroy(skillManager.transform.GetChild(0).gameObject);
             }
 
-            int skillNumber = other.gameObject.GetComponent<SkillItem>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
-            skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillItem>().SkillCoolTime; //궁스킬 쿨타임 설정
+            int skillNumber = other.gameObject.GetComponent<SkillMain>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
+            skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillMain>().SkillCoolTime; //궁스킬 쿨타임 설정
             GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform); // 궁스킬 프리팹 소환
             skill.transform.localPosition = Vector3.zero;
 

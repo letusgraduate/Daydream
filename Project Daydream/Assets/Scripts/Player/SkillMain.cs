@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillItem : MonoBehaviour
+public class SkillMain : MonoBehaviour
 {
     /* ---------------- 인스펙터 --------------- */
     [Header("아이템 번호")]
@@ -18,6 +18,7 @@ public class SkillItem : MonoBehaviour
     {
         get { return skillNumber; }
     }
+
     public float SkillCoolTime
     {
         get { return skillCoolTime; }

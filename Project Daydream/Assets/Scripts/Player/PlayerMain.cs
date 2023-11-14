@@ -127,23 +127,25 @@ public class PlayerMain : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         /* 피격 */
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
             OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.CompareTag("Bullet"))
             OnHit(collision.transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         /* 피격 */
-        if (collision.gameObject.tag == "Enemy Attack")
+        if (collision.CompareTag("Enemy Attack"))
             OnHit(collision.transform.position);
-        if (collision.gameObject.tag == "Trap")
+        if (collision.CompareTag("Trap"))
             OnHit(collision.transform.position);
 
         /* 아이템 획득 */
         if (collision.gameObject.layer == 15) // Currency
             GetCurrency(collision.gameObject);
+        if (collision.CompareTag("SkillItem"))
+            GetSkill(collision.gameObject);
     }
     
     /* --------------- 피격 관련 --------------- */
@@ -213,5 +215,20 @@ public class PlayerMain : MonoBehaviour
             Coin += 1;
 
         Destroy(gameObject);
+    }
+
+    private void GetSkill(GameObject gameObject)
+    {
+        ////현재 가지고 있는 궁스킬 삭제
+        //if (skillManager.transform.childCount > 0)
+        //    Destroy(skillManager.transform.GetChild(0).gameObject);
+
+        //int skillNumber = other.gameObject.GetComponent<SkillMain>().SkillNumber; // 먹은 스킬 아이템의 종류 파악
+        //skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = other.gameObject.GetComponent<SkillMain>().SkillCoolTime; //궁스킬 쿨타임 설정
+        //GameObject skill = Instantiate(skillPrefabs[skillNumber], skillManager.transform); // 궁스킬 프리팹 소환
+        //skill.transform.localPosition = Vector3.zero;
+
+        ////스킬 아이템 삭제
+        //Destroy(other.gameObject);
     }
 }
