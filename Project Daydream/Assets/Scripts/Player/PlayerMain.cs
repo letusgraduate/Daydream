@@ -180,7 +180,6 @@ public class PlayerMain : MonoBehaviour
 
         if (hp <= 0)
         {
-            this.transform.Rotate(0, 0, dir * (-90)); // 회전
             OnDead();
             return;
         }
