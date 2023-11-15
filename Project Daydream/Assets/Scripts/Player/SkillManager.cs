@@ -14,21 +14,21 @@ public class SkillManager : MonoBehaviour
 
     [Header("일반 스킬 쿨타임")]
     [SerializeField]
-    private float skillACoolTime = 4f;
+    private float skillACoolTime = 10f;
     [SerializeField]
-    private float skillSCoolTime = 2f;
+    private float skillSCoolTime = 5f;
     [SerializeField]
     private float skillDCoolTime = 0.6f;
 
     [Header("스킬 동작 시간")]
     [SerializeField]
-    private float skillAActiveTime = 1.4f;
+    private float skillAActiveTime = 0.7f;
     [SerializeField]
     private float skillSActiveTime = 0.7f;
     [SerializeField]
     private float skillDActiveTime = 0.6f;
     [SerializeField]
-    private float ultimateSkillActiveTime = 0.7f;
+    private float ultimateSkillActiveTime = 1.4f;
 
     /* ---------------- 프로퍼티 --------------- */
     /* 쿨타임 */

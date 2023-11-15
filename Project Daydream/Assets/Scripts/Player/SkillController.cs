@@ -44,14 +44,12 @@ public class SkillController : MonoBehaviour
 
         playerController.IsAttack = true;
         isUltimateSkill = true;
-        anim.SetTrigger("doSkillD-1");
+        anim.SetTrigger("doUltimateSkill");
 
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
 
-        /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefabs[3], transform.position, transform.rotation);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+        // 투사체 발사
+        StartCoroutine(DelayBullet(bulletPrefabs[2], 1.1f));
 
         StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillActiveTime, skillManager.UltimateSkillCoolTime));
     }
@@ -65,10 +63,8 @@ public class SkillController : MonoBehaviour
         isSkillA = true;
         anim.SetTrigger("doSkillA");
 
-        /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefabs[0], transform.position, transform.rotation);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+        // 투사체 발사
+        StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f));
 
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
     }
@@ -82,10 +78,8 @@ public class SkillController : MonoBehaviour
         isSkillS = true;
         anim.SetTrigger("doSkillS");
 
-        /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefabs[1], transform.position, transform.rotation);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-        bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
+        // 투사체 발사
+        StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f));
 
         StartCoroutine(SkillSCoolOut(skillManager.SkillSActiveTime, skillManager.SkillSCoolTime));
     }
@@ -99,12 +93,18 @@ public class SkillController : MonoBehaviour
         isSkillD = true;
         anim.SetTrigger("doSkillD");
 
-        /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefabs[2], transform.position, transform.rotation);
+        StartCoroutine(SkillDCoolOut(skillManager.SkillDActiveTime, skillManager.SkillDCoolTime));
+    }
+
+    /* ---------- 투사체 발사 코루틴 ----------- */
+    private IEnumerator DelayBullet(GameObject prefab, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        Debug.Log("d");
+        GameObject bullet = Instantiate(prefab, transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
-
-        StartCoroutine(SkillDCoolOut(skillManager.SkillDActiveTime, skillManager.SkillDCoolTime));
     }
 
     /* ----- 애니메이션 시간/쿨타임 코루틴 ----- */
@@ -113,7 +113,7 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(activeTime);
         playerController.IsAttack = false;
 
-        yield return new WaitForSeconds(coolTime);
+        yield return new WaitForSeconds(coolTime - activeTime);
         isUltimateSkill = false;
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
@@ -123,7 +123,7 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(activeTime);
         playerController.IsAttack = false;
 
-        yield return new WaitForSeconds(coolTime);
+        yield return new WaitForSeconds(coolTime - activeTime);
         isSkillA = false;
     }
 
@@ -132,7 +132,7 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(activeTime);
         playerController.IsAttack = false;
 
-        yield return new WaitForSeconds(coolTime);
+        yield return new WaitForSeconds(coolTime - activeTime);
         isSkillS = false;
     }
 
@@ -141,7 +141,7 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(activeTime);
         playerController.IsAttack = false;
 
-        yield return new WaitForSeconds(coolTime);
+        yield return new WaitForSeconds(coolTime - activeTime);
         isSkillD = false;
     }
 }

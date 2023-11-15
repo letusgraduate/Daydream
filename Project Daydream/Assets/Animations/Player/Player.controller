@@ -106,7 +106,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: doSkillA
+    m_ConditionEvent: doUltimateSkill
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102838690442263822}
@@ -433,67 +433,67 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isDashing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isFalling
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doHit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doAcquire
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doSkillD
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doSkillS
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doSkillA
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: doSkillD-1
+    m_Controller: {fileID: 0}
+  - m_Name: doUltimateSkill
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: doDie
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -567,7 +567,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkillD-1
+  m_Name: SkillS
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -622,7 +622,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkillS
+  m_Name: SkillA
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -764,7 +764,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkillA
+  m_Name: UltimateSkill
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -846,13 +846,13 @@ AnimatorStateMachine:
     m_Position: {x: 650, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102178519541246678}
-    m_Position: {x: 130, y: 150, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102375646765469292}
     m_Position: {x: 130, y: 50, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102838690442263822}
+    m_State: {fileID: 1102375646765469292}
     m_Position: {x: 130, y: 100, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102838690442263822}
+    m_Position: {x: 130, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1448960877128228746}
     m_Position: {x: 400, y: 160, z: 0}
@@ -1011,7 +1011,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: doSkillS
+    m_ConditionEvent: doSkillA
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102375646765469292}
@@ -1058,7 +1058,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: doSkillD-1
+    m_ConditionEvent: doSkillS
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102178519541246678}
