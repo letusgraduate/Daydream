@@ -122,7 +122,7 @@ public class PlayerMain : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         playerController = GetComponent<PlayerController>();
 
@@ -186,7 +186,7 @@ public class PlayerMain : MonoBehaviour
         }
 
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
-        anim.SetTrigger("isHit"); // 애니메이션 트리거
+        anim.SetTrigger("doHit"); // 애니메이션 트리거
 
         StartCoroutine(ReRotate(0.4f));
         StartCoroutine(OffHit(superArmorTime)); // superArmorTime 후 무적 시간 끝
@@ -210,7 +210,7 @@ public class PlayerMain : MonoBehaviour
 
     private void OnDead()
     {
-        anim.SetTrigger("isDie");
+        anim.SetTrigger("doDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
 
