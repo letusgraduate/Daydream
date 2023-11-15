@@ -26,7 +26,6 @@ public class SkillController : MonoBehaviour
     public bool IsSkillA { get { return isSkillA; } }
     public bool IsSkillS { get { return isSkillS; } }
     public bool IsSkillD { get { return isSkillD; } }
-    public bool IsSkillAttack { get; }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
