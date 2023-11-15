@@ -242,7 +242,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
-
     }
 
     private IEnumerator DashOut(float second)
@@ -266,36 +265,25 @@ public class PlayerController : MonoBehaviour
             return;
 
         Debug.Log("Attack");
-        isAttack = true;
 
         if (skillDInput)
         {
             skillController.SkillD();
-            anim.SetTrigger("doSkillD");
         }
-            
+        
         if (skillSInput)
         {
             skillController.SkillS();
-            anim.SetTrigger("doSkillS");
         }
-            
+        
         if (skillAInput)
         {
             skillController.SkillA();
-            anim.SetTrigger("doSkillA");
         }
-            
+        
         if (ultimateSkillInput)
         {
             skillController.UltimateSkill();
-            anim.SetTrigger("doSkillD-1");
         }
-    }
-
-    public void EndAttack() // 애니메이션 끝에 호출
-    {
-        isAttack = false;
-        Debug.Log("End Attack");
     }
 }

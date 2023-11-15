@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitArea: {fileID: 6611823019649743137}
-  ultimateSkillAnchor: {fileID: 0}
+  ultimateSkillAnchor: {fileID: 1982971867097697645}
   maxHp: 100
   hp: 100
   dashStack: 3

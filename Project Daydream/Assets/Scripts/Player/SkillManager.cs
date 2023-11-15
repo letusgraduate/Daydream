@@ -18,34 +18,38 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private float skillSCoolTime = 2f;
     [SerializeField]
-    private float skillDCoolTime = 0.5f;
+    private float skillDCoolTime = 0.6f;
+
+    [Header("스킬 동작 시간")]
+    [SerializeField]
+    private float skillAActiveTime = 1.4f;
+    [SerializeField]
+    private float skillSActiveTime = 0.7f;
+    [SerializeField]
+    private float skillDActiveTime = 0.6f;
+    [SerializeField]
+    private float ultimateSkillActiveTime = 0.7f;
 
     /* ---------------- 프로퍼티 --------------- */
+    /* 쿨타임 */
     public float UltimateSkillCoolTime
     {
         get { return ultimateSkillCoolTime; }
         set { ultimateSkillCoolTime = value; }
     }
+    public float SkillACoolTime { get { return skillACoolTime; } }
+    public float SkillSCoolTime { get { return skillSCoolTime; } }
+    public float SkillDCoolTime { get { return skillDCoolTime; } }
 
-    public float SkillACoolTime
-    {
-        get { return skillACoolTime; }
-    }
-
-    public float SkillSCoolTime
-    {
-        get { return skillSCoolTime; }
-    }
-
-    public float SkillDCoolTime
-    {
-        get { return skillDCoolTime; }
-    }
+    /* 동작 시간 */
+    public float SkillAActiveTime { get { return skillAActiveTime; } }
+    public float SkillSActiveTime { get { return skillSActiveTime; } }
+    public float SkillDActiveTime { get { return skillDActiveTime; } }
+    public float UltimateSkillActiveTime { get { return ultimateSkillActiveTime; } }
 
     /* --------------- 외부 참조 --------------- */
     public GameObject GetUltimateSkill(int num)
     {
-
         return ultimateSkills[num];
     }
 }
