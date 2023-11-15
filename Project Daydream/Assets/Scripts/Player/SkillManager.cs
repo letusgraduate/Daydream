@@ -20,7 +20,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private float skillDCoolTime = 0.6f;
 
-    [Header("스킬 동작 시간")]
+    [Header("스킬 동작 시간")] // 애니메이션 길이
     [SerializeField]
     private float skillAActiveTime = 0.7f;
     [SerializeField]
@@ -28,7 +28,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private float skillDActiveTime = 0.6f;
     [SerializeField]
-    private float ultimateSkillActiveTime = 1.4f;
+    private float ultimateSkillActiveTime = 1.5f;
 
     /* ---------------- 프로퍼티 --------------- */
     /* 쿨타임 */
