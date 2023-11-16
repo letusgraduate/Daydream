@@ -35,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 8988127805166639232}
   - {fileID: 2212916684403020886}
-  - {fileID: 5384914524188925012}
   - {fileID: 1982971867097697645}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabs:
-  - {fileID: 7913623570821215943, guid: fb69ad836d2ef074e9fc5d2a4a7461e6, type: 3}
+  - {fileID: 9030700091464140301, guid: 5572986f77403a54aa3267d65f66cf49, type: 3}
   - {fileID: 7972352107403979994, guid: 702fa5fb2515fbf46ba0af2bb1350fb4, type: 3}
   - {fileID: 7979981791878844236, guid: 77ea88e04a322254b92af9caf7d92721, type: 3}
 --- !u!1 &1421627577696328494
@@ -178,12 +177,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3847663180119033240}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.785, y: 0.245, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3336727915731492384}
+  m_Father: {fileID: 8988127805166639232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2902728859138159760
 CircleCollider2D:
@@ -219,7 +218,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.5
 --- !u!1 &6611823019649743137
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +298,7 @@ GameObject:
   - component: {fileID: 8280354564124597272}
   - component: {fileID: 634638106285601939}
   m_Layer: 7
-  m_Name: Sprite
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +316,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5384914524188925012}
   m_Father: {fileID: 3336727915731492384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8280354564124597272
