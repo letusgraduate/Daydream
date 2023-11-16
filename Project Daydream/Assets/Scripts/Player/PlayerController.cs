@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerMain = GetComponent<PlayerMain>();
         skillController = GetComponent<SkillController>();
     }
@@ -113,11 +113,13 @@ public class PlayerController : MonoBehaviour
         if (IsDead == true)
             return;
 
+        /* 이동 조작 */
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         jumpInput = Input.GetButtonDown("Jump");
         dashInput = Input.GetButtonDown("Dash");
         passPlatformInput = Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") < 0f;
 
+        /* 공격 조작 */
         ultimateSkillInput = Input.GetButtonDown("Ultimate Skill");
         skillAInput = Input.GetButtonDown("Skill A");
         skillSInput = Input.GetButtonDown("Skill S");
@@ -145,7 +147,7 @@ public class PlayerController : MonoBehaviour
                 isJump = false;
 
                 // Platform 태크 체크
-                if (platformObject == null && rayHit.collider.tag == "Platform")
+                if (platformObject == null && rayHit.collider.CompareTag("Platform"))
                 {
                     platformObject = rayHit.collider.gameObject;
                     platformObject.layer = 6; // Ground 레이어
@@ -240,7 +242,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(second);
         playerMain.DashStack += 1;
-
     }
 
     private IEnumerator DashOut(float second)
@@ -264,36 +265,25 @@ public class PlayerController : MonoBehaviour
             return;
 
         Debug.Log("Attack");
-        isAttack = true;
 
         if (skillDInput)
         {
             skillController.SkillD();
-            anim.SetTrigger("doAttack");
         }
-            
+        
         if (skillSInput)
         {
             skillController.SkillS();
-            anim.SetTrigger("doAttack");
         }
-            
+        
         if (skillAInput)
         {
             skillController.SkillA();
-            anim.SetTrigger("doAttack");
         }
-            
+        
         if (ultimateSkillInput)
         {
             skillController.UltimateSkill();
-            anim.SetTrigger("doAttack");
         }
-    }
-
-    public void EndAttack() // 애니메이션 끝에 호출
-    {
-        isAttack = false;
-        Debug.Log("End Attack");
     }
 }

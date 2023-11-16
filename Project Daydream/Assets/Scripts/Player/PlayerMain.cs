@@ -122,7 +122,7 @@ public class PlayerMain : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         playerController = GetComponent<PlayerController>();
 
@@ -183,7 +183,6 @@ public class PlayerMain : MonoBehaviour
 
         if (hp <= 0)
         {
-            this.transform.Rotate(0, 0, dir * (-90)); // 회전
             OnDead();
             return;
         }
@@ -234,8 +233,8 @@ public class PlayerMain : MonoBehaviour
     private void GetUltimateSkill(GameObject gameObject)
     {
         //현재 가지고 있는 궁스킬 삭제
-        if (skillManager.transform.childCount > 0)
-            Destroy(skillManager.transform.GetChild(0).gameObject);
+        if (ultimateSkillAnchor.childCount != 0)
+            Destroy(ultimateSkillAnchor.GetChild(0).gameObject);
 
         int skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
         skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
