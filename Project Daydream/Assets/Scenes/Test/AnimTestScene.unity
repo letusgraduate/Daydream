@@ -6827,6 +6827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3196390409963960567, guid: 855ffed380117ee4c9d93f8a62e5d9b8, type: 3}
+      propertyPath: bulletPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 9030700091464140301, guid: 5572986f77403a54aa3267d65f66cf49, type: 3}
     - target: {fileID: 3336727915731492384, guid: 855ffed380117ee4c9d93f8a62e5d9b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.04

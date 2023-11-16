@@ -37,6 +37,8 @@ public class BulletController : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+
+        LifeSpan(10f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,16 +73,17 @@ public class BulletController : MonoBehaviour
     {
         if (explosionPrefab != null)
         {
-            Vector3 spawnArea = GetComponent<SpriteRenderer>().bounds.size;
-
-            Vector3 spawnPos = transform.position;
-            spawnPos.x += Random.Range(-spawnArea.x / 2, spawnArea.x / 2);
-            spawnPos.y += Random.Range(-spawnArea.y / 2, spawnArea.y / 2);
-
             GameObject explosion = Instantiate(explosionPrefab);
-            explosion.transform.position = spawnPos;
+            explosion.transform.position = this.transform.position;
+            explosion.transform.localScale = this.transform.localScale;
         }
 
+        Destroy(gameObject);
+    }
+
+    private IEnumerator LifeSpan(float time)
+    {
+        yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }
 
