@@ -38,7 +38,7 @@ public class BulletController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
 
-        LifeSpan(10f);
+        StartCoroutine(LifeSpan(5f));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
