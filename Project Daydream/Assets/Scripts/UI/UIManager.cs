@@ -20,6 +20,9 @@ public class UIManager : MonoBehaviour
     private GameObject item1;
     private GameObject item2;
     private GameObject item3;
+    private GameObject itemPick1;
+    private GameObject itemPick2;
+    private GameObject itemPick3;
 
     private GameObject skillA;
     private GameObject skillS;
@@ -30,6 +33,7 @@ public class UIManager : MonoBehaviour
     private float skillSTimer;
     private float skillDTimer;
     private float ultimateSkillTimer;
+    private int itemPickCount;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -80,6 +84,9 @@ public class UIManager : MonoBehaviour
         item1 = itemUI.transform.GetChild(0).gameObject;
         item2 = itemUI.transform.GetChild(1).gameObject;
         item3 = itemUI.transform.GetChild(2).gameObject;
+        itemPick1 = item1.transform.GetChild(3).gameObject;
+        itemPick2 = item2.transform.GetChild(3).gameObject;
+        itemPick3 = item3.transform.GetChild(3).gameObject;
 
         skillA = normalSkill.transform.GetChild(0).gameObject;
         skillS = normalSkill.transform.GetChild(1).gameObject;
@@ -105,6 +112,7 @@ public class UIManager : MonoBehaviour
         SetCoinUI();
         SetMoonRockUI();
         ShowItemUI();
+        SETItemPick();
         //miniMap.SetActive(false);
     }
 
@@ -119,7 +127,14 @@ public class UIManager : MonoBehaviour
     //        miniMap.SetActive(false);
     //    }
     //}
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ItemPickCountSettings();
+            SETItemPick();
+        }
+    }
     private void FixedUpdate()
     {
         //ShowItemUI();
@@ -238,6 +253,35 @@ public class UIManager : MonoBehaviour
         ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = ultimateSkillTimer / skillManager.UltimateSkillCoolTime;
     }
 
+    private void ItemPickCountSettings()
+    {
+        itemPickCount++;
+        if (itemPickCount >= 3)
+        {
+            itemPickCount = 0;
+        }
+    }
+    private void SETItemPick()
+    {
+        switch (itemPickCount)
+        {
+            case 0:
+                itemPick1.SetActive(true);
+                itemPick2.SetActive(false);
+                itemPick3.SetActive(false);
+                break;
+            case 1:
+                itemPick1.SetActive(false);
+                itemPick2.SetActive(true);
+                itemPick3.SetActive(false);
+                break;
+            case 2:
+                itemPick1.SetActive(false);
+                itemPick2.SetActive(false);
+                itemPick3.SetActive(true);
+                break;
+        }
+    }
     /* --------------- 콜백 함수 --------------- */
     public void SetHpUI()
     {
