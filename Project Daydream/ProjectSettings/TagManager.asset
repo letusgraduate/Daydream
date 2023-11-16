@@ -40,7 +40,7 @@ TagManager:
   - Item
   - MiniMap
   - Enemy Trigger
-  - 
+  - FX
   - 
   - 
   - 
@@ -74,4 +74,7 @@ TagManager:
     locked: 0
   - name: Trap
     uniqueID: 4004679451
+    locked: 0
+  - name: FX
+    uniqueID: 2863584559
     locked: 0
