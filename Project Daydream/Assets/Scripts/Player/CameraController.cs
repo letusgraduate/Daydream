@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     private float yPos = 2.5f;
 
     /* -------------- 이벤트 함수 -------------- */
-    private void Awake()
+    private void Start()
     {
         player = GameManager.instance.Player.GetComponent<Transform>();
     }
