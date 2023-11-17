@@ -26,7 +26,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int maxHp = 100;
     [SerializeField, Range(0, 100)]
-    private int hp = 100;
+    private int hp = 50;
     [SerializeField, Range(0, 10)]
     private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
 
@@ -253,10 +253,13 @@ public class PlayerMain : MonoBehaviour
         {
             return;
         }
-        int itemNum = gameObject.GetComponent<ItemMain>().ItemNum; // 먹은 아이템의 종류 파악
-        UIManager.instance.SetItemUI(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage);
-        UIManager.instance.SetActiveItemBool(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().IsUsisngItem);
+        itemManager.ItemList(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage, gameObject.GetComponent<ItemMain>().IsUsisngItem, gameObject.GetComponent<ItemMain>().ItemNum);
         itemManager.ItemCount++;
+        if (!gameObject.GetComponent<ItemMain>().IsUsisngItem)
+        {
+            itemManager.PassiveItem(gameObject.GetComponent<ItemMain>().ItemNum);
+        }
+        UIManager.instance.SetItemUI();
         //아이템 삭제
         Destroy(gameObject);
     }

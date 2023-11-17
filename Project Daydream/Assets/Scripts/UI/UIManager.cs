@@ -54,12 +54,6 @@ public class UIManager : MonoBehaviour
     //[SerializeField]
     //private GameObject miniMap;
 
-    [Header("아이템 관련 테스트 변수")]
-    [SerializeField, Range(0f, 3f)]
-    private int itemCount; // 현재 들고 있는 아이템 수
-    [SerializeField]
-    private bool[] isActiveItem = new bool[3]; // 아이템의 사용가능 유무
-
     [Header("스킬 쿨타임")]
     [SerializeField, Range(0f, 100f)]
     private float skillACoolTime;
@@ -67,6 +61,14 @@ public class UIManager : MonoBehaviour
     private float skillSCoolTime;
     [SerializeField, Range(0f, 100f)]
     private float skillDCoolTime;
+    [Header("아이템 초기 이미지 정보")]
+    [SerializeField]
+    protected Sprite itemImage;
+    /* ---------------- 프로퍼티 --------------- */
+    public int ItemPickCount
+    {
+        get { return itemPickCount; }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
@@ -127,14 +129,6 @@ public class UIManager : MonoBehaviour
     //        miniMap.SetActive(false);
     //    }
     //}
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ItemPickCountSettings();
-            SETItemPick();
-        }
-    }
     private void FixedUpdate()
     {
         //ShowItemUI();
@@ -153,30 +147,30 @@ public class UIManager : MonoBehaviour
                 break;
             case 1:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!isActiveItem[0]);
-                item1.transform.GetChild(1).gameObject.SetActive(isActiveItem[0]);
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
                 item2.SetActive(false);
                 item3.SetActive(false);
                 break;
             case 2:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!isActiveItem[0]);
-                item1.transform.GetChild(1).gameObject.SetActive(isActiveItem[0]);
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!isActiveItem[1]);
-                item2.transform.GetChild(1).gameObject.SetActive(isActiveItem[1]);
+                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(1));
+                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(1));
                 item3.SetActive(false);
                 break;
             case 3:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!isActiveItem[0]);
-                item1.transform.GetChild(1).gameObject.SetActive(isActiveItem[0]);
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!isActiveItem[1]);
-                item2.transform.GetChild(1).gameObject.SetActive(isActiveItem[1]);
+                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(1));
+                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(1));
                 item3.SetActive(true);
-                item3.transform.GetChild(0).gameObject.SetActive(!isActiveItem[2]);
-                item3.transform.GetChild(1).gameObject.SetActive(isActiveItem[2]);
+                item3.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(2));
+                item3.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(2));
                 break;
         }
     }
@@ -253,35 +247,6 @@ public class UIManager : MonoBehaviour
         ultimitSkill.transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = ultimateSkillTimer / skillManager.UltimateSkillCoolTime;
     }
 
-    private void ItemPickCountSettings()
-    {
-        itemPickCount++;
-        if (itemPickCount >= 3)
-        {
-            itemPickCount = 0;
-        }
-    }
-    private void SETItemPick()
-    {
-        switch (itemPickCount)
-        {
-            case 0:
-                itemPick1.SetActive(true);
-                itemPick2.SetActive(false);
-                itemPick3.SetActive(false);
-                break;
-            case 1:
-                itemPick1.SetActive(false);
-                itemPick2.SetActive(true);
-                itemPick3.SetActive(false);
-                break;
-            case 2:
-                itemPick1.SetActive(false);
-                itemPick2.SetActive(false);
-                itemPick3.SetActive(true);
-                break;
-        }
-    }
     /* --------------- 콜백 함수 --------------- */
     public void SetHpUI()
     {
@@ -313,23 +278,59 @@ public class UIManager : MonoBehaviour
     }
 
     /* --------------- 콜백 함수 --------------- */
-    public void SetActiveItemBool(int index, bool active)
+    public void SetItemUI()
     {
-        isActiveItem[index] = active;
-    }
-    public void SetItemUI(int index, Sprite image)
-    {
-        switch (index)
+        switch (itemManager.ItemCount)
         {
             case 0:
-                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = image;
+                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
             case 1:
-                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = image;
+                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
             case 2:
-                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = image;
+                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
+            case 3:
+                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(2);
+                break;
+        }
+    }
+    public void SETItemPick()
+    {
+        switch (itemPickCount)
+        {
+            case 0:
+                itemPick1.SetActive(true);
+                itemPick2.SetActive(false);
+                itemPick3.SetActive(false);
+                break;
+            case 1:
+                itemPick1.SetActive(false);
+                itemPick2.SetActive(true);
+                itemPick3.SetActive(false);
+                break;
+            case 2:
+                itemPick1.SetActive(false);
+                itemPick2.SetActive(false);
+                itemPick3.SetActive(true);
+                break;
+        }
+    }
+    public void ItemPickCountSettings()
+    {
+        itemPickCount++;
+        if (itemPickCount >= itemManager.ItemCount)
+        {
+            itemPickCount = 0;
         }
     }
 }
