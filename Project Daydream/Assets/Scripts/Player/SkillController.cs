@@ -101,7 +101,6 @@ public class SkillController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        Debug.Log("d");
         GameObject bullet = Instantiate(prefab, transform.position, transform.rotation);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));

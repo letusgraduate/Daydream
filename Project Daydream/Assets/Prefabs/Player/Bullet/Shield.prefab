@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4572242363328475814}
   - component: {fileID: -5963427672517693388}
   - component: {fileID: -7301901596494806080}
+  - component: {fileID: -1992636672923394605}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Player Attack
@@ -197,3 +198,16 @@ MonoBehaviour:
   isReflect: 0
   forceX: 1
   forceY: 0
+--- !u!114 &-1992636672923394605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030700091464140301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

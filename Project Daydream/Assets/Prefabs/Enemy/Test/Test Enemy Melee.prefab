@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 4966186514213975660}
   - component: {fileID: 4562862401216237759}
   - component: {fileID: -7806656230630951246}
+  - component: {fileID: -4786308404461639099}
   m_Layer: 9
   m_Name: Test Enemy Melee
   m_TagString: Enemy
@@ -363,8 +364,22 @@ MonoBehaviour:
   moveSpeed: 2.5
   rayDis: 1
   attackArea: {fileID: 3772179452084430057}
+  AttackActiveTime: 0.45
   AttackCoolTime: 3
   Damage: 20
+--- !u!114 &-4786308404461639099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966186514213975658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &4966186515358637706
 GameObject:
   m_ObjectHideFlags: 0

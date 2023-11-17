@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7896095794940468090}
   - component: {fileID: 112275345798656277}
   - component: {fileID: 6031115936006582311}
+  - component: {fileID: 8583795242625508880}
   m_Layer: 10
   m_Name: Test Enemy Bullet
   m_TagString: Enemy Attack
@@ -165,3 +166,16 @@ MonoBehaviour:
   isReflect: 1
   forceX: 4
   forceY: 0
+--- !u!114 &8583795242625508880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2397466462928064918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
