@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1310374948012837675}
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 591556871263623913}
   - component: {fileID: 5099408453523056282}
   - component: {fileID: 6468167213725522252}
+  - component: {fileID: 2767932997867283017}
   m_Layer: 9
   m_Name: Enemy Vermilion Square
   m_TagString: Enemy
@@ -118,9 +119,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4704727355467279557}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.22, y: -2.93, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1625994120772968686}
@@ -188,8 +189,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_Size: {x: 4, y: 5.3}
+  m_Offset: {x: 0, y: 0.16}
+  m_Size: {x: 1, y: 1.3}
   m_Direction: 0
 --- !u!114 &5099408453523056282
 MonoBehaviour:
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54d8700be8a18d4e9665ffa000e4e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  hp: 30
   knockBackPower: 3
   superArmorTime: 0.5
 --- !u!114 &6468167213725522252
@@ -218,12 +219,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd10743f77e19f147bce6532d9f021d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 1
   rayDis: 1
   attackArea: {fileID: 7608936888685408521}
-  AttackActiveTime: 0.45
+  AttackActiveTime: 0.25
+  AttackEndTime: 1
   AttackCoolTime: 3
   Damage: 20
+--- !u!114 &2767932997867283017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4704727355467279557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &4769403225445549404
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +266,8 @@ Transform:
   m_GameObject: {fileID: 4769403225445549404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 40, y: 40, z: 1}
+  m_LocalPosition: {x: 0, y: 0.147, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1310374948012837675}
@@ -358,7 +373,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1310374948012837675}
@@ -406,7 +421,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 3}
+  m_Size: {x: 3.5, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &819011989860905242
 MonoBehaviour:
@@ -431,13 +446,14 @@ GameObject:
   - component: {fileID: 3924439715683674069}
   - component: {fileID: 5805079941226682258}
   - component: {fileID: 2933396326436008614}
+  - component: {fileID: 3409060301621803382}
   m_Layer: 10
   m_Name: Attack Area
   m_TagString: Enemy Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3924439715683674069
 Transform:
   m_ObjectHideFlags: 0
@@ -447,8 +463,8 @@ Transform:
   m_GameObject: {fileID: 7608936888685408521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: -1.35, y: 0.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1310374948012837675}
@@ -540,3 +556,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3409060301621803382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608936888685408521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20

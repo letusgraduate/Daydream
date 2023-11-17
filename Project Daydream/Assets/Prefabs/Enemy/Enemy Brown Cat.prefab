@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 771725266313288465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalPosition: {x: 0, y: 0.112, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3842329370765918352}
@@ -134,7 +134,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3842329370765918352}
@@ -224,7 +224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3842329370765918352}
@@ -272,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 3}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &6961883253642575572
 MonoBehaviour:
@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 7950350884840160385}
   - component: {fileID: 8504108938207822357}
   - component: {fileID: 980522950367697259}
+  - component: {fileID: 1303605227096326844}
   m_Layer: 10
   m_Name: Attack Area
   m_TagString: Enemy Attack
@@ -313,8 +314,8 @@ Transform:
   m_GameObject: {fileID: 7132518721861168967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: -1.1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3842329370765918352}
@@ -406,6 +407,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1303605227096326844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132518721861168967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
 --- !u!1 &8219270160494836360
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +433,7 @@ GameObject:
   - component: {fileID: 2118924148997911669}
   - component: {fileID: 8650296648185056118}
   - component: {fileID: 5072517745251604326}
+  - component: {fileID: 6703605194917577305}
   m_Layer: 9
   m_Name: Enemy Brown Cat
   m_TagString: Enemy
@@ -436,7 +451,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.22, y: -2.93, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1578227341315515866}
@@ -504,9 +519,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_Size: {x: 4, y: 5.3}
-  m_Direction: 0
+  m_Offset: {x: 0, y: -0.07}
+  m_Size: {x: 1.5, y: 0.85}
+  m_Direction: 1
 --- !u!114 &8650296648185056118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54d8700be8a18d4e9665ffa000e4e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  hp: 30
   knockBackPower: 3
   superArmorTime: 0.5
 --- !u!114 &5072517745251604326
@@ -537,6 +552,19 @@ MonoBehaviour:
   moveSpeed: 0
   rayDis: 1
   attackArea: {fileID: 7132518721861168967}
-  AttackActiveTime: 0.45
-  AttackCoolTime: 3
-  Damage: 20
+  AttackActiveTime: 0
+  AttackEndTime: 0.25
+  AttackCoolTime: 1
+--- !u!114 &6703605194917577305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219270160494836360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

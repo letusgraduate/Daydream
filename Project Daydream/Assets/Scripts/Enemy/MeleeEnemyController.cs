@@ -16,11 +16,11 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
 
     [Space(10)]
     [SerializeField, Range(0f, 10f)]
-    protected float AttackActiveTime = 0.45f;
+    protected float AttackActiveTime = 0f;
+    [SerializeField, Range(0f, 10f)]
+    protected float AttackEndTime = 0.45f;
     [SerializeField, Range(0f, 10f)]
     protected float AttackCoolTime = 3f;
-    [SerializeField, Range(0, 100)]
-    protected int Damage = 20;
 
     /* --------------- 인터페이스 -------------- */
     public void InAttackRange() // 공격 범위 내
@@ -41,14 +41,20 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
     {
         canMove = false;
         anim.SetBool("isAttack", true);
-        attackArea.SetActive(true);
 
-        yield return new WaitForSeconds(AttackActiveTime); // 공격 활성화 시간
+        yield return new WaitForSeconds(AttackActiveTime);
+        if (attackArea != null)
+            attackArea.SetActive(true);
+
+        yield return new WaitForSeconds(AttackEndTime - AttackActiveTime); // 공격 활성화(애니메이션) 시간
         anim.SetBool("isAttack", false);
-        attackArea.SetActive(false);
+
+        if (attackArea != null)
+            attackArea.SetActive(false);
+
         canMove = true;
 
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time - AttackActiveTime - AttackActiveTime);
         if (isAttackRange)
             attackCoroutine = StartCoroutine(Attack(AttackCoolTime));
         else
