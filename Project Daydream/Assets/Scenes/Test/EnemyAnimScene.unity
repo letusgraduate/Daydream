@@ -821,6 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 85023855}
   - component: {fileID: 85023856}
+  - component: {fileID: 85023857}
   m_Layer: 14
   m_Name: Splinter (11)
   m_TagString: Trap
@@ -891,6 +892,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &85023857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85023854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &114234744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214296219}
   - component: {fileID: 214296220}
+  - component: {fileID: 214296221}
   m_Layer: 14
   m_Name: Splinter (6)
   m_TagString: Trap
@@ -1351,6 +1366,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &214296221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214296218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &226387278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273107314}
   - component: {fileID: 273107315}
+  - component: {fileID: 273107316}
   m_Layer: 14
   m_Name: Splinter (7)
   m_TagString: Trap
@@ -1515,6 +1544,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &273107316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273107313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &280942739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,6 +3289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 586659331}
   - component: {fileID: 586659332}
+  - component: {fileID: 586659333}
   m_Layer: 14
   m_Name: Splinter (4)
   m_TagString: Trap
@@ -3317,6 +3360,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &586659333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586659330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &644038630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,6 +4795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856617769}
   - component: {fileID: 856617770}
+  - component: {fileID: 856617771}
   m_Layer: 14
   m_Name: Splinter (9)
   m_TagString: Trap
@@ -4809,6 +4866,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &856617771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856617768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &860222931
 GameObject:
   m_ObjectHideFlags: 0
@@ -6122,6 +6192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110262876}
   - component: {fileID: 1110262877}
+  - component: {fileID: 1110262878}
   m_Layer: 14
   m_Name: Splinter (12)
   m_TagString: Trap
@@ -6192,6 +6263,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1110262878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110262875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1163463237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6202,6 +6286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163463238}
   - component: {fileID: 1163463239}
+  - component: {fileID: 1163463240}
   m_Layer: 14
   m_Name: Splinter (8)
   m_TagString: Trap
@@ -6272,6 +6357,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1163463240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163463237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1001 &1169311104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6473,6 +6571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1178281016}
   - component: {fileID: 1178281017}
+  - component: {fileID: 1178281018}
   m_Layer: 14
   m_Name: Splinter (1)
   m_TagString: Trap
@@ -6543,6 +6642,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1178281018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178281015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1209572058
 GameObject:
   m_ObjectHideFlags: 0
@@ -6553,6 +6665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1209572059}
   - component: {fileID: 1209572060}
+  - component: {fileID: 1209572061}
   m_Layer: 14
   m_Name: Splinter (5)
   m_TagString: Trap
@@ -6623,6 +6736,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1209572061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209572058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1236281218
 GameObject:
   m_ObjectHideFlags: 0
@@ -6801,6 +6927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314576464}
   - component: {fileID: 1314576463}
+  - component: {fileID: 1314576465}
   m_Layer: 14
   m_Name: Splinter
   m_TagString: Trap
@@ -6871,6 +6998,19 @@ Transform:
   - {fileID: 1572313794}
   m_Father: {fileID: 655918413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314576465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314576462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1375999244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8555,6 +8695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632822415}
   - component: {fileID: 1632822416}
+  - component: {fileID: 1632822417}
   m_Layer: 14
   m_Name: Splinter (3)
   m_TagString: Trap
@@ -8625,6 +8766,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1632822417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632822414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1666234244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8635,6 +8789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666234245}
   - component: {fileID: 1666234246}
+  - component: {fileID: 1666234247}
   m_Layer: 14
   m_Name: Splinter (2)
   m_TagString: Trap
@@ -8705,6 +8860,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &1666234247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666234244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1675862689
 GameObject:
   m_ObjectHideFlags: 0
@@ -10976,6 +11144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2091125919}
   - component: {fileID: 2091125920}
+  - component: {fileID: 2091125921}
   m_Layer: 14
   m_Name: Splinter (10)
   m_TagString: Trap
@@ -11046,6 +11215,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &2091125921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091125918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &2114587371
 GameObject:
   m_ObjectHideFlags: 0
