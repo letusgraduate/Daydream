@@ -14,7 +14,6 @@ public class PlayerMain : MonoBehaviour
 
     /* --------------- 피격 관련 --------------- */
     private int spriteLen = 0; // 하위 스프라이트 목록
-    private int takeDamage = 0;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -137,44 +136,8 @@ public class PlayerMain : MonoBehaviour
         skillManager = GameManager.instance.SkillManager;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /* 피격 */
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            takeDamage = collision.gameObject.GetComponent<DamageMain>().Damage;
-            OnHit(collision.transform.position, takeDamage); // Enemy의 위치 정보 매개변수
-        } 
-        if (collision.gameObject.CompareTag("Enemy Attack"))
-        {
-            takeDamage = collision.gameObject.GetComponent<DamageMain>().Damage;
-            OnHit(collision.transform.position, takeDamage);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /* 피격 */
-        if (collision.CompareTag("Enemy Attack"))
-        {
-            takeDamage = collision.GetComponent<DamageMain>().Damage;
-            OnHit(collision.transform.position, takeDamage);
-        } 
-        if (collision.CompareTag("Trap"))
-        {
-            takeDamage = collision.GetComponent<DamageMain>().Damage;
-            OnHit(collision.transform.position, takeDamage);
-        }
-
-        /* 아이템 획득 */
-        if (collision.gameObject.layer == 15) // Currency
-            GetCurrency(collision.gameObject);
-        if (collision.CompareTag("UltimateSkillItem"))
-            GetUltimateSkill(collision.gameObject);
-    }
-
     /* --------------- 피격 관련 --------------- */
-    private void OnHit(Vector2 targetPos, int damage)
+    public void OnHit(Vector2 targetPos, int damage)
     {
         if (playerController.IsHit == true)
             return;
@@ -231,7 +194,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* -------------- 아이템 관련 -------------- */
-    private void GetCurrency(GameObject gameObject)
+    public void GetCurrency(GameObject gameObject)
     {
         if (gameObject.tag == "Moon Rock")
             GameManager.instance.MoonRock += 1;
@@ -241,7 +204,7 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void GetUltimateSkill(GameObject gameObject)
+    public void GetUltimateSkill(GameObject gameObject)
     {
         //현재 가지고 있는 궁스킬 삭제
         if (ultimateSkillAnchor.childCount != 0)

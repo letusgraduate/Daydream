@@ -11729,6 +11729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Purple Moth
       objectReference: {fileID: 0}
+    - target: {fileID: 3163971683291432873, guid: a23240f38d2745249be8b17d94e06064, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7579715049298156881, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.22
