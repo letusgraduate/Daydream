@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
@@ -11,8 +12,9 @@ public class PlayerMain : MonoBehaviour
     private PlayerController playerController;
     private SkillManager skillManager;
 
-    /* --------------- 스프라이트 -------------- */
-    private int spriteLen = 0;
+    /* --------------- 피격 관련 --------------- */
+    private int spriteLen = 0; // 하위 스프라이트 목록
+    private int takeDamage = 0;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -139,18 +141,30 @@ public class PlayerMain : MonoBehaviour
     {
         /* 피격 */
         if (collision.gameObject.CompareTag("Enemy"))
-            OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
+        {
+            takeDamage = collision.gameObject.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage); // Enemy의 위치 정보 매개변수
+        } 
         if (collision.gameObject.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
+        {
+            takeDamage = collision.gameObject.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         /* 피격 */
         if (collision.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
+        {
+            takeDamage = collision.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage);
+        } 
         if (collision.CompareTag("Trap"))
-            OnHit(collision.transform.position);
+        {
+            takeDamage = collision.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage);
+        }
 
         /* 아이템 획득 */
         if (collision.gameObject.layer == 15) // Currency
@@ -160,7 +174,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* --------------- 피격 관련 --------------- */
-    private void OnHit(Vector2 targetPos)
+    private void OnHit(Vector2 targetPos, int damage)
     {
         if (playerController.IsHit == true)
             return;
@@ -176,9 +190,9 @@ public class PlayerMain : MonoBehaviour
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
-        Hp -= 10; // 차후 공격력 받아와 변수 대입
+        Hp -= damage;
 
-        if (hp <= 0)
+        if (Hp <= 0)
         {
             OnDead();
             return;
