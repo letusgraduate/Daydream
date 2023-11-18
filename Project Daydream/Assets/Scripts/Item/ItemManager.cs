@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     /* ------------- 컴포넌트 변수 ------------- */
     private GameObject player;
     private PlayerMain playerMain;
+
     /* ---------------- 인스펙터 --------------- */
     [Header("현재 아이템 수")]
     [SerializeField, Range(0, 3)]
@@ -29,26 +30,31 @@ public class ItemManager : MonoBehaviour
             UIManager.instance.ShowItemUI();
         }
     }
+
     public void ItemList(int count, Sprite itemImage, bool isUsisngItem, int itemNum)
     {
         itemImages.Add(itemImage);
         isUsisngItems.Add(isUsisngItem);
         itemNums.Add(itemNum);
     }
+
     private void Start()
     {
         player = GameManager.instance.Player;
         playerMain = player.GetComponent<PlayerMain>();
     }
+
     /* --------------- 외부 참조 --------------- */
     public Sprite GetItemImages(int num)
     {
         return itemImages[num];
     }
+
     public bool GetIsUsisngItem(int num)
     {
         return isUsisngItems[num];
     }
+
     /* --------------- 콜백 함수 --------------- */
     public void RemoveItemList(int num)
     {
@@ -62,6 +68,7 @@ public class ItemManager : MonoBehaviour
         UIManager.instance.SetItemUI();
         UIManager.instance.ShowItemUI();
     }
+
     public void UseItemList(int num)
     {
         ActiveItem(itemNums[num]);
@@ -81,6 +88,7 @@ public class ItemManager : MonoBehaviour
                 break;
         }
     }
+
     public void RemovePassiveItem(int num)
     {
         switch (num)
@@ -90,6 +98,7 @@ public class ItemManager : MonoBehaviour
                 break;
         }
     }
+
     public void ActiveItem(int num)
     {
         switch (num)
@@ -105,6 +114,7 @@ public class ItemManager : MonoBehaviour
     {
         playerMain.Hp += 20;
     }
+
     public void MapHPUpgrade(bool use)
     {
         if (use)

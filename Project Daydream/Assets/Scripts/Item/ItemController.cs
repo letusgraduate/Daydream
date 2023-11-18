@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     private ItemManager itemManager;
+
     // Start is called before the first frame update
     void Start()
     {

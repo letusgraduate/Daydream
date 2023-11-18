@@ -304,6 +304,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
+
     public void SETItemPick()
     {
         switch (itemPickCount)
@@ -325,6 +326,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
+
     public void ItemPickCountSettings()
     {
         itemPickCount++;
