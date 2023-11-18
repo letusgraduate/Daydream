@@ -40,7 +40,7 @@ TagManager:
   - Item
   - MiniMap
   - Enemy Trigger
-  - FX
+  - Effect
   - 
   - 
   - 
@@ -75,6 +75,6 @@ TagManager:
   - name: Trap
     uniqueID: 4004679451
     locked: 0
-  - name: FX
+  - name: Effect
     uniqueID: 2863584559
     locked: 0
