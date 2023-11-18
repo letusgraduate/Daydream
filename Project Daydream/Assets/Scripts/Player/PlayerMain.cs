@@ -11,6 +11,7 @@ public class PlayerMain : MonoBehaviour
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
     private SkillManager skillManager;
+    private ItemManager itemManager;
 
     /* --------------- 피격 관련 --------------- */
     private int spriteLen = 0; // 하위 스프라이트 목록
@@ -26,7 +27,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int maxHp = 100;
     [SerializeField, Range(0, 100)]
-    private int hp = 100;
+    private int hp = 50;
     [SerializeField, Range(0, 10)]
     private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
 
@@ -116,7 +117,6 @@ public class PlayerMain : MonoBehaviour
             UIManager.instance.SetMoonRockUI();
         }
     }
-
     public Transform UltimateSkillAnchor { get { return ultimateSkillAnchor; } }
 
     /* -------------- 이벤트 함수 -------------- */
@@ -134,6 +134,7 @@ public class PlayerMain : MonoBehaviour
     private void Start()
     {
         skillManager = GameManager.instance.SkillManager;
+        itemManager = GameManager.instance.ItemManager;
     }
 
     /* --------------- 피격 관련 --------------- */
@@ -216,6 +217,25 @@ public class PlayerMain : MonoBehaviour
         skill.transform.localPosition = Vector3.zero;
 
         //스킬 아이템 삭제
+        Destroy(gameObject);
+    }
+
+    public void GetItem(GameObject gameObject)
+    {
+        //아이템 습득
+        //아이템이 3보다 적으면 아이템 카운트 1 증가
+        if (itemManager.ItemCount >= 3)
+        {
+            return;
+        }
+        itemManager.ItemList(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage, gameObject.GetComponent<ItemMain>().IsUsisngItem, gameObject.GetComponent<ItemMain>().ItemNum);
+        itemManager.ItemCount++;
+        if (!gameObject.GetComponent<ItemMain>().IsUsisngItem)
+        {
+            itemManager.PassiveItem(gameObject.GetComponent<ItemMain>().ItemNum);
+        }
+        UIManager.instance.SetItemUI();
+        //아이템 삭제
         Destroy(gameObject);
     }
 }

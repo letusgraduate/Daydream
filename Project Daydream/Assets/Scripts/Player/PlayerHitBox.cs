@@ -50,5 +50,7 @@ public class PlayerHitBox : MonoBehaviour
             playerMain.GetCurrency(collision.gameObject);
         if (collision.CompareTag("UltimateSkillItem"))
             playerMain.GetUltimateSkill(collision.gameObject);
+        if (collision.CompareTag("Item"))
+            playerMain.GetItem(collision.gameObject);
     }
 }
