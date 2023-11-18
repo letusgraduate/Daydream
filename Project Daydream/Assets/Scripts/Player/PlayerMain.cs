@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
@@ -12,8 +13,8 @@ public class PlayerMain : MonoBehaviour
     private SkillManager skillManager;
     private ItemManager itemManager;
 
-    /* --------------- 스프라이트 -------------- */
-    private int spriteLen = 0;
+    /* --------------- 피격 관련 --------------- */
+    private int spriteLen = 0; // 하위 스프라이트 목록
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -163,7 +164,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* --------------- 피격 관련 --------------- */
-    private void OnHit(Vector2 targetPos)
+    public void OnHit(Vector2 targetPos, int damage)
     {
         if (playerController.IsHit == true)
             return;
@@ -179,9 +180,9 @@ public class PlayerMain : MonoBehaviour
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
-        Hp -= 10; // 차후 공격력 받아와 변수 대입
+        Hp -= damage;
 
-        if (hp <= 0)
+        if (Hp <= 0)
         {
             OnDead();
             return;
@@ -220,7 +221,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* -------------- 아이템 관련 -------------- */
-    private void GetCurrency(GameObject gameObject)
+    public void GetCurrency(GameObject gameObject)
     {
         if (gameObject.tag == "Moon Rock")
             GameManager.instance.MoonRock += 1;
@@ -230,7 +231,7 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void GetUltimateSkill(GameObject gameObject)
+    public void GetUltimateSkill(GameObject gameObject)
     {
         //현재 가지고 있는 궁스킬 삭제
         if (ultimateSkillAnchor.childCount != 0)

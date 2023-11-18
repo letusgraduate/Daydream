@@ -162,6 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5384914524188925012}
   - component: {fileID: 2902728859138159760}
+  - component: {fileID: 4336487207973895437}
   m_Layer: 8
   m_Name: Attack Area
   m_TagString: Player Attack
@@ -219,6 +220,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4336487207973895437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847663180119033240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbeeae23b3bfeb4283effe8df6f1124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &6611823019649743137
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2212916684403020886}
   - component: {fileID: 3433423901919538237}
+  - component: {fileID: 3887230940430218362}
   m_Layer: 7
   m_Name: Hit Area
   m_TagString: Player
@@ -286,6 +301,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.6, y: 1.2}
   m_Direction: 0
+--- !u!114 &3887230940430218362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611823019649743137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23baa1e86d22a454e9d199f5b66c7216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7088270326028897834
 GameObject:
   m_ObjectHideFlags: 0
