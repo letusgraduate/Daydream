@@ -61,6 +61,7 @@ public class BulletController : MonoBehaviour
     private void Reflect(Vector2 targetPos)
     {
         gameObject.layer = 8; // Player Attack
+        gameObject.tag = "Player Attack";
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 충돌 반대로

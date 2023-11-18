@@ -23,8 +23,6 @@ public class RangeEnemyController : ChaseEnemyController, IAttackRangeCheck
     protected float shotEndTime = 0.45f;
     [SerializeField, Range(0f, 10f)]
     protected float AttackCoolTime = 2f;
-    [SerializeField, Range(0, 100)]
-    protected int Damage = 20;
 
     /* --------------- 인터페이스 -------------- */
     public void InAttackRange() // 공격 범위 내
@@ -53,11 +51,11 @@ public class RangeEnemyController : ChaseEnemyController, IAttackRangeCheck
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot(moveDir);
 
-        yield return new WaitForSeconds(shotEndTime); // 발사 애니메이션 끝
+        yield return new WaitForSeconds(shotEndTime - shotTime); // 발사 애니메이션 끝
         anim.SetBool("isAttack", false);
         canMove = true;
 
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time - shotEndTime - shotTime);
         if (isAttackRange)
             attackCoroutine = StartCoroutine(Attack(AttackCoolTime));
         else

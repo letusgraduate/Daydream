@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMain : MonoBehaviour
@@ -10,9 +11,10 @@ public class PlayerMain : MonoBehaviour
     private SpriteRenderer[] spriteRenderers;
     private PlayerController playerController;
     private SkillManager skillManager;
+    private ItemManager itemManager;
 
-    /* --------------- 스프라이트 -------------- */
-    private int spriteLen = 0;
+    /* --------------- 피격 관련 --------------- */
+    private int spriteLen = 0; // 하위 스프라이트 목록
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -25,7 +27,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int maxHp = 100;
     [SerializeField, Range(0, 100)]
-    private int hp = 100;
+    private int hp = 50;
     [SerializeField, Range(0, 10)]
     private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
 
@@ -115,7 +117,6 @@ public class PlayerMain : MonoBehaviour
             UIManager.instance.SetMoonRockUI();
         }
     }
-
     public Transform UltimateSkillAnchor { get { return ultimateSkillAnchor; } }
 
     /* -------------- 이벤트 함수 -------------- */
@@ -133,34 +134,11 @@ public class PlayerMain : MonoBehaviour
     private void Start()
     {
         skillManager = GameManager.instance.SkillManager;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /* 피격 */
-        if (collision.gameObject.CompareTag("Enemy"))
-            OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
-        if (collision.gameObject.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /* 피격 */
-        if (collision.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
-        if (collision.CompareTag("Trap"))
-            OnHit(collision.transform.position);
-
-        /* 아이템 획득 */
-        if (collision.gameObject.layer == 15) // Currency
-            GetCurrency(collision.gameObject);
-        if (collision.CompareTag("UltimateSkillItem"))
-            GetUltimateSkill(collision.gameObject);
+        itemManager = GameManager.instance.ItemManager;
     }
 
     /* --------------- 피격 관련 --------------- */
-    private void OnHit(Vector2 targetPos)
+    public void OnHit(Vector2 targetPos, int damage)
     {
         if (playerController.IsHit == true)
             return;
@@ -176,9 +154,9 @@ public class PlayerMain : MonoBehaviour
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
 
-        Hp -= 10; // 차후 공격력 받아와 변수 대입
+        Hp -= damage;
 
-        if (hp <= 0)
+        if (Hp <= 0)
         {
             OnDead();
             return;
@@ -217,7 +195,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     /* -------------- 아이템 관련 -------------- */
-    private void GetCurrency(GameObject gameObject)
+    public void GetCurrency(GameObject gameObject)
     {
         if (gameObject.tag == "Moon Rock")
             GameManager.instance.MoonRock += 1;
@@ -227,7 +205,7 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void GetUltimateSkill(GameObject gameObject)
+    public void GetUltimateSkill(GameObject gameObject)
     {
         //현재 가지고 있는 궁스킬 삭제
         if (ultimateSkillAnchor.childCount != 0)
@@ -239,6 +217,25 @@ public class PlayerMain : MonoBehaviour
         skill.transform.localPosition = Vector3.zero;
 
         //스킬 아이템 삭제
+        Destroy(gameObject);
+    }
+
+    public void GetItem(GameObject gameObject)
+    {
+        //아이템 습득
+        //아이템이 3보다 적으면 아이템 카운트 1 증가
+        if (itemManager.ItemCount >= 3)
+        {
+            return;
+        }
+        itemManager.ItemList(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage, gameObject.GetComponent<ItemMain>().IsUsisngItem, gameObject.GetComponent<ItemMain>().ItemNum);
+        itemManager.ItemCount++;
+        if (!gameObject.GetComponent<ItemMain>().IsUsisngItem)
+        {
+            itemManager.PassiveItem(gameObject.GetComponent<ItemMain>().ItemNum);
+        }
+        UIManager.instance.SetItemUI();
+        //아이템 삭제
         Destroy(gameObject);
     }
 }
