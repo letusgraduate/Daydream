@@ -6,62 +6,52 @@ public class ItemController : MonoBehaviour
 {
     private ItemManager itemManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         itemManager = GameManager.instance.ItemManager;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
-        //아이템 버리기
-        if (Input.GetKeyDown(KeyCode.Q) && itemManager.ItemCount > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && itemManager.ItemStock > 0) //아이템 버리기
         {
-            itemManager.ItemCount--;
-            itemManager.RemoveItemList(UIManager.instance.ItemPickCount);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            itemManager.ItemStock--;
+            itemManager.RemoveItemList(UIManager.instance.ItemSelect);
+            UIManager.instance.SetItemSelect();
         }
-        //아이템 사용
-        if (Input.GetKeyDown(KeyCode.W) && itemManager.ItemCount > 0 && itemManager.GetIsUsisngItem(UIManager.instance.ItemPickCount))
+        if (Input.GetKeyDown(KeyCode.W) && itemManager.ItemStock > 0 && itemManager.GetIsUsisngItem(UIManager.instance.ItemSelect)) //아이템 사용
         {
-            itemManager.ItemCount--;
-            itemManager.UseItemList(UIManager.instance.ItemPickCount);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            itemManager.ItemStock--;
+            itemManager.UseItemList(UIManager.instance.ItemSelect);
+            UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && itemManager.ItemCount > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && itemManager.ItemStock > 0)
         {
             if (!itemManager.GetIsUsisngItem(0))
                 return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(0);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.ItemCount > 1)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.ItemStock > 1)
         {
             if (!itemManager.GetIsUsisngItem(1))
                 return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(1);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.ItemCount > 2)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.ItemStock > 2)
         {
             if (!itemManager.GetIsUsisngItem(2))
                 return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(2);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
     }
 }

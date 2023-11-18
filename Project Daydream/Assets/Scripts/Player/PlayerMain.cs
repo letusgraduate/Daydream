@@ -12,6 +12,7 @@ public class PlayerMain : MonoBehaviour
     private PlayerController playerController;
     private SkillManager skillManager;
     private ItemManager itemManager;
+    private ItemMain itemMain;
 
     /* --------------- 피격 관련 --------------- */
     private int spriteLen = 0; // 하위 스프라이트 목록
@@ -207,8 +208,7 @@ public class PlayerMain : MonoBehaviour
 
     public void GetUltimateSkill(GameObject gameObject)
     {
-        //현재 가지고 있는 궁스킬 삭제
-        if (ultimateSkillAnchor.childCount != 0)
+        if (ultimateSkillAnchor.childCount != 0) //현재 가지고 있는 궁스킬 삭제
             Destroy(ultimateSkillAnchor.GetChild(0).gameObject);
 
         int skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
@@ -216,26 +216,23 @@ public class PlayerMain : MonoBehaviour
         GameObject skill = Instantiate(skillManager.GetUltimateSkill(skillNum), ultimateSkillAnchor); // 궁스킬 프리팹 소환
         skill.transform.localPosition = Vector3.zero;
 
-        //스킬 아이템 삭제
-        Destroy(gameObject);
+        Destroy(gameObject); //스킬 아이템 삭제
     }
 
     public void GetItem(GameObject gameObject)
     {
-        //아이템 습득
-        //아이템이 3보다 적으면 아이템 카운트 1 증가
-        if (itemManager.ItemCount >= 3)
-        {
+        if (itemManager.ItemStock >= 3) // 아이템이 3보다 적으면 아이템 스톡 1 증가
             return;
-        }
-        itemManager.ItemList(itemManager.ItemCount, gameObject.GetComponent<ItemMain>().ItemImage, gameObject.GetComponent<ItemMain>().IsUsisngItem, gameObject.GetComponent<ItemMain>().ItemNum);
-        itemManager.ItemCount++;
-        if (!gameObject.GetComponent<ItemMain>().IsUsisngItem)
-        {
-            itemManager.PassiveItem(gameObject.GetComponent<ItemMain>().ItemNum);
-        }
+
+        itemMain = gameObject.GetComponent<ItemMain>();
+        itemManager.ItemList(itemManager.ItemStock, itemMain.ItemImage, itemMain.IsActiveItem, itemMain.ItemNum);
+        itemManager.ItemStock++;
+
+        if (!itemMain.IsActiveItem)
+            itemManager.PassiveItem(itemMain.ItemNum);
+
         UIManager.instance.SetItemUI();
-        //아이템 삭제
-        Destroy(gameObject);
+        
+        Destroy(gameObject); //아이템 삭제
     }
 }
