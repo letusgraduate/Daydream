@@ -137,32 +137,6 @@ public class PlayerMain : MonoBehaviour
         itemManager = GameManager.instance.ItemManager;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /* 피격 */
-        if (collision.gameObject.CompareTag("Enemy"))
-            OnHit(collision.transform.position); // Enemy의 위치 정보 매개변수
-        if (collision.gameObject.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /* 피격 */
-        if (collision.CompareTag("Enemy Attack"))
-            OnHit(collision.transform.position);
-        if (collision.CompareTag("Trap"))
-            OnHit(collision.transform.position);
-
-        /* 아이템 획득 */
-        if (collision.gameObject.layer == 15) // Currency
-            GetCurrency(collision.gameObject);
-        if (collision.CompareTag("UltimateSkillItem"))
-            GetUltimateSkill(collision.gameObject);
-        if (collision.CompareTag("Item"))
-            GetItem(collision.gameObject);
-    }
-
     /* --------------- 피격 관련 --------------- */
     public void OnHit(Vector2 targetPos, int damage)
     {
@@ -246,7 +220,7 @@ public class PlayerMain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void GetItem(GameObject gameObject)
+    public void GetItem(GameObject gameObject)
     {
         //아이템 습득
         //아이템이 3보다 적으면 아이템 카운트 1 증가
