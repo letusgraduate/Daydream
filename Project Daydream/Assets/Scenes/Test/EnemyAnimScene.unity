@@ -11414,10 +11414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Brown Cat
       objectReference: {fileID: 0}
-    - target: {fileID: 8219270160494836360, guid: 60070f47ec51f80439bf2302088a9d76, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11581,6 +11577,10 @@ PrefabInstance:
     - target: {fileID: 4593604924485444676, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_Name
       value: Enemy Blue Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593604924485444676, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4990239235002733431, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_LocalPosition.x
