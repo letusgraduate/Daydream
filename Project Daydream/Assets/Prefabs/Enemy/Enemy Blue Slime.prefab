@@ -189,8 +189,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000596261, y: 0}
-  m_Size: {x: 0.7495723, y: 1}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.75, y: 1}
   m_Direction: 0
 --- !u!114 &3583901954531839085
 MonoBehaviour:
@@ -226,7 +226,6 @@ MonoBehaviour:
   shotTime: 0.2
   shotEndTime: 0.45
   AttackCoolTime: 2
-  Damage: 20
 --- !u!114 &3492807829781737224
 MonoBehaviour:
   m_ObjectHideFlags: 0
