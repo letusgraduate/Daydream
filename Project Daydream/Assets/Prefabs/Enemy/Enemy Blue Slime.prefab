@@ -222,7 +222,7 @@ MonoBehaviour:
   moveSpeed: 2.5
   rayDis: 1
   bulletPort: {fileID: 2296311039717438129}
-  bulletPrefab: {fileID: 2397466462928064918, guid: 1790b24090c0d08408db48702918f9cb, type: 3}
+  bulletPrefab: {fileID: 4117657211783419923, guid: 36b555826538e324fb528b99910d3c92, type: 3}
   shotTime: 0.2
   shotEndTime: 0.45
   AttackCoolTime: 2

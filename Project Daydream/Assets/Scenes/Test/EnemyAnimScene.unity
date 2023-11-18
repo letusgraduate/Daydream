@@ -11372,11 +11372,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3842329370765918352, guid: 60070f47ec51f80439bf2302088a9d76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.22
+      value: 17.72
       objectReference: {fileID: 0}
     - target: {fileID: 3842329370765918352, guid: 60070f47ec51f80439bf2302088a9d76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.93
+      value: -13.67
       objectReference: {fileID: 0}
     - target: {fileID: 3842329370765918352, guid: 60070f47ec51f80439bf2302088a9d76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11511,11 +11511,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1310374948012837675, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.22
+      value: 28.54
       objectReference: {fileID: 0}
     - target: {fileID: 1310374948012837675, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.93
+      value: -13.71
       objectReference: {fileID: 0}
     - target: {fileID: 1310374948012837675, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11553,14 +11553,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Vermilion Square
       objectReference: {fileID: 0}
-    - target: {fileID: 4704727355467279557, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7608936888685408521, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11578,17 +11570,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Blue Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 4593604924485444676, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4990239235002733431, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.22
       objectReference: {fileID: 0}
     - target: {fileID: 4990239235002733431, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.93
+      value: -13.73
       objectReference: {fileID: 0}
     - target: {fileID: 4990239235002733431, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11622,10 +11610,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7943022829752680839, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 4117657211783419923, guid: 36b555826538e324fb528b99910d3c92, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11643,17 +11627,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Purple Moth
       objectReference: {fileID: 0}
-    - target: {fileID: 3163971683291432873, guid: a23240f38d2745249be8b17d94e06064, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7579715049298156881, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.22
+      value: 36.64
       objectReference: {fileID: 0}
     - target: {fileID: 7579715049298156881, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.93
+      value: -13.75
       objectReference: {fileID: 0}
     - target: {fileID: 7579715049298156881, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11704,17 +11684,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy White Cloud
       objectReference: {fileID: 0}
-    - target: {fileID: 4446719871649474933, guid: 19b986a67f4bd734592f8a4cb7f61515, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5822405934528402894, guid: 19b986a67f4bd734592f8a4cb7f61515, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.22
       objectReference: {fileID: 0}
     - target: {fileID: 5822405934528402894, guid: 19b986a67f4bd734592f8a4cb7f61515, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.93
+      value: -3.07
       objectReference: {fileID: 0}
     - target: {fileID: 5822405934528402894, guid: 19b986a67f4bd734592f8a4cb7f61515, type: 3}
       propertyPath: m_LocalPosition.z
