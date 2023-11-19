@@ -86,9 +86,9 @@ public class UIManager : MonoBehaviour
         item2 = itemUI.transform.GetChild(1).gameObject;
         item3 = itemUI.transform.GetChild(2).gameObject;
 
-        selectItem1 = item1.transform.GetChild(3).gameObject;
-        selectItem2 = item2.transform.GetChild(3).gameObject;
-        selectItem3 = item3.transform.GetChild(3).gameObject;
+        selectItem1 = item1.transform.GetChild(0).GetChild(0).gameObject;
+        selectItem2 = item2.transform.GetChild(0).GetChild(0).gameObject;
+        selectItem3 = item3.transform.GetChild(0).GetChild(0).gameObject;
 
         skillA = normalSkill.transform.GetChild(0).gameObject;
         skillS = normalSkill.transform.GetChild(1).gameObject;
@@ -118,20 +118,9 @@ public class UIManager : MonoBehaviour
         //miniMap.SetActive(false);
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.M))
-    //    {
-    //        miniMap.SetActive(true);
-    //    }
-    //    else if (Input.GetKeyUp(KeyCode.M))
-    //    {
-    //        miniMap.SetActive(false);
-    //    }
-    //}
     private void FixedUpdate()
     {
-        //ShowItemUI();
+        ShowItemUI();
         ShowSkillCoolTime();
     }
     
@@ -210,9 +199,9 @@ public class UIManager : MonoBehaviour
     /* ------------ 스킬 콜백 함수 ------------- */
     public void SetHpUI()
     {
-
-        hpUI.transform.GetChild(1).GetComponent<Image>().fillAmount = (float)playerMain.Hp / (float)playerMain.MaxHp;
-        hpUI.transform.GetChild(2).GetComponent<TMP_Text>().text = playerMain.Hp + " / " + playerMain.MaxHp;
+        hpUI.GetComponent<Slider>().maxValue = (float)playerMain.MaxHp;
+        hpUI.GetComponent<Slider>().value = (float)playerMain.Hp;
+        hpUI.transform.GetChild(4).GetComponent<TMP_Text>().text = playerMain.Hp + " / " + playerMain.MaxHp;
     }
 
     public void SetCoinUI()
@@ -249,30 +238,24 @@ public class UIManager : MonoBehaviour
                 break;
             case 1:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(false);
                 item3.SetActive(false);
                 break;
             case 2:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(1));
-                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
+                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
                 item3.SetActive(false);
                 break;
             case 3:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(1));
-                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
+                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
                 item3.SetActive(true);
-                item3.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(2));
-                item3.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
+                item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
                 break;
             default:
                 break;
@@ -309,24 +292,24 @@ public class UIManager : MonoBehaviour
         switch (itemManager.ItemStock)
         {
             case 0:
-                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
-                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
-                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
             case 1:
-                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
-                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
             case 2:
-                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
-                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
                 break;
             case 3:
-                item1.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
-                item3.transform.GetChild(2).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(2);
+                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(2);
                 break;
             default:
                 break;
