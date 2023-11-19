@@ -4,51 +4,65 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+    /* ------------- 컴포넌트 변수 ------------- */
     private ItemManager itemManager;
 
+    /* -------------- 이벤트 함수 -------------- */
     void Start()
     {
         itemManager = GameManager.instance.ItemManager;
     }
 
-    void Update()
+    /* --------------- 외부 참조 --------------- */
+    public void SelectItem()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            UIManager.instance.SetItemSelect();
-        }
-        if (Input.GetKeyDown(KeyCode.Q) && itemManager.ItemStock > 0) //아이템 버리기
+        UIManager.instance.SetItemSelect();
+    }
+
+    public void DropItem()
+    {
+        if (itemManager.ItemStock > 0) //아이템 버리기
         {
             itemManager.ItemStock--;
             itemManager.RemoveItemList(UIManager.instance.ItemSelect);
             UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.W) && itemManager.ItemStock > 0 && itemManager.GetIsUsisngItem(UIManager.instance.ItemSelect)) //아이템 사용
+    }
+
+    public void UseSelectItem()
+    {
+        if (itemManager.ItemStock > 0 && itemManager.GetIsActiveItem(UIManager.instance.ItemSelect))
         {
             itemManager.ItemStock--;
             itemManager.UseItemList(UIManager.instance.ItemSelect);
             UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && itemManager.ItemStock > 0)
+    }
+
+    public void UseItem1()
+    {
+        if (itemManager.ItemStock > 0 && itemManager.GetIsActiveItem(0))
         {
-            if (!itemManager.GetIsUsisngItem(0))
-                return;
             itemManager.ItemStock--;
             itemManager.UseItemList(0);
             UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.ItemStock > 1)
+    }
+
+    public void UseItem2()
+    {
+        if (itemManager.ItemStock > 1 && itemManager.GetIsActiveItem(1))
         {
-            if (!itemManager.GetIsUsisngItem(1))
-                return;
             itemManager.ItemStock--;
             itemManager.UseItemList(1);
             UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.ItemStock > 2)
+    }
+
+    public void UseItem3()
+    {
+        if (itemManager.ItemStock > 2 && itemManager.GetIsActiveItem(2))
         {
-            if (!itemManager.GetIsUsisngItem(2))
-                return;
             itemManager.ItemStock--;
             itemManager.UseItemList(2);
             UIManager.instance.SetItemSelect();

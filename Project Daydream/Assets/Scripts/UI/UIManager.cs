@@ -249,30 +249,30 @@ public class UIManager : MonoBehaviour
                 break;
             case 1:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(false);
                 item3.SetActive(false);
                 break;
             case 2:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(1));
-                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(1));
+                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(1));
+                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
                 item3.SetActive(false);
                 break;
             case 3:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(0));
-                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(0));
+                item1.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(0));
+                item1.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(true);
-                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(1));
-                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(1));
+                item2.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(1));
+                item2.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
                 item3.SetActive(true);
-                item3.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsUsisngItem(2));
-                item3.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsUsisngItem(2));
+                item3.transform.GetChild(0).gameObject.SetActive(!itemManager.GetIsActiveItem(2));
+                item3.transform.GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
                 break;
             default:
                 break;

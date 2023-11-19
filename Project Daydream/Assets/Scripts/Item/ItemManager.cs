@@ -48,7 +48,7 @@ public class ItemManager : MonoBehaviour
         return itemImages[num];
     }
 
-    public bool GetIsUsisngItem(int num)
+    public bool GetIsActiveItem(int num)
     {
         return isActiveItems[num];
     }
