@@ -15,20 +15,10 @@ public class ItemMain : MonoBehaviour
 
     [Header("사용 아이템 유무")]
     [SerializeField]
-    private bool isUsisngItem;
+    private bool isActiveItem;
 
     /* ---------------- 프로퍼티 --------------- */
-    public Sprite ItemImage
-    {
-        get { return itemImage; }
-    }
-    public int ItemNum
-    {
-        get { return itemNum; }
-    }
-
-    public bool IsUsisngItem
-    {
-        get { return isUsisngItem; }
-    }
+    public Sprite ItemImage { get { return itemImage; } }
+    public int ItemNum { get { return itemNum; } }
+    public bool IsActiveItem { get { return isActiveItem; } }
 }

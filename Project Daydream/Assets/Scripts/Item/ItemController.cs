@@ -4,64 +4,68 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+    /* ------------- 컴포넌트 변수 ------------- */
     private ItemManager itemManager;
 
-    // Start is called before the first frame update
+    /* -------------- 이벤트 함수 -------------- */
     void Start()
     {
         itemManager = GameManager.instance.ItemManager;
     }
 
-    // Update is called once per frame
-    void Update()
+    /* --------------- 외부 참조 --------------- */
+    public void SelectItem()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        UIManager.instance.SetItemSelect();
+    }
+
+    public void DropItem()
+    {
+        if (itemManager.ItemStock > 0) //아이템 버리기
         {
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            itemManager.ItemStock--;
+            itemManager.RemoveItemList(UIManager.instance.ItemSelect);
+            UIManager.instance.SetItemSelect();
         }
-        //아이템 버리기
-        if (Input.GetKeyDown(KeyCode.Q) && itemManager.ItemCount > 0)
+    }
+
+    public void UseSelectItem()
+    {
+        if (itemManager.ItemStock > 0 && itemManager.GetIsActiveItem(UIManager.instance.ItemSelect))
         {
-            itemManager.ItemCount--;
-            itemManager.RemoveItemList(UIManager.instance.ItemPickCount);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            itemManager.ItemStock--;
+            itemManager.UseItemList(UIManager.instance.ItemSelect);
+            UIManager.instance.SetItemSelect();
         }
-        //아이템 사용
-        if (Input.GetKeyDown(KeyCode.W) && itemManager.ItemCount > 0 && itemManager.GetIsUsisngItem(UIManager.instance.ItemPickCount))
+    }
+
+    public void UseItem1()
+    {
+        if (itemManager.ItemStock > 0 && itemManager.GetIsActiveItem(0))
         {
-            itemManager.ItemCount--;
-            itemManager.UseItemList(UIManager.instance.ItemPickCount);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && itemManager.ItemCount > 0)
-        {
-            if (!itemManager.GetIsUsisngItem(0))
-                return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(0);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.ItemCount > 1)
+    }
+
+    public void UseItem2()
+    {
+        if (itemManager.ItemStock > 1 && itemManager.GetIsActiveItem(1))
         {
-            if (!itemManager.GetIsUsisngItem(1))
-                return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(1);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.ItemCount > 2)
+    }
+
+    public void UseItem3()
+    {
+        if (itemManager.ItemStock > 2 && itemManager.GetIsActiveItem(2))
         {
-            if (!itemManager.GetIsUsisngItem(2))
-                return;
-            itemManager.ItemCount--;
+            itemManager.ItemStock--;
             itemManager.UseItemList(2);
-            UIManager.instance.ItemPickCountSettings();
-            UIManager.instance.SETItemPick();
+            UIManager.instance.SetItemSelect();
         }
     }
 }

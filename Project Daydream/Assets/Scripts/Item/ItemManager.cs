@@ -4,67 +4,65 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-
     /* ------------- 컴포넌트 변수 ------------- */
-    private GameObject player;
     private PlayerMain playerMain;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("현재 아이템 수")]
     [SerializeField, Range(0, 3)]
-    private int itemCount = 0;
+    private int itemStock = 0;
     [SerializeField]
     private List<Sprite> itemImages = new List<Sprite>();
     [SerializeField]
-    private List<bool> isUsisngItems = new List<bool>();
+    private List<bool> isActiveItems = new List<bool>();
     [SerializeField]
     private List<int> itemNums = new List<int>();
 
     /* ---------------- 프로퍼티 --------------- */
-    public int ItemCount
+    public int ItemStock
     {
-        get { return itemCount; }
+        get { return itemStock; }
         set
         {
-            itemCount = value;
+            itemStock = value;
             UIManager.instance.ShowItemUI();
         }
     }
 
-    public void ItemList(int count, Sprite itemImage, bool isUsisngItem, int itemNum)
-    {
-        itemImages.Add(itemImage);
-        isUsisngItems.Add(isUsisngItem);
-        itemNums.Add(itemNum);
-    }
-
+    /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
-        player = GameManager.instance.Player;
-        playerMain = player.GetComponent<PlayerMain>();
+        playerMain = GameManager.instance.Player.GetComponent<PlayerMain>();
     }
 
     /* --------------- 외부 참조 --------------- */
+    public void ItemList(int count, Sprite itemImage, bool isUsisngItem, int itemNum)
+    {
+        itemImages.Add(itemImage);
+        isActiveItems.Add(isUsisngItem);
+        itemNums.Add(itemNum);
+    }
+
     public Sprite GetItemImages(int num)
     {
         return itemImages[num];
     }
 
-    public bool GetIsUsisngItem(int num)
+    public bool GetIsActiveItem(int num)
     {
-        return isUsisngItems[num];
+        return isActiveItems[num];
     }
 
     /* --------------- 콜백 함수 --------------- */
     public void RemoveItemList(int num)
     {
-        if (!isUsisngItems[num])
-        {
+        if (!isActiveItems[num])
             RemovePassiveItem(itemNums[num]);
-        }
+
         itemImages.RemoveAt(num);
-        isUsisngItems.RemoveAt(num);
+        isActiveItems.RemoveAt(num);
         itemNums.RemoveAt(num);
+
         UIManager.instance.SetItemUI();
         UIManager.instance.ShowItemUI();
     }
@@ -72,9 +70,11 @@ public class ItemManager : MonoBehaviour
     public void UseItemList(int num)
     {
         ActiveItem(itemNums[num]);
+
         itemImages.RemoveAt(num);
-        isUsisngItems.RemoveAt(num);
+        isActiveItems.RemoveAt(num);
         itemNums.RemoveAt(num);
+
         UIManager.instance.SetItemUI();
         UIManager.instance.ShowItemUI();
     }
@@ -84,7 +84,9 @@ public class ItemManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                MapHPUpgrade(true);
+                MaxHPUpgrade(true);
+                break;
+            default:
                 break;
         }
     }
@@ -94,7 +96,9 @@ public class ItemManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                MapHPUpgrade(false);
+                MaxHPUpgrade(false);
+                break;
+            default:
                 break;
         }
     }
@@ -106,16 +110,18 @@ public class ItemManager : MonoBehaviour
             case 0:
                 HPHeal();
                 break;
+            default:
+                break;
         }
     }
-
-    /* --------------- 아이템 효과--------------- */
+    
+    /* -------------- 아이템 효과 -------------- */
     public void HPHeal()
     {
         playerMain.Hp += 20;
     }
 
-    public void MapHPUpgrade(bool use)
+    public void MaxHPUpgrade(bool use)
     {
         if (use)
         {

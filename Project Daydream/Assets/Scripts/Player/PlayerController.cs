@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMain playerMain;
     private GameObject platformObject = null;
     private SkillController skillController;
+    private ItemController itemController;
 
     /* ----------- 입력 값 저장 변수 ----------- */
     private Vector2 moveInput;
@@ -18,11 +18,18 @@ public class PlayerController : MonoBehaviour
     private bool dashInput;
     private bool passPlatformInput;
 
-    private bool attackInputs;
     private bool ultimateSkillInput;
     private bool skillAInput;
     private bool skillSInput;
     private bool skillDInput;
+    private bool attackInputs;
+
+    private bool tabItemInput;
+    private bool dropItemInput;
+    private bool useItemInput;
+    private bool item1Input;
+    private bool item2Input;
+    private bool item3Input;
 
     /* ------------ 동작 확인 변수 ------------- */
     private bool isMove = false;
@@ -77,6 +84,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         playerMain = GetComponent<PlayerMain>();
         skillController = GetComponent<SkillController>();
+        itemController = GetComponent<ItemController>();
     }
 
     private void Update()
@@ -95,6 +103,11 @@ public class PlayerController : MonoBehaviour
 
         /* 공격 함수 */
         Attack();
+
+        /* 아이템 조작 함수 */
+        SelectItem();
+        DropItem();
+        UseItem();
     }
 
     private void OnDrawGizmos() // 사각 레이 기즈모
@@ -125,6 +138,14 @@ public class PlayerController : MonoBehaviour
         skillSInput = Input.GetButtonDown("Skill S");
         skillDInput = Input.GetButtonDown("Skill D");
         attackInputs = skillDInput || skillSInput || skillAInput || ultimateSkillInput;
+
+        /* 아이템 조작 */
+        tabItemInput = Input.GetButtonDown("Tab");
+        dropItemInput = Input.GetButtonDown("Drop Item");
+        useItemInput = Input.GetButtonDown("Use Item");
+        item1Input = Input.GetButtonDown("Item 1");
+        item2Input = Input.GetButtonDown("Item 2");
+        item3Input = Input.GetButtonDown("Item 3");
     }
 
     /* ------------- 바닥 체크 함수 ------------- */
@@ -285,5 +306,34 @@ public class PlayerController : MonoBehaviour
         {
             skillController.UltimateSkill();
         }
+    }
+    
+    /* -------------- 아이템 함수 -------------- */
+    private void SelectItem()
+    {
+        if (!tabItemInput)
+            return;
+
+        itemController.SelectItem();
+    }
+
+    private void DropItem()
+    {
+        if (!dropItemInput)
+            return;
+
+        itemController.DropItem();
+    }
+
+    private void UseItem()
+    {
+        if (useItemInput)
+            itemController.UseSelectItem();
+        if (item1Input)
+            itemController.UseItem1();
+        if (item2Input)
+            itemController.UseItem2();
+        if (item3Input)
+            itemController.UseItem3();
     }
 }
