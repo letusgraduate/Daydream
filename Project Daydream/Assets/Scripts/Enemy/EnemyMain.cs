@@ -21,6 +21,8 @@ public class EnemyMain : MonoBehaviour
     protected float knockBackPower = 3f;
     [SerializeField, Range(0f, 10f)]
     protected float superArmorTime = 0.5f;
+    [SerializeField, Range(0, 1000)]
+    protected int enemyScore = 10;
 
     /* ---------------- 프로퍼티 --------------- */
     public bool IsHit
@@ -90,7 +92,9 @@ public class EnemyMain : MonoBehaviour
     protected IEnumerator Dead()
     {
         yield return new WaitForSeconds(0.35f);
+
         DropCurrency();
+        GameManager.instance.PlayerScore += enemyScore;
 
         Destroy(gameObject);
     }

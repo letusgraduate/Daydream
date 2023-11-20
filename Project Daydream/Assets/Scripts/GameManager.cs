@@ -19,10 +19,18 @@ public class GameManager : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject player;
+
+    [Header("재화")]
     [SerializeField]
     private GameObject coinPrefab;
     [SerializeField]
     private GameObject moonRockPrefab;
+
+    [Header("포탈")]
+    [SerializeField]
+    private GameObject normalPortalPrefab;
+    [SerializeField]
+    private GameObject bonusPortalPrefab;
 
     [Header("월석")]
     [SerializeField, Range(0, 1000)]
@@ -30,11 +38,11 @@ public class GameManager : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int moonRock = 0;
 
-    [Header("포탈")]
-    [SerializeField]
-    private GameObject normalPortalPrefab;
-    [SerializeField]
-    private GameObject bonusPortalPrefab;
+    [Header("점수")]
+    [SerializeField, Range(0, 9999)]
+    private int maxPlayerScore = 9999;
+    [SerializeField, Range(0, 9999)]
+    private int playerScore = 0;
 
     /* ---------------- 프로퍼티 --------------- */
     public int MoonRock
@@ -50,6 +58,20 @@ public class GameManager : MonoBehaviour
                 moonRock = value;
 
             UIManager.instance.SetMoonRockUI();
+        }
+    }
+
+    public int PlayerScore
+    {
+        get { return playerScore; }
+        set
+        {
+            if (value <= 0)
+                playerScore = 0;
+            else if (value > maxPlayerScore)
+                playerScore = maxPlayerScore;
+            else
+                playerScore = value;
         }
     }
 
@@ -81,9 +103,14 @@ public class GameManager : MonoBehaviour
     /* --------------- 기능 함수 --------------- */
     public void GameOver()
     {
-        dataManager.Save(); // 세이브 파일 저장
+        dataManager.Save(); // 세이브 파일 저장 (월석 저장)
+        PlayerScore += playerMain.Coin; // 남은 코인 점수로
 
-        StartCoroutine(ReStart());
+        // 점수 출력
+        Debug.Log("GameOver");
+        Debug.Log("Player Score : " + PlayerScore);
+        
+        StartCoroutine(ReStart()); // 버튼으로 변경, 아이템/코인 초기화
     }
 
     IEnumerator ReStart()
@@ -96,7 +123,10 @@ public class GameManager : MonoBehaviour
 
     public void StageClear()
     {
-        Instantiate(normalPortalPrefab, new Vector3(-4, 0, 0), Quaternion.identity); // 나중에 생성 위치 바꾸겠음
+        PlayerScore += 100;
+
+        // 포탈 생성 위치 (나중에 수정)
+        Instantiate(normalPortalPrefab, new Vector3(-4, 0, 0), Quaternion.identity);
 
         int probability = Random.Range(0, 101); // 보너스 맵 포탈 스폰 확률
 
