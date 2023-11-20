@@ -3205,6 +3205,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4720881566441793388}
     - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+      propertyPath: initItemImage
+      value: 
+      objectReference: {fileID: 21300000, guid: c7476fc20432726419514de68ff6b315, type: 3}
+    - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
       propertyPath: ultimateSkill
       value: 
       objectReference: {fileID: 5690702342681550299}

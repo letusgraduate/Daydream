@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
 
     [Header("아이템 초기 이미지 정보")]
     [SerializeField]
-    protected Sprite itemImage;
+    protected Sprite initItemImage;
 
     /* ---------------- 프로퍼티 --------------- */
     public int ItemSelect { get { return itemSelect; } }
@@ -111,51 +111,7 @@ public class UIManager : MonoBehaviour
         //miniMap.SetActive(false);
     }
 
-    private void FixedUpdate()
-    {
-        ShowItemUI();
-    }
-    
-    /* --------------- 스킬 관련 --------------- */
-    public void SetSkillACoolTimeUI()
-    {
-        StartCoroutine(SkillCoolTimeUI(skillA, skillACoolTime));
-    }
-
-    public void SetSkillSCoolTimeUI()
-    {
-        StartCoroutine(SkillCoolTimeUI(skillS, skillSCoolTime));
-    }
-
-    public void SetSkillDCoolTimeUI()
-    {
-        StartCoroutine(SkillCoolTimeUI(skillD, skillDCoolTime));
-    }
-
-    public void SetUltimateSkillCoolTimeUI()
-    {
-        StartCoroutine(SkillCoolTimeUI(ultimateSkill, skillManager.UltimateSkillCoolTime));
-    }
-
-    private IEnumerator SkillCoolTimeUI(GameObject skill, float coolTime)
-    {
-        Image skillImage = skill.transform.GetChild(0).gameObject.GetComponent<Image>();
-        float timer = 0f;
-        Debug.Log(skillImage.name);
-        while (timer < coolTime)
-        {
-            timer += Time.deltaTime;
-
-            skillImage.color = Color.gray;
-            skillImage.fillAmount = timer / coolTime;
-
-            yield return null;
-        }
-        
-        skillImage.color = Color.white;
-    }
-
-    /* ------------ 스킬 콜백 함수 ------------- */
+    /* ------------ UI 콜백 함수 ------------- */
     public void SetHpUI()
     {
         hpUI.GetComponent<Slider>().maxValue = (float)playerMain.MaxHp;
@@ -184,6 +140,45 @@ public class UIManager : MonoBehaviour
             dashStackUI.transform.GetChild(j).gameObject.SetActive(true);
         }
     }
+
+    /* --------------- 스킬 관련 --------------- */
+    public void SetSkillACoolTimeUI()
+    {
+        StartCoroutine(SkillCoolTimeUI(skillA, skillACoolTime));
+    }
+
+    public void SetSkillSCoolTimeUI()
+    {
+        StartCoroutine(SkillCoolTimeUI(skillS, skillSCoolTime));
+    }
+
+    public void SetSkillDCoolTimeUI()
+    {
+        StartCoroutine(SkillCoolTimeUI(skillD, skillDCoolTime));
+    }
+
+    public void SetUltimateSkillCoolTimeUI()
+    {
+        StartCoroutine(SkillCoolTimeUI(ultimateSkill, skillManager.UltimateSkillCoolTime));
+    }
+
+    private IEnumerator SkillCoolTimeUI(GameObject skill, float coolTime)
+    {
+        Image skillImage = skill.transform.GetChild(0).GetComponent<Image>();
+        float timer = 0f;
+        
+        while (timer < coolTime)
+        {
+            timer += Time.deltaTime;
+
+            skillImage.color = Color.gray;
+            skillImage.fillAmount = timer / coolTime;
+
+            yield return null; // 1 프레임 지연
+        }
+        
+        skillImage.color = Color.white;
+    }
     
     /* -------------- 아이템 관련 -------------- */
     public void ShowItemUI()
@@ -197,7 +192,7 @@ public class UIManager : MonoBehaviour
                 break;
             case 1:
                 item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0)); // 개선
+                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
                 item2.SetActive(false);
                 item3.SetActive(false);
                 break;
@@ -251,24 +246,24 @@ public class UIManager : MonoBehaviour
         switch (itemManager.ItemStock)
         {
             case 0:
-                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
-                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
-                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
+                item2.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
+                item3.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
                 break;
             case 1:
-                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
-                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
+                item3.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
                 break;
             case 2:
-                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
-                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemImage;
+                item1.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(1).GetComponent<Image>().sprite = initItemImage;
                 break;
             case 3:
-                item1.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(0);
-                item2.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(1);
-                item3.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = itemManager.GetItemImages(2);
+                item1.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(0);
+                item2.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(1);
+                item3.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(2);
                 break;
             default:
                 break;

@@ -21,12 +21,6 @@ public class SkillController : MonoBehaviour
     [SerializeField]
     private GameObject[] bulletPrefabs;
 
-    /* ---------------- 프로퍼티 --------------- */
-    public bool IsUltimateSkill { get { return isUltimateSkill; } }
-    public bool IsSkillA { get { return isSkillA; } }
-    public bool IsSkillS { get { return isSkillS; } }
-    public bool IsSkillD { get { return isSkillD; } }
-
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
