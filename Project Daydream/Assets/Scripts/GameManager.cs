@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         dataManager = GetComponentInChildren<DataManager>();
         skillManager = GetComponentInChildren<SkillManager>();
         itemManager = GetComponentInChildren<ItemManager>();
+        playerMain = player.GetComponent<PlayerMain>();
     }
 
     /* --------------- 기능 함수 --------------- */
@@ -105,12 +107,12 @@ public class GameManager : MonoBehaviour
     {
         dataManager.Save(); // 세이브 파일 저장 (월석 저장)
         PlayerScore += playerMain.Coin; // 남은 코인 점수로
-
+        UIManager.instance.ShowGameScore();
         // 점수 출력
         Debug.Log("GameOver");
         Debug.Log("Player Score : " + PlayerScore);
-        
-        StartCoroutine(ReStart()); // 버튼으로 변경, 아이템/코인 초기화
+
+        //StartCoroutine(ReStart()); // 버튼으로 변경, 아이템/코인 초기화
     }
 
     IEnumerator ReStart()
