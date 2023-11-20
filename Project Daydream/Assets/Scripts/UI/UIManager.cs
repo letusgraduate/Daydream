@@ -54,6 +54,8 @@ public class UIManager : MonoBehaviour
     private GameObject itemUI;
     [SerializeField]
     private GameObject subtitleUI;
+    [SerializeField]
+    private GameObject settingUI;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -111,7 +113,16 @@ public class UIManager : MonoBehaviour
         SetMoonRockUI();
         ShowItemUI();
         ItemSelectUI();
+        CloseSettingUI();
         //miniMap.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowAndCloseSettingUI();
+        }
     }
 
     /* ------------ UI 콜백 함수 ------------- */
@@ -257,5 +268,28 @@ public class UIManager : MonoBehaviour
             itemSelect = 0;
 
         ItemSelectUI();
+    }
+
+    /* ----------- 설정창 관련 함수 ------------ */
+    public void ShowAndCloseSettingUI()
+    {
+        if (Time.timeScale == 1)
+        {
+            ShowSettingUI();
+        }
+        else
+        {
+            CloseSettingUI();
+        }
+    }
+    public void ShowSettingUI()
+    {
+        settingUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void CloseSettingUI()
+    {
+        settingUI.SetActive(false);
+        Time.timeScale = 1;
     }
 }
