@@ -311,4 +311,9 @@ public class UIManager : MonoBehaviour
     {
         sound.GetComponent<AudioSource>().volume = volumeUI.transform.GetChild(3).GetComponent<Slider>().value;
     }
+    public void GameEndButton()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
 }
