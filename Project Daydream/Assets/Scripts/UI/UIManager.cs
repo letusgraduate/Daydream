@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
     private float skillACoolTime;
     private float skillSCoolTime;
     private float skillDCoolTime;
-    private float ultimateSkillCoolTime;
 
     /* -------------- 아이템 관련 -------------- */
     private int itemSelect;
@@ -102,7 +101,6 @@ public class UIManager : MonoBehaviour
         skillACoolTime = skillManager.SkillACoolTime;
         skillSCoolTime = skillManager.SkillSCoolTime;
         skillDCoolTime = skillManager.SkillDCoolTime;
-        ultimateSkillCoolTime = skillManager.UltimateSkillCoolTime;
 
         SetHpUI();
         SetDashStackUI();
@@ -136,7 +134,7 @@ public class UIManager : MonoBehaviour
 
     public void SetUltimateSkillCoolTimeUI()
     {
-        StartCoroutine(SkillCoolTimeUI(ultimateSkill, ultimateSkillCoolTime));
+        StartCoroutine(SkillCoolTimeUI(ultimateSkill, skillManager.UltimateSkillCoolTime));
     }
 
     private IEnumerator SkillCoolTimeUI(GameObject skill, float coolTime)
