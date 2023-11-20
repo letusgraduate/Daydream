@@ -54,6 +54,14 @@ public class UIManager : MonoBehaviour
     private GameObject itemUI;
     [SerializeField]
     private GameObject subtitleUI;
+    [SerializeField]
+    private GameObject settingUI;
+    [SerializeField]
+    private GameObject volumeUI;
+    [SerializeField]
+    private GameObject gameQuitUI;
+    [SerializeField]
+    private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -104,6 +112,7 @@ public class UIManager : MonoBehaviour
         skillACoolTime = skillManager.SkillACoolTime;
         skillSCoolTime = skillManager.SkillSCoolTime;
         skillDCoolTime = skillManager.SkillDCoolTime;
+        gameQuitUI.SetActive(false);
 
         SetHpUI();
         SetDashStackUI();
@@ -111,7 +120,16 @@ public class UIManager : MonoBehaviour
         SetMoonRockUI();
         ShowItemUI();
         ItemSelectUI();
+        CloseSettingUI();
         //miniMap.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowAndCloseSettingUI();
+        }
     }
 
     /* ------------ UI 콜백 함수 ------------- */
@@ -257,5 +275,60 @@ public class UIManager : MonoBehaviour
             itemSelect = 0;
 
         ItemSelectUI();
+    }
+
+    /* ----------- 설정창 관련 함수 ------------ */
+    public void ShowAndCloseSettingUI()
+    {
+        if (Time.timeScale == 1)
+        {
+            ShowSettingUI();
+        }
+        else
+        {
+            CloseSettingUI();
+        }
+    }
+    public void ShowSettingUI()
+    {
+        settingUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void CloseSettingUI()
+    {
+        settingUI.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SoundOnOffSetting()
+    {
+        if (AudioListener.volume == 0)
+        {
+            AudioListener.volume = 1;
+        }
+        else
+        {
+            AudioListener.volume = 0;
+        }
+    }
+    public void SetVolumeUI()
+    {
+        sound.GetComponent<AudioSource>().volume = volumeUI.transform.GetChild(3).GetComponent<Slider>().value;
+    }
+    public void SetGemeQuitUI()
+    {
+        if (gameQuitUI.activeSelf == false)
+        {
+            gameQuitUI.SetActive(true);
+            CloseSettingUI();
+        }
+        else
+        {
+            gameQuitUI.SetActive(false);
+        }
+    }
+    public void GameEndButton()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
