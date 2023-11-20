@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
     private GameObject normalSkill;
     [SerializeField]
     private GameObject itemUI;
+    [SerializeField]
+    private GameObject subtitleUI;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -61,6 +63,7 @@ public class UIManager : MonoBehaviour
 
     /* ---------------- 프로퍼티 --------------- */
     public int ItemSelect { get { return itemSelect; } }
+    public GameObject SubtitleUI { get { return subtitleUI; } }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()

@@ -2,50 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System;
 
-public class TextPrintTest : MonoBehaviour
+public class PrintSubtitle : MonoBehaviour
 {
-    /* ------- 텍스트 저장 변수 ------- */
-    string filePathValue;
-
-    /* ----------- 인스펙터 ----------- */
-    [SerializeField]
+    /* ----------- 텍스트 관련 변수 ------------ */
+    private string fileContent;
     private Text textUI;
 
+    /* ---------------- 인스펙터 --------------- */
+    [Header("오브젝트 연결")]
+    [SerializeField]
+    private TextAsset textFile;
+
+    /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, "C:/UnityProject/Daydream/Project Daydream/Assets/Etc/testTextFile.txt");
-        filePathValue = ReadTxt(filePath).ToString();
-        Debug.Log(filePath);
-        Debug.Log(ReadTxt(filePath));
-        Debug.Log(ReadTxt(filePath).GetType());
-        Debug.Log(filePathValue);
+        textUI = UIManager.instance.SubtitleUI.GetComponent<Text>();
+
+        ReadText(textFile);
     }
 
-    private object ReadTxt(string filePath)
-    {
-        FileInfo fileInfo = new FileInfo(filePath);
-        string value = "";
-
-        if (fileInfo.Exists)
-        {
-            StreamReader reader = new StreamReader(filePath);
-            value = reader.ReadToEnd();
-            reader.Close();
-        }
-
-        else
-            value = "파일이 없습니다.";
-
-        return value;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) // 나중에 다른 스크립트에서 충돌 계산하고 여기 코루틴만 호출하는 식으로 변경
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            StartCoroutine(TextPrint(textUI, filePathValue));
+            StartCoroutine(TextPrint(textUI, fileContent));
+    }
+    
+    /* --------------- 기능 함수 --------------- */
+    private void ReadText(TextAsset file)
+    {
+        if (file != null)
+            fileContent = file.text;
+        else
+            fileContent = "파일이 없습니다!";
     }
 
     IEnumerator TextPrint(Text textUI, string textValue)
@@ -62,6 +51,7 @@ public class TextPrintTest : MonoBehaviour
             // 한 글자씩 타이핑 되는 듯한 효과 
             writeText += textValue[i]; // 문자열 하나씩 끊어서 적기
             textUI.text = currentText + writeText; // 텍스트 UI에 텍스트 표시
+
             yield return null;
             // yield return new WaitForSeconds(0.075f); // 글자마다 딜레이
 
