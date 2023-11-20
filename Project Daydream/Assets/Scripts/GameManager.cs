@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private GameObject coinPrefab;
+    [SerializeField]
+    private GameObject moonRockPrefab;
 
-    [Header("설정")]
+    [Header("월석")]
     [SerializeField, Range(0, 1000)]
     private int maxMoonRock = 1000;
     [SerializeField, Range(0, 100)]
@@ -44,13 +48,16 @@ public class GameManager : MonoBehaviour
                 moonRock = maxMoonRock;
             else
                 moonRock = value;
+
+            UIManager.instance.SetMoonRockUI();
         }
     }
 
     public GameObject Player { get { return player; } }
-
     public SkillManager SkillManager { get { return skillManager; } }
     public ItemManager ItemManager { get { return itemManager; } }
+    public GameObject CoinPrefab { get { return coinPrefab; } }
+    public GameObject MoonRockPrefab { get { return moonRockPrefab; } }
 
     /* -------------- 이벤트 함수 -------------- */
     void Awake()
