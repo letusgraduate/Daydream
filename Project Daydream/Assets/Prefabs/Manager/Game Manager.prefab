@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  coinPrefab: {fileID: 6694122369876434448, guid: 54ce07995563ae2478667788fa88fdec, type: 3}
+  moonRockPrefab: {fileID: 6694122369876434448, guid: da332cb823d53864cb04460587213552, type: 3}
   maxMoonRock: 1000
   moonRock: 0
   normalPortalPrefab: {fileID: 0}
@@ -9486,7 +9488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 261, y: 200}
+  m_AnchoredPosition: {x: 274.6, y: 222.4}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3393824442846626978
