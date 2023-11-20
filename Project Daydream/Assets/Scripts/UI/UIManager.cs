@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -61,6 +62,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject gameQuitUI;
     [SerializeField]
+    private GameObject gameScoreUI;
+    [SerializeField]
     private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
@@ -113,6 +116,7 @@ public class UIManager : MonoBehaviour
         skillSCoolTime = skillManager.SkillSCoolTime;
         skillDCoolTime = skillManager.SkillDCoolTime;
         gameQuitUI.SetActive(false);
+        gameScoreUI.SetActive(false);
 
         SetHpUI();
         SetDashStackUI();
@@ -330,5 +334,17 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
+    }
+    /* ----------- 플레이어 스코어 관현 함수 ------------ */
+    public void GameReStartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameScoreUI.SetActive(false);
+    }
+
+    public void ShowGameScore()
+    {
+        gameScoreUI.SetActive(true);
+        gameScoreUI.transform.GetChild(0).GetComponent<TMP_Text>().text = "Player Score : " + GameManager.instance.PlayerScore;
     }
 }
