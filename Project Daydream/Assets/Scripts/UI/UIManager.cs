@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour
 
     public void SetMoonRockUI()
     {
-        moonRockUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + playerMain.MoonRock;
+        moonRockUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + GameManager.instance.MoonRock;
     }
 
     public void SetDashStackUI()
