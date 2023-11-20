@@ -44,11 +44,12 @@ public class GameManager : MonoBehaviour
                 moonRock = maxMoonRock;
             else
                 moonRock = value;
+
+            UIManager.instance.SetMoonRockUI();
         }
     }
 
     public GameObject Player { get { return player; } }
-
     public SkillManager SkillManager { get { return skillManager; } }
     public ItemManager ItemManager { get { return itemManager; } }
 
