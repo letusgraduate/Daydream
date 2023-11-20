@@ -64,6 +64,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject gameScoreUI;
     [SerializeField]
+    private GameObject specialtyUI;
+    [SerializeField]
     private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
@@ -125,6 +127,7 @@ public class UIManager : MonoBehaviour
         ShowItemUI();
         ItemSelectUI();
         CloseSettingUI();
+        CloseSpecialtyUI();
         //miniMap.SetActive(false);
     }
 
@@ -346,5 +349,17 @@ public class UIManager : MonoBehaviour
     {
         gameScoreUI.SetActive(true);
         gameScoreUI.transform.GetChild(0).GetComponent<TMP_Text>().text = "Player Score : " + GameManager.instance.PlayerScore;
+    }
+    /* ----------- 특성 관현 함수 ------------ */
+
+    public void ShowSpecialtyUI()
+    {
+        specialtyUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void CloseSpecialtyUI()
+    {
+        specialtyUI.SetActive(false);
+        Time.timeScale = 1;
     }
 }

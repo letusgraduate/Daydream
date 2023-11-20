@@ -53,4 +53,12 @@ public class PlayerHitBox : MonoBehaviour
         if (collision.CompareTag("Item"))
             playerMain.GetItem(collision.gameObject);
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC") && Input.GetKey(KeyCode.E))
+        {
+            UIManager.instance.ShowSpecialtyUI();
+        }
+    }
 }
