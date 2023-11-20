@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Project Daydream/Assets/Scenes/Test/TextTestScene.unity.meta
+guid: 434cf0443c41c484f8b3890d83bcf851
+========
 guid: 92a7aa16544d8c14a8177c13e23509ca
+>>>>>>>> develop:Project Daydream/Assets/Scenes/Test/DamageTestScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
