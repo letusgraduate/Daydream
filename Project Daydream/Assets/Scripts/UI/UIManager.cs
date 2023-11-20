@@ -169,7 +169,7 @@ public class UIManager : MonoBehaviour
     {
         Image skillImage = skill.transform.GetChild(0).GetComponent<Image>();
         float timer = 0f;
-        
+
         while (timer < coolTime)
         {
             timer += Time.deltaTime;
@@ -179,44 +179,20 @@ public class UIManager : MonoBehaviour
 
             yield return null; // 1 프레임 지연
         }
-        
+
         skillImage.color = Color.white;
     }
-    
+
     /* -------------- 아이템 관련 -------------- */
     public void ShowItemUI()
     {
-        switch (itemManager.ItemStock)
-        {
-            case 0:
-                item1.SetActive(false);
-                item2.SetActive(false);
-                item3.SetActive(false);
-                break;
-            case 1:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(false);
-                item3.SetActive(false);
-                break;
-            case 2:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(true);
-                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
-                item3.SetActive(false);
-                break;
-            case 3:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(true);
-                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
-                item3.SetActive(true);
-                item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
-                break;
-            default:
-                break;
-        }
+        item1.SetActive(true);
+        item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
+        item2.SetActive(true);
+        item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
+        item3.SetActive(true);
+        item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
+
     }
 
     public void ItemSelectUI()

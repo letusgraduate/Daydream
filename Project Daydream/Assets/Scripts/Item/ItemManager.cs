@@ -50,7 +50,14 @@ public class ItemManager : MonoBehaviour
 
     public bool GetIsActiveItem(int num)
     {
-        return isActiveItems[num];
+        if (isActiveItems.Count > num)
+        {
+            return isActiveItems[num];
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /* --------------- 콜백 함수 --------------- */
@@ -114,7 +121,7 @@ public class ItemManager : MonoBehaviour
                 break;
         }
     }
-    
+
     /* -------------- 아이템 효과 -------------- */
     public void HPHeal()
     {
