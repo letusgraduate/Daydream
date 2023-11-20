@@ -56,6 +56,10 @@ public class UIManager : MonoBehaviour
     private GameObject subtitleUI;
     [SerializeField]
     private GameObject settingUI;
+    [SerializeField]
+    private GameObject volumeUI;
+    [SerializeField]
+    private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -291,5 +295,20 @@ public class UIManager : MonoBehaviour
     {
         settingUI.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void SoundOnOffSetting()
+    {
+        if (AudioListener.volume == 0)
+        {
+            AudioListener.volume = 1;
+        }
+        else
+        {
+            AudioListener.volume = 0;
+        }
+    }
+    public void SetVolumeUI()
+    {
+        sound.GetComponent<AudioSource>().volume = volumeUI.transform.GetChild(3).GetComponent<Slider>().value;
     }
 }
