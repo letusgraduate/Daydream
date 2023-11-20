@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -54,6 +55,16 @@ public class UIManager : MonoBehaviour
     private GameObject itemUI;
     [SerializeField]
     private GameObject subtitleUI;
+    [SerializeField]
+    private GameObject settingUI;
+    [SerializeField]
+    private GameObject volumeUI;
+    [SerializeField]
+    private GameObject gameQuitUI;
+    [SerializeField]
+    private GameObject gameScoreUI;
+    [SerializeField]
+    private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
 
@@ -104,6 +115,8 @@ public class UIManager : MonoBehaviour
         skillACoolTime = skillManager.SkillACoolTime;
         skillSCoolTime = skillManager.SkillSCoolTime;
         skillDCoolTime = skillManager.SkillDCoolTime;
+        gameQuitUI.SetActive(false);
+        gameScoreUI.SetActive(false);
 
         SetHpUI();
         SetDashStackUI();
@@ -111,7 +124,16 @@ public class UIManager : MonoBehaviour
         SetMoonRockUI();
         ShowItemUI();
         ItemSelectUI();
+        CloseSettingUI();
         //miniMap.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowAndCloseSettingUI();
+        }
     }
 
     /* ------------ UI 콜백 함수 ------------- */
@@ -129,7 +151,7 @@ public class UIManager : MonoBehaviour
 
     public void SetMoonRockUI()
     {
-        moonRockUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + playerMain.MoonRock;
+        moonRockUI.transform.GetChild(0).GetComponent<TMP_Text>().text = " : " + GameManager.instance.MoonRock;
     }
 
     public void SetDashStackUI()
@@ -169,7 +191,7 @@ public class UIManager : MonoBehaviour
     {
         Image skillImage = skill.transform.GetChild(0).GetComponent<Image>();
         float timer = 0f;
-        
+
         while (timer < coolTime)
         {
             timer += Time.deltaTime;
@@ -179,44 +201,20 @@ public class UIManager : MonoBehaviour
 
             yield return null; // 1 프레임 지연
         }
-        
+
         skillImage.color = Color.white;
     }
-    
+
     /* -------------- 아이템 관련 -------------- */
     public void ShowItemUI()
     {
-        switch (itemManager.ItemStock)
-        {
-            case 0:
-                item1.SetActive(false);
-                item2.SetActive(false);
-                item3.SetActive(false);
-                break;
-            case 1:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(false);
-                item3.SetActive(false);
-                break;
-            case 2:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(true);
-                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
-                item3.SetActive(false);
-                break;
-            case 3:
-                item1.SetActive(true);
-                item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
-                item2.SetActive(true);
-                item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
-                item3.SetActive(true);
-                item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
-                break;
-            default:
-                break;
-        }
+        item1.SetActive(true);
+        item1.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(0));
+        item2.SetActive(true);
+        item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
+        item3.SetActive(true);
+        item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
+
     }
 
     public void ItemSelectUI()
@@ -281,5 +279,72 @@ public class UIManager : MonoBehaviour
             itemSelect = 0;
 
         ItemSelectUI();
+    }
+
+    /* ----------- 설정창 관련 함수 ------------ */
+    public void ShowAndCloseSettingUI()
+    {
+        if (Time.timeScale == 1)
+        {
+            ShowSettingUI();
+        }
+        else
+        {
+            CloseSettingUI();
+        }
+    }
+    public void ShowSettingUI()
+    {
+        settingUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void CloseSettingUI()
+    {
+        settingUI.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SoundOnOffSetting()
+    {
+        if (AudioListener.volume == 0)
+        {
+            AudioListener.volume = 1;
+        }
+        else
+        {
+            AudioListener.volume = 0;
+        }
+    }
+    public void SetVolumeUI()
+    {
+        sound.GetComponent<AudioSource>().volume = volumeUI.transform.GetChild(3).GetComponent<Slider>().value;
+    }
+    public void SetGemeQuitUI()
+    {
+        if (gameQuitUI.activeSelf == false)
+        {
+            gameQuitUI.SetActive(true);
+            CloseSettingUI();
+        }
+        else
+        {
+            gameQuitUI.SetActive(false);
+        }
+    }
+    public void GameEndButton()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+    /* ----------- 플레이어 스코어 관현 함수 ------------ */
+    public void GameReStartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameScoreUI.SetActive(false);
+    }
+
+    public void ShowGameScore()
+    {
+        gameScoreUI.SetActive(true);
+        gameScoreUI.transform.GetChild(0).GetComponent<TMP_Text>().text = "Player Score : " + GameManager.instance.PlayerScore;
     }
 }

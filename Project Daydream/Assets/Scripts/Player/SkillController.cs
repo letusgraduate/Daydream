@@ -24,10 +24,10 @@ public class SkillController : MonoBehaviour
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
-        ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
         skillManager = GameManager.instance.SkillManager;
         anim = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
+        ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
     }
 
     /* --------------- 외부 참조 --------------- */
