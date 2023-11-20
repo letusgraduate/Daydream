@@ -3205,6 +3205,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4720881566441793388}
     - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+      propertyPath: ultimateSkill
+      value: 
+      objectReference: {fileID: 5690702342681550299}
+    - target: {fileID: 3074408943611110253, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
       propertyPath: skillManagerObject
       value: 
       objectReference: {fileID: 8418527464290741277}
@@ -3259,6 +3263,14 @@ PrefabInstance:
     - target: {fileID: 5564130007921406295, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564130007921406295, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 261
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564130007921406295, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: 5631101492946784446, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3547,6 +3559,11 @@ RectTransform:
 --- !u!224 &3724577057091488623 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2266353123118670097, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
+  m_PrefabInstance: {fileID: 3225684755845999230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5690702342681550299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7078111123141277605, guid: af0308692cc94174b92477ce9e3f43f3, type: 3}
   m_PrefabInstance: {fileID: 3225684755845999230}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5700374208228489864 stripped
