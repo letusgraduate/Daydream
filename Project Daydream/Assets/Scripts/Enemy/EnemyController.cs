@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         enemyMain = GetComponent<EnemyMain>();
     }

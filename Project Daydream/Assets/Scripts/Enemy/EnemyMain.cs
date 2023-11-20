@@ -9,13 +9,14 @@ public class EnemyMain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
 
-    /* ------------ 동작 확인 변수 ------------- */
+    /* --------------- 피격 관련 --------------- */
     private bool isHit = false;
+    private int takeDamage = 0;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("설정")]
-    [SerializeField, Range(0, 10)]
-    private int hp = 2;
+    [SerializeField, Range(0, 1000)]
+    private int hp = 30;
     [SerializeField, Range(0f, 10f)]
     private float knockBackPower = 3f;
     [SerializeField, Range(0f, 10f)]
@@ -36,24 +37,30 @@ public class EnemyMain : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player Attack"))
-            OnHit(collision.transform.position);
+        {
+            takeDamage = collision.gameObject.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player Attack"))
-            OnHit(collision.transform.position);
+        {
+            takeDamage = collision.GetComponent<DamageMain>().Damage;
+            OnHit(collision.transform.position, takeDamage);
+        }
     }
 
     /* --------------- 기능 함수 --------------- */
-    void OnHit(Vector2 targetPos)
+    void OnHit(Vector2 targetPos, int damage)
     {
         isHit = true;
         gameObject.layer = 9; // Super Armor Layer
@@ -63,13 +70,9 @@ public class EnemyMain : MonoBehaviour
         rigid.AddForce(new Vector2(dir, 1) * knockBackPower, ForceMode2D.Impulse); // 튕겨나가기
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
 
-        HpDown();
-    }
+        hp -= damage;
 
-    public void HpDown()
-    {
-        hp--;
-        if (hp == 0)
+        if (hp <= 0)
             StartCoroutine(Dead());
 
         StartCoroutine(OffHit(superArmorTime));

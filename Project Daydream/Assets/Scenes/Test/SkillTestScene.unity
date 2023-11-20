@@ -3118,7 +3118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1b4cf75b7b7be40a03004f4c94ba89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 534065155}
   xPos: 0
   yPos: 2.5
 --- !u!1 &532080443
@@ -3266,7 +3265,6 @@ GameObject:
   - component: {fileID: 534065157}
   - component: {fileID: 534065162}
   - component: {fileID: 534065163}
-  - component: {fileID: 534065164}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -3337,7 +3335,6 @@ MonoBehaviour:
   dashPower: 20
   dashTime: 0.2
   dashChargeTime: 3
-  attackCoolTime: 0.5
 --- !u!114 &534065158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3351,6 +3348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitArea: {fileID: 1851523158}
+  ultimateSkillAnchor: {fileID: 0}
   maxHp: 100
   hp: 100
   dashStack: 3
@@ -3393,6 +3391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df0041d26de57c48a2098ee53af054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultimateSkills: []
+  skillACoolTime: 10
+  skillSCoolTime: 5
+  skillDCoolTime: 0.6
+  skillAActiveTime: 0.7
+  skillSActiveTime: 0.7
+  skillDActiveTime: 0.6
+  ultimateSkillActiveTime: 1.5
 --- !u!114 &534065163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3405,28 +3411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4eff3a7c623adc4098518054f2b3e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillManagerObject: {fileID: 1751177937}
-  bulletPrefab:
-  - {fileID: 7913623570821215943, guid: fb69ad836d2ef074e9fc5d2a4a7461e6, type: 3}
-  - {fileID: 7913623570821215943, guid: 86b4135446081574d807817033caeb14, type: 3}
-  - {fileID: 7913623570821215943, guid: 899d460a10096dc448a0bc88c1652533, type: 3}
-  - {fileID: 7913623570821215943, guid: 324e9bb291e8dc74096a485ab6c242e5, type: 3}
---- !u!114 &534065164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534065154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5411e9d5da8edbb4fb007ff63d298f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPrefabs:
-  - {fileID: 3971076710784992041, guid: cd1b5cbf169b39a4e9786abdf7e99f91, type: 3}
-  - {fileID: 3971076710784992041, guid: f9a521bd299e10b4ea26aad33c610737, type: 3}
-  skillManager: {fileID: 1751177937}
+  bulletPrefabs: []
 --- !u!1 &540101410
 GameObject:
   m_ObjectHideFlags: 0
@@ -8885,6 +8870,8 @@ MonoBehaviour:
   player: {fileID: 534065154}
   maxMoonRock: 1000
   moonRock: 0
+  normalPortalPrefab: {fileID: 0}
+  bonusPortalPrefab: {fileID: 0}
 --- !u!1 &1632822414
 GameObject:
   m_ObjectHideFlags: 0
@@ -9433,6 +9420,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df0041d26de57c48a2098ee53af054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultimateSkills: []
+  skillACoolTime: 10
+  skillSCoolTime: 5
+  skillDCoolTime: 0.6
+  skillAActiveTime: 0.7
+  skillSActiveTime: 0.7
+  skillDActiveTime: 0.6
+  ultimateSkillActiveTime: 1.5
 --- !u!1 &1752251474
 GameObject:
   m_ObjectHideFlags: 0
