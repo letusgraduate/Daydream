@@ -59,6 +59,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject volumeUI;
     [SerializeField]
+    private GameObject gameQuitUI;
+    [SerializeField]
     private GameObject sound;
     //[SerializeField]
     //private GameObject miniMap;
@@ -110,6 +112,7 @@ public class UIManager : MonoBehaviour
         skillACoolTime = skillManager.SkillACoolTime;
         skillSCoolTime = skillManager.SkillSCoolTime;
         skillDCoolTime = skillManager.SkillDCoolTime;
+        gameQuitUI.SetActive(false);
 
         SetHpUI();
         SetDashStackUI();
@@ -310,6 +313,18 @@ public class UIManager : MonoBehaviour
     public void SetVolumeUI()
     {
         sound.GetComponent<AudioSource>().volume = volumeUI.transform.GetChild(3).GetComponent<Slider>().value;
+    }
+    public void SetGemeQuitUI()
+    {
+        if (gameQuitUI.activeSelf == false)
+        {
+            gameQuitUI.SetActive(true);
+            CloseSettingUI();
+        }
+        else
+        {
+            gameQuitUI.SetActive(false);
+        }
     }
     public void GameEndButton()
     {
