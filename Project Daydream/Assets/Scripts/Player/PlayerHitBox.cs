@@ -58,7 +58,7 @@ public class PlayerHitBox : MonoBehaviour
     {
         if (collision.CompareTag("NPC") && Input.GetKey(KeyCode.E))
         {
-            UIManager.instance.ShowSpecialtyUI();
+            UIManager.instance.ShowTraitUI();
         }
     }
 }

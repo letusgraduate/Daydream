@@ -11,6 +11,8 @@ public class ItemManager : MonoBehaviour
     [Header("현재 아이템 수")]
     [SerializeField, Range(0, 3)]
     private int itemStock = 0;
+    [SerializeField, Range(0, 3)]
+    private int maxItemCount = 1;
     [SerializeField]
     private List<Sprite> itemImages = new List<Sprite>();
     [SerializeField]
@@ -26,6 +28,15 @@ public class ItemManager : MonoBehaviour
         {
             itemStock = value;
             UIManager.instance.ShowItemUI();
+        }
+    }
+    public int MaxItemCount
+    {
+        get { return maxItemCount; }
+        set
+        {
+            maxItemCount = value;
+            UIManager.instance.SetItemMaxUI();
         }
     }
 

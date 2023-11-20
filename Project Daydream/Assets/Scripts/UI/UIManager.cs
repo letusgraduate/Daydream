@@ -29,6 +29,14 @@ public class UIManager : MonoBehaviour
     private GameObject skillS;
     private GameObject skillD;
 
+
+    private GameObject speed;
+    private GameObject maxHP;
+    private GameObject power;
+    private GameObject coin;
+    private GameObject dash;
+    private GameObject item;
+
     /* --------------- 스킬 관련 --------------- */
     private float skillACoolTime;
     private float skillSCoolTime;
@@ -36,6 +44,15 @@ public class UIManager : MonoBehaviour
 
     /* -------------- 아이템 관련 -------------- */
     private int itemSelect;
+
+    /* -------------- 특성 관련 ---------------- */
+    [SerializeField]
+    private int speedNum = 2;
+    private int maxHPNum = 2;
+    private int powerNum = 2;
+    private int coinNum = 2;
+    private int dashNum = 2;
+    private int itemNum = 2;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
@@ -64,7 +81,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject gameScoreUI;
     [SerializeField]
-    private GameObject specialtyUI;
+    private GameObject traitUI;
+    [SerializeField]
+    private GameObject trait;
     [SerializeField]
     private GameObject sound;
     //[SerializeField]
@@ -102,6 +121,13 @@ public class UIManager : MonoBehaviour
         selectItem1 = item1.transform.GetChild(0).GetChild(0).gameObject;
         selectItem2 = item2.transform.GetChild(0).GetChild(0).gameObject;
         selectItem3 = item3.transform.GetChild(0).GetChild(0).gameObject;
+
+        speed = traitUI.transform.GetChild(4).transform.GetChild(0).gameObject;
+        maxHP = traitUI.transform.GetChild(4).transform.GetChild(1).gameObject;
+        power = traitUI.transform.GetChild(4).transform.GetChild(2).gameObject;
+        coin = traitUI.transform.GetChild(4).transform.GetChild(3).gameObject;
+        dash = traitUI.transform.GetChild(4).transform.GetChild(4).gameObject;
+        item = traitUI.transform.GetChild(4).transform.GetChild(5).gameObject;
     }
 
     private void Start()
@@ -127,7 +153,7 @@ public class UIManager : MonoBehaviour
         ShowItemUI();
         ItemSelectUI();
         CloseSettingUI();
-        CloseSpecialtyUI();
+        CloseTraitUI();
         //miniMap.SetActive(false);
     }
 
@@ -217,7 +243,7 @@ public class UIManager : MonoBehaviour
         item2.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(1));
         item3.SetActive(true);
         item3.transform.GetChild(0).GetChild(1).gameObject.SetActive(itemManager.GetIsActiveItem(2));
-
+        SetItemMaxUI();
     }
 
     public void ItemSelectUI()
@@ -269,7 +295,26 @@ public class UIManager : MonoBehaviour
                 item2.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(1);
                 item3.transform.GetChild(1).GetComponent<Image>().sprite = itemManager.GetItemImages(2);
                 break;
-            default:
+        }
+    }
+    public void SetItemMaxUI()
+    {
+        switch (itemManager.MaxItemCount)
+        {
+            case 1:
+                item1.SetActive(true);
+                item2.SetActive(false);
+                item3.SetActive(false);
+                break;
+            case 2:
+                item1.SetActive(true);
+                item2.SetActive(true);
+                item3.SetActive(false);
+                break;
+            case 3:
+                item1.SetActive(true);
+                item2.SetActive(true);
+                item3.SetActive(true);
                 break;
         }
     }
@@ -352,14 +397,116 @@ public class UIManager : MonoBehaviour
     }
     /* ----------- 특성 관현 함수 ------------ */
 
-    public void ShowSpecialtyUI()
+    public void ShowTraitUI()
     {
-        specialtyUI.SetActive(true);
+        traitUI.SetActive(true);
         Time.timeScale = 0;
     }
-    public void CloseSpecialtyUI()
+    public void CloseTraitUI()
     {
-        specialtyUI.SetActive(false);
+        traitUI.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void SpeedUpgrade()
+    {
+        if (speedNum == speed.transform.childCount)
+        {
+            return;
+        }
+
+        speed.transform.GetChild(speedNum).gameObject.GetComponent<Button>().interactable = false;
+        speed.transform.GetChild(speedNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (speedNum + 1 < speed.transform.childCount)
+            speed.transform.GetChild(speedNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        speedNum++;
+
+        trait.GetComponent<TraitController>().SpeedUP();
+    }
+
+    public void MaxHPUpgrade()
+    {
+        if (maxHPNum == maxHP.transform.childCount)
+        {
+            return;
+        }
+
+        maxHP.transform.GetChild(maxHPNum).gameObject.GetComponent<Button>().interactable = false;
+        maxHP.transform.GetChild(maxHPNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (maxHPNum + 1 < maxHP.transform.childCount)
+            maxHP.transform.GetChild(maxHPNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        maxHPNum++;
+
+        trait.GetComponent<TraitController>().MaxHpUP();
+    }
+
+    public void PowerUpgrade()
+    {
+        if (powerNum == power.transform.childCount)
+        {
+            return;
+        }
+
+        power.transform.GetChild(powerNum).gameObject.GetComponent<Button>().interactable = false;
+        power.transform.GetChild(powerNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (powerNum + 1 < power.transform.childCount)
+            power.transform.GetChild(powerNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        powerNum++;
+
+        trait.GetComponent<TraitController>().PowerUP();
+    }
+
+    public void CoinUpgrade()
+    {
+        if (coinNum == coin.transform.childCount)
+        {
+            return;
+        }
+
+        coin.transform.GetChild(coinNum).gameObject.GetComponent<Button>().interactable = false;
+        coin.transform.GetChild(coinNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (coinNum + 1 < coin.transform.childCount)
+            coin.transform.GetChild(coinNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        coinNum++;
+
+        trait.GetComponent<TraitController>().CoinUP();
+    }
+
+    public void DashUpgrade()
+    {
+        if (dashNum == dash.transform.childCount)
+        {
+            return;
+        }
+
+        dash.transform.GetChild(dashNum).gameObject.GetComponent<Button>().interactable = false;
+        dash.transform.GetChild(dashNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (dashNum + 1 < dash.transform.childCount)
+            dash.transform.GetChild(dashNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        dashNum++;
+
+        trait.GetComponent<TraitController>().DashUP();
+    }
+
+    public void ItemUpgrade()
+    {
+        if (itemNum == item.transform.childCount)
+        {
+            return;
+        }
+
+        item.transform.GetChild(itemNum).gameObject.GetComponent<Button>().interactable = false;
+        item.transform.GetChild(itemNum).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (itemNum + 1 < item.transform.childCount)
+            item.transform.GetChild(itemNum + 1).gameObject.GetComponent<Button>().interactable = true;
+
+        itemNum++;
+
+        trait.GetComponent<TraitController>().ItemUP();
     }
 }
