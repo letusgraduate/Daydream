@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,7 +55,7 @@ public class GameManager : MonoBehaviour
     private int playerScore = 0;
 
     [Header("스테이지 관련")]
-    [SerializeField, Range(0, 3)]
+    [SerializeField, Range(0, 8)]
     private int stageClearCount = 0;
 
     /* ---------------- 프로퍼티 --------------- */
@@ -142,36 +141,70 @@ public class GameManager : MonoBehaviour
         PlayerScore += 100;
         stageClearCount += 1;
 
-        SpawnPortal(stageClearCount);
+        //SpawnPortal(stageClearCount);
     }
 
-    private void SpawnPortal(int count)
+    public void SpawnPortal(Vector3 spawnPos)
     {
-        // 포탈 생성 위치 (나중에 수정)
-        Instantiate(stage1Portal, new Vector3(-4, 0, 0), Quaternion.identity);
-        Instantiate(coinPortal, new Vector3(4, 0, 0), Quaternion.identity);
+        int bonus = Random.Range(0, 3); // 보너스 맵 포탈 스폰 확률 1/3
 
-        int bonus = Random.Range(0, 3); // 보너스 맵 포탈 스폰 확률
-
-        switch (count)
+        switch (stageClearCount)
         {
             case 0:
             case 1:
             case 2:
                 // 스테이지 1 포탈
+                Instantiate(stage1Portal, spawnPos, Quaternion.identity);
+                if (bonus == 2)
+                    BonusPortal(spawnPos);
+                Debug.Log("stage1Portal");
                 break;
             case 3:
                 // 스테이지 1 보스 포탈
+                Instantiate(stage1BossPortal, spawnPos, Quaternion.identity);
+                Debug.Log("stage1BossPortal");
                 break;
             case 4:
             case 5:
             case 6:
                 // 스테이지 2 포탈
+                Instantiate(stage2Portal, spawnPos, Quaternion.identity);
+                if (bonus == 2)
+                    BonusPortal(spawnPos);
+                Debug.Log("stage2Portal");
                 break;
             case 7:
                 // 스테이지 2 보스 포탈
+                Instantiate(stage2BossPortal, spawnPos, Quaternion.identity);
+                Debug.Log("stage2BossPortal");
                 break;
-                
+            default:
+                break;
+        }
+    }
+
+    private void BonusPortal(Vector3 spawnPos)
+    {
+        int rand = Random.Range(0, 3);
+
+        Vector3 bonusPortalPos = new Vector3(spawnPos.x + 3, spawnPos.y, spawnPos.z);
+
+        switch (rand)
+        {
+            case 0:
+                Instantiate(coinPortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("coinPortal");
+                break;
+            case 1:
+                Instantiate(healPortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("healPortal");
+                break;
+            case 2:
+                Instantiate(storePortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("storePortal");
+                break;
+            default:
+                break;
         }
     }
 }
