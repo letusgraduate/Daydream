@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,21 +16,31 @@ public class GameManager : MonoBehaviour
     private ItemManager itemManager;
 
     /* ---------------- 인스펙터 --------------- */
-    [Header("오브젝트 연결")]
+    [Header("플레이어 프리팹")]
     [SerializeField]
     private GameObject player;
 
-    [Header("재화")]
+    [Header("재화 프리팹")]
     [SerializeField]
     private GameObject coinPrefab;
     [SerializeField]
     private GameObject moonRockPrefab;
 
-    [Header("포탈")]
+    [Header("포탈 프리팹")]
     [SerializeField]
-    private GameObject normalPortalPrefab;
+    private GameObject stage1Portal;
     [SerializeField]
-    private GameObject bonusPortalPrefab;
+    private GameObject stage1BossPortal;
+    [SerializeField]
+    private GameObject stage2Portal;
+    [SerializeField]
+    private GameObject stage2BossPortal;
+    [SerializeField]
+    private GameObject coinPortal;
+    [SerializeField]
+    private GameObject healPortal;
+    [SerializeField]
+    private GameObject storePortal;
 
     [Header("월석")]
     [SerializeField, Range(0, 1000)]
@@ -44,6 +53,10 @@ public class GameManager : MonoBehaviour
     private int maxPlayerScore = 9999;
     [SerializeField, Range(0, 9999)]
     private int playerScore = 0;
+
+    [Header("스테이지 관련")]
+    [SerializeField, Range(0, 8)]
+    private int stageClearCount = 0;
 
     /* ---------------- 프로퍼티 --------------- */
     public int MoonRock
@@ -126,15 +139,72 @@ public class GameManager : MonoBehaviour
     public void StageClear()
     {
         PlayerScore += 100;
+        stageClearCount += 1;
 
-        // 포탈 생성 위치 (나중에 수정)
-        Instantiate(normalPortalPrefab, new Vector3(-4, 0, 0), Quaternion.identity);
+        //SpawnPortal(stageClearCount);
+    }
 
-        int probability = Random.Range(0, 101); // 보너스 맵 포탈 스폰 확률
+    public void SpawnPortal(Vector3 spawnPos)
+    {
+        int bonus = Random.Range(0, 3); // 보너스 맵 포탈 스폰 확률 1/3
 
-        if (probability <= 60)
+        switch (stageClearCount)
         {
-            Instantiate(bonusPortalPrefab, new Vector3(4, 0, 0), Quaternion.identity);
+            case 0:
+            case 1:
+            case 2:
+                // 스테이지 1 포탈
+                Instantiate(stage1Portal, spawnPos, Quaternion.identity);
+                if (bonus == 2)
+                    BonusPortal(spawnPos);
+                Debug.Log("stage1Portal");
+                break;
+            case 3:
+                // 스테이지 1 보스 포탈
+                Instantiate(stage1BossPortal, spawnPos, Quaternion.identity);
+                Debug.Log("stage1BossPortal");
+                break;
+            case 4:
+            case 5:
+            case 6:
+                // 스테이지 2 포탈
+                Instantiate(stage2Portal, spawnPos, Quaternion.identity);
+                if (bonus == 2)
+                    BonusPortal(spawnPos);
+                Debug.Log("stage2Portal");
+                break;
+            case 7:
+                // 스테이지 2 보스 포탈
+                Instantiate(stage2BossPortal, spawnPos, Quaternion.identity);
+                Debug.Log("stage2BossPortal");
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void BonusPortal(Vector3 spawnPos)
+    {
+        int rand = Random.Range(0, 3);
+
+        Vector3 bonusPortalPos = new Vector3(spawnPos.x + 3, spawnPos.y, spawnPos.z);
+
+        switch (rand)
+        {
+            case 0:
+                Instantiate(coinPortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("coinPortal");
+                break;
+            case 1:
+                Instantiate(healPortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("healPortal");
+                break;
+            case 2:
+                Instantiate(storePortal, bonusPortalPos, Quaternion.identity);
+                Debug.Log("storePortal");
+                break;
+            default:
+                break;
         }
     }
 }
