@@ -62,13 +62,9 @@ public class ItemManager : MonoBehaviour
     public bool GetIsActiveItem(int num)
     {
         if (isActiveItems.Count > num)
-        {
             return isActiveItems[num];
-        }
         else
-        {
             return false;
-        }
     }
 
     /* --------------- 콜백 함수 --------------- */
@@ -142,13 +138,9 @@ public class ItemManager : MonoBehaviour
     public void MaxHPUpgrade(bool use)
     {
         if (use)
-        {
             playerMain.MaxHp += 20;
-        }
         else
-        {
             playerMain.MaxHp -= 20;
-        }
     }
 }
 
