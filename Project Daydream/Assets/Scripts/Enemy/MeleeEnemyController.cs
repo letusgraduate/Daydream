@@ -41,7 +41,7 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
     {
         canMove = false;
         anim.SetBool("isAttack", true);
-        GetComponent<SoundController>().PlaySound(0);
+        soundController.PlaySound(0);
 
         yield return new WaitForSeconds(AttackActiveTime);
         if (attackArea != null)

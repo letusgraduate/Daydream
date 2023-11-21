@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 8851990071747255264}
   - component: {fileID: 2634351340361343046}
   m_Layer: 9
-  m_Name: Enemy White Cloud 1
+  m_Name: Enemy White Cloud
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
