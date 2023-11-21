@@ -5,22 +5,24 @@ using UnityEngine;
 public class EnemyMain : MonoBehaviour
 {
     /* ------------- 컴포넌트 변수 ------------- */
-    private Rigidbody2D rigid;
-    private Animator anim;
-    private SpriteRenderer spriteRenderer;
+    protected Rigidbody2D rigid;
+    protected Animator anim;
+    protected SpriteRenderer spriteRenderer;
 
     /* --------------- 피격 관련 --------------- */
-    private bool isHit = false;
-    private int takeDamage = 0;
+    protected bool isHit = false;
+    protected int takeDamage = 0;
 
     /* ---------------- 인스펙터 --------------- */
     [Header("설정")]
     [SerializeField, Range(0, 1000)]
-    private int hp = 30;
+    protected int hp = 30;
     [SerializeField, Range(0f, 10f)]
-    private float knockBackPower = 3f;
+    protected float knockBackPower = 3f;
     [SerializeField, Range(0f, 10f)]
-    private float superArmorTime = 0.5f;
+    protected float superArmorTime = 0.5f;
+    [SerializeField, Range(0, 1000)]
+    protected int enemyScore = 10;
 
     /* ---------------- 프로퍼티 --------------- */
     public bool IsHit
@@ -34,14 +36,14 @@ public class EnemyMain : MonoBehaviour
     }
 
     /* -------------- 이벤트 함수 -------------- */
-    private void Awake()
+    protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player Attack"))
         {
@@ -50,7 +52,7 @@ public class EnemyMain : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player Attack"))
         {
@@ -60,7 +62,7 @@ public class EnemyMain : MonoBehaviour
     }
 
     /* --------------- 기능 함수 --------------- */
-    void OnHit(Vector2 targetPos, int damage)
+    protected void OnHit(Vector2 targetPos, int damage)
     {
         isHit = true;
         gameObject.layer = 9; // Super Armor Layer
@@ -78,7 +80,7 @@ public class EnemyMain : MonoBehaviour
         StartCoroutine(OffHit(superArmorTime));
     }
 
-    IEnumerator OffHit(float time)
+    protected IEnumerator OffHit(float time)
     {
         yield return new WaitForSeconds(time);
         gameObject.layer = 10; // Enemy Layer
@@ -87,10 +89,19 @@ public class EnemyMain : MonoBehaviour
         isHit = false;
     }
 
-    IEnumerator Dead()
+    protected IEnumerator Dead()
     {
         GetComponent<SoundController>().PlaySound(1);
         yield return new WaitForSeconds(0.35f);
+
+        DropCurrency();
+        GameManager.instance.PlayerScore += enemyScore;
+
         Destroy(gameObject);
+    }
+
+    protected virtual void DropCurrency()
+    {
+        Instantiate(GameManager.instance.CoinPrefab, transform.position, transform.rotation);
     }
 }

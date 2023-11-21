@@ -21,19 +21,13 @@ public class SkillController : MonoBehaviour
     [SerializeField]
     private GameObject[] bulletPrefabs;
 
-    /* ---------------- 프로퍼티 --------------- */
-    public bool IsUltimateSkill { get { return isUltimateSkill; } }
-    public bool IsSkillA { get { return isSkillA; } }
-    public bool IsSkillS { get { return isSkillS; } }
-    public bool IsSkillD { get { return isSkillD; } }
-
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
-        ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
         skillManager = GameManager.instance.SkillManager;
         anim = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
+        ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
     }
 
     /* --------------- 외부 참조 --------------- */
@@ -48,10 +42,10 @@ public class SkillController : MonoBehaviour
 
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
 
-        // 투사체 발사
-        StartCoroutine(DelayBullet(bulletPrefabs[2], 1.1f));
-
+        StartCoroutine(DelayBullet(bulletPrefabs[2], 1.1f)); // 투사체 발사
         StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillActiveTime, skillManager.UltimateSkillCoolTime));
+
+        UIManager.instance.SetUltimateSkillCoolTimeUI();
     }
 
     public void SkillA()
@@ -63,10 +57,11 @@ public class SkillController : MonoBehaviour
         isSkillA = true;
         anim.SetTrigger("doSkillA");
         GetComponent<SoundController>().PlaySound(5);
-        // 투사체 발사
-        StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f));
 
+        StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f)); // 투사체 발사
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
+        
+        UIManager.instance.SetSkillACoolTimeUI();
     }
 
     public void SkillS()
@@ -77,11 +72,12 @@ public class SkillController : MonoBehaviour
         playerController.IsAttack = true;
         isSkillS = true;
         anim.SetTrigger("doSkillS");
-
-        // 투사체 발사
-        StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f));
         GetComponent<SoundController>().PlaySound(6);
+
+        StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f)); // 투사체 발사
         StartCoroutine(SkillSCoolOut(skillManager.SkillSActiveTime, skillManager.SkillSCoolTime));
+
+        UIManager.instance.SetSkillSCoolTimeUI();
     }
 
     public void SkillD()
@@ -93,7 +89,10 @@ public class SkillController : MonoBehaviour
         isSkillD = true;
         anim.SetTrigger("doSkillD");
         GetComponent<SoundController>().PlaySound(0);
+        
         StartCoroutine(SkillDCoolOut(skillManager.SkillDActiveTime, skillManager.SkillDCoolTime));
+
+        UIManager.instance.SetSkillDCoolTimeUI();
     }
 
     /* ---------- 투사체 발사 코루틴 ----------- */
