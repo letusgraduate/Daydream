@@ -431,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 193600111}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -694,10 +694,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy White Cloud
       objectReference: {fileID: 0}
-    - target: {fileID: 4446719871649474933, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5822405934528402894, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.51964
@@ -738,35 +734,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7748451790106693461, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 4091869490185518967, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4446719871649474933, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 235218712}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
---- !u!1 &235218711 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4446719871649474933, guid: 8acd45cbd7d58094a8682a0778c473e0, type: 3}
-  m_PrefabInstance: {fileID: 235218710}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &235218712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235218711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7726d04510dce46b5f5907f383af9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2.5
-  rayDis: 1
 --- !u!1001 &286235064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,10 +750,6 @@ PrefabInstance:
     - target: {fileID: 4593604924485444676, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_Name
       value: Enemy Blue Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 4593604924485444676, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4990239235002733431, guid: 7b3e20f84410fe84fb4a3d80e632f49d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1294,7 +1262,7 @@ Transform:
   m_GameObject: {fileID: 773651779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.89783, y: 2.7480662, z: -9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1333,7 +1301,7 @@ Transform:
   m_GameObject: {fileID: 824979100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1461,7 +1429,7 @@ Transform:
   m_GameObject: {fileID: 908617839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2022,7 +1990,7 @@ Transform:
   m_GameObject: {fileID: 1483804830}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2299,7 +2267,7 @@ Transform:
   m_GameObject: {fileID: 1535286604}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2427,7 +2395,7 @@ Transform:
   m_GameObject: {fileID: 1712418669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2555,7 +2523,7 @@ Transform:
   m_GameObject: {fileID: 1720544212}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89783, y: -2.7480662, z: 9.937334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2867,10 +2835,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Brown Cat
       objectReference: {fileID: 0}
-    - target: {fileID: 8219270160494836360, guid: 60070f47ec51f80439bf2302088a9d76, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2928,10 +2892,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Vermilion Square
       objectReference: {fileID: 0}
-    - target: {fileID: 4704727355467279557, guid: 3818be9b78f0ac34ebe69e46502f829b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2948,10 +2908,6 @@ PrefabInstance:
     - target: {fileID: 3163971683291432873, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_Name
       value: Enemy Purple Moth
-      objectReference: {fileID: 0}
-    - target: {fileID: 3163971683291432873, guid: a23240f38d2745249be8b17d94e06064, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7579715049298156881, guid: a23240f38d2745249be8b17d94e06064, type: 3}
       propertyPath: m_LocalPosition.x

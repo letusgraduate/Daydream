@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 4453511510222348308}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2258163, y: 0.07620393, z: 9.931376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -337,6 +337,7 @@ MonoBehaviour:
   hp: 30
   knockBackPower: 3
   superArmorTime: 0.5
+  enemyScore: 10
 --- !u!114 &6468167213725522252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +607,7 @@ Transform:
   m_GameObject: {fileID: 5426007365483352408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2258163, y: 0.07620393, z: 9.931376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -868,7 +869,7 @@ Transform:
   m_GameObject: {fileID: 7691479279753727701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2258163, y: 0.07620393, z: 9.931376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,7 +996,7 @@ Transform:
   m_GameObject: {fileID: 8543794409474765625}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.9941835, y: 2.8537962, z: -9.931376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
