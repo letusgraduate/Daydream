@@ -12,9 +12,13 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
 
-    [Header("설정")]
+    [Header("투사체 설정")]
+    [SerializeField]
+    private bool isHit = true;
     [SerializeField]
     private bool isReflect = true;
+
+    [Header("속력")]
     [SerializeField]
     private float forceX = 4f;
     [SerializeField]
@@ -48,7 +52,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player Attack") && isReflect)
+        if (collision.CompareTag("Player Attack") && isHit)
         {
             if (isReflect)
                 Reflect(collision.transform.position); // 투사체 반사
