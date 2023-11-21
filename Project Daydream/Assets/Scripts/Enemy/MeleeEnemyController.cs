@@ -48,10 +48,10 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
 
         yield return new WaitForSeconds(AttackEndTime - AttackActiveTime); // 공격 활성화(애니메이션) 시간
         anim.SetBool("isAttack", false);
+        GetComponent<SoundController>().PlaySound(0);
 
         if (attackArea != null)
             attackArea.SetActive(false);
-
         canMove = true;
 
         yield return new WaitForSeconds(time - AttackActiveTime - AttackActiveTime);
