@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
         // 방향키 입력이 있을 때 대시 가능
         if (playerMain.DashStack <= 0 || !dashInput || moveInput.magnitude == 0 || isDash || isAttack || isHit)
             return;
-
+        GetComponent<SoundController>().PlaySound(1);
         isDash = true;
         playerMain.DashStack -= 1;
 

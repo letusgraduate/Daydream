@@ -65,7 +65,7 @@ public class EnemyMain : MonoBehaviour
         isHit = true;
         gameObject.layer = 9; // Super Armor Layer
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
-
+        GetComponent<SoundController>().PlaySound(2);
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBackPower, ForceMode2D.Impulse); // 튕겨나가기
         this.transform.Rotate(0, 0, dir * (-10)); // 회전
@@ -89,6 +89,7 @@ public class EnemyMain : MonoBehaviour
 
     IEnumerator Dead()
     {
+        GetComponent<SoundController>().PlaySound(1);
         yield return new WaitForSeconds(0.35f);
         Destroy(gameObject);
     }
