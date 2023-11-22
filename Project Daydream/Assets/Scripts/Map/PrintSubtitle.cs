@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PrintSubtitle : MonoBehaviour
 {
+    /* ----------- 트리거 판정 변수 ------------ */
+    private bool hadTrigger = false; // 트리거 발동 유무
+
     /* ----------- 텍스트 관련 변수 ------------ */
     private string fileContent;
     private Text textUI;
@@ -24,10 +27,13 @@ public class PrintSubtitle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !hadTrigger)
+        {
+            hadTrigger = true;
             StartCoroutine(TextPrint(textUI, fileContent));
+        }
     }
-    
+
     /* --------------- 기능 함수 --------------- */
     private void ReadText(TextAsset file)
     {
@@ -44,7 +50,7 @@ public class PrintSubtitle : MonoBehaviour
         string writeText = "";  // 이번 턴에 출력할 텍스트
         string currentText = ""; // 현재 출력된 텍스트
 
-        for (int i = 0; i < textValue.Length; i++)
+        for (int i = 0; i < textValue.Length; i += 2)
         {
             writeText = ""; // 줄 바뀔 때마다 초기화
 
@@ -52,8 +58,12 @@ public class PrintSubtitle : MonoBehaviour
             writeText += textValue[i]; // 문자열 하나씩 끊어서 적기
             textUI.text = currentText + writeText; // 텍스트 UI에 텍스트 표시
 
-            yield return null;
-            // yield return new WaitForSeconds(0.075f); // 글자마다 딜레이
+            yield return new WaitForSeconds(0.01f); // 글자마다 딜레이
+
+            typingCount++;
+
+            writeText += textValue[i + 1]; // 문자열 하나씩 끊어서 적기
+            textUI.text = currentText + writeText; // 텍스트 UI에 텍스트 표시
 
             typingCount++;
 
