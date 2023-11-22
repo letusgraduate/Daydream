@@ -50,7 +50,7 @@ public class PrintSubtitle : MonoBehaviour
         string writeText = "";  // 이번 턴에 출력할 텍스트
         string currentText = ""; // 현재 출력된 텍스트
 
-        for (int i = 0; i < textValue.Length; i += 2)
+        for (int i = 0; i < textValue.Length; i++)
         {
             writeText = ""; // 줄 바뀔 때마다 초기화
 
@@ -62,11 +62,6 @@ public class PrintSubtitle : MonoBehaviour
 
             typingCount++;
 
-            writeText += textValue[i + 1]; // 문자열 하나씩 끊어서 적기
-            textUI.text = currentText + writeText; // 텍스트 UI에 텍스트 표시
-
-            typingCount++;
-
             currentText += writeText;
 
             if (typingCount >= 30/* || writeText.Contains("\n")*/)
@@ -75,7 +70,7 @@ public class PrintSubtitle : MonoBehaviour
                 typingCount = 0;
             }
 
-            yield return new WaitForSeconds(0.15f); // 줄 바꾼 후 딜레이
+            yield return new WaitForSeconds(0.1f); // 줄 바꾼 후 딜레이
         }
     }
 }
