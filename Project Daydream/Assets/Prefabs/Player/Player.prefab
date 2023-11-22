@@ -82,7 +82,8 @@ MonoBehaviour:
   ultimateSkillAnchor: {fileID: 1982971867097697645}
   maxHp: 100
   hp: 100
-  dashStack: 3
+  maxDashStack: 1
+  dashStack: 1
   maxCoin: 10000
   coin: 0
   knockBack: 10

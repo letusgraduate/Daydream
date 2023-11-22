@@ -6,11 +6,16 @@ public class ItemManager : MonoBehaviour
 {
     /* ------------- 컴포넌트 변수 ------------- */
     private PlayerMain playerMain;
+    private SkillController skillController;
 
+    /* ------------- 부활 변수 ------------- */
+    private bool resurrection = false;
     /* ---------------- 인스펙터 --------------- */
     [Header("현재 아이템 수")]
     [SerializeField, Range(0, 3)]
     private int itemStock = 0;
+    [SerializeField, Range(0, 3)]
+    private int maxItemCount = 1;
     [SerializeField]
     private List<Sprite> itemImages = new List<Sprite>();
     [SerializeField]
@@ -19,6 +24,11 @@ public class ItemManager : MonoBehaviour
     private List<int> itemNums = new List<int>();
 
     /* ---------------- 프로퍼티 --------------- */
+    public bool Resurrection
+    {
+        get { return resurrection; }
+        set { resurrection = value; }
+    }
     public int ItemStock
     {
         get { return itemStock; }
@@ -28,11 +38,21 @@ public class ItemManager : MonoBehaviour
             UIManager.instance.ShowItemUI();
         }
     }
+    public int MaxItemCount
+    {
+        get { return maxItemCount; }
+        set
+        {
+            maxItemCount = value;
+            UIManager.instance.SetItemMaxUI();
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
         playerMain = GameManager.instance.Player.GetComponent<PlayerMain>();
+        skillController = GameManager.instance.Player.GetComponent<SkillController>();
     }
 
     /* --------------- 외부 참조 --------------- */
@@ -51,13 +71,9 @@ public class ItemManager : MonoBehaviour
     public bool GetIsActiveItem(int num)
     {
         if (isActiveItems.Count > num)
-        {
             return isActiveItems[num];
-        }
         else
-        {
             return false;
-        }
     }
 
     /* --------------- 콜백 함수 --------------- */
@@ -93,6 +109,12 @@ public class ItemManager : MonoBehaviour
             case 0:
                 MaxHPUpgrade(true);
                 break;
+            case 1:
+                PoewrUpgrade(true);
+                break;
+            case 2:
+                ResurrectionItem(true);
+                break;
             default:
                 break;
         }
@@ -104,6 +126,12 @@ public class ItemManager : MonoBehaviour
         {
             case 0:
                 MaxHPUpgrade(false);
+                break;
+            case 1:
+                PoewrUpgrade(false);
+                break;
+            case 2:
+                ResurrectionItem(false);
                 break;
             default:
                 break;
@@ -117,6 +145,9 @@ public class ItemManager : MonoBehaviour
             case 0:
                 HPHeal();
                 break;
+            case 1:
+                PoewrPotion();
+                break;
             default:
                 break;
         }
@@ -128,16 +159,46 @@ public class ItemManager : MonoBehaviour
         playerMain.Hp += 20;
     }
 
+    public void PoewrPotion()
+    {
+        skillController.DamageMultiple += 2;
+        StartCoroutine(PoewrPotionTime());
+    }
+
+    private IEnumerator PoewrPotionTime()
+    {
+        yield return new WaitForSeconds(15f);
+        skillController.DamageMultiple -= 2;
+    }
+
     public void MaxHPUpgrade(bool use)
     {
         if (use)
-        {
             playerMain.MaxHp += 20;
-        }
         else
-        {
             playerMain.MaxHp -= 20;
-        }
+    }
+
+    public void PoewrUpgrade(bool use)
+    {
+        if (use)
+            skillController.DamageMultiple += 1;
+        else
+            skillController.DamageMultiple -= 1;
+    }
+
+    public void ResurrectionItem(bool use)
+    {
+        if (use)
+            resurrection = true;
+        else
+            resurrection = false;
+    }
+
+    public void UseResurrectionItem()
+    {
+        ItemStock--;
+        ResurrectionItem(false);
+        RemoveItemList(itemNums.IndexOf(2));
     }
 }
-

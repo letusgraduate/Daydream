@@ -6,6 +6,7 @@ public class PlayerHitBox : MonoBehaviour
 {
     /* ------------- 컴포넌트 변수 ------------- */
     private PlayerMain playerMain;
+    private PlayerController playerController;
 
     /* --------------- 피격 관련 --------------- */
     private int takeDamage = 0;
@@ -14,6 +15,7 @@ public class PlayerHitBox : MonoBehaviour
     private void Awake()
     {
         playerMain = GetComponentInParent<PlayerMain>();
+        playerController = GetComponentInParent<PlayerController>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,9 +50,15 @@ public class PlayerHitBox : MonoBehaviour
         /* 아이템 획득 */
         if (collision.gameObject.layer == 15) // Currency
             playerMain.GetCurrency(collision.gameObject);
-        if (collision.CompareTag("UltimateSkillItem"))
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC") && Input.GetKey(KeyCode.E))
+            UIManager.instance.ShowTraitUI();
+        if (collision.CompareTag("UltimateSkillItem") && Input.GetKey(KeyCode.E))
             playerMain.GetUltimateSkill(collision.gameObject);
-        if (collision.CompareTag("Item"))
+        if (collision.CompareTag("Item") && Input.GetKey(KeyCode.E))
             playerMain.GetItem(collision.gameObject);
     }
 }
