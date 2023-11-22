@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSources:
+  - {fileID: 7191197565756290984}
   - {fileID: 8940971146703729444}
   - {fileID: 7191197565756290984}
 --- !u!1 &4801907755619772805

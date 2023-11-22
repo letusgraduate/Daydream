@@ -6540,42 +6540,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1897330363}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: coinPortal
-      value: 
-      objectReference: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 6694122369876434448, guid: 54ce07995563ae2478667788fa88fdec, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: healPortal
-      value: 
-      objectReference: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: storePortal
-      value: 
-      objectReference: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: stage1Portal
-      value: 
-      objectReference: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: stage2Portal
-      value: 
-      objectReference: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: moonRockPrefab
-      value: 
-      objectReference: {fileID: 6694122369876434448, guid: da332cb823d53864cb04460587213552, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: stage1BossPortal
-      value: 
-      objectReference: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: stage2BossPortal
-      value: 
-      objectReference: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
     - target: {fileID: 6761275583312525614, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
