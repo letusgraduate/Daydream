@@ -2070,7 +2070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8348181bcd356e247aea0c26de144078, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47cd311716a7d544bafeae57c00b1934, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7348,7 +7348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8348181bcd356e247aea0c26de144078, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47cd311716a7d544bafeae57c00b1934, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12485,7 +12485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8348181bcd356e247aea0c26de144078, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47cd311716a7d544bafeae57c00b1934, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19891,6 +19891,11 @@ MonoBehaviour:
   ultimateSkills:
   - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
   - {fileID: 4546800279777462089, guid: 5c6cf15896c84014faa2f27563fdfca5, type: 3}
+  skillImages:
+  - {fileID: 21300000, guid: 7fa3b167949a1da44871bece5588a0f5, type: 2}
+  - {fileID: 21300000, guid: 05ef0e1184dc633479b5dcfeb986d325, type: 2}
+  - {fileID: 21300000, guid: c695813138dd76446806b46754bac953, type: 2}
+  ultimateSkillImage: {fileID: 0}
   skillACoolTime: 4
   skillSCoolTime: 2
   skillDCoolTime: 0.5

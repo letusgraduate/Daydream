@@ -154,6 +154,7 @@ public class UIManager : MonoBehaviour
         ItemSelectUI();
         CloseSettingUI();
         CloseTraitUI();
+        SetSkillImageUI();
         //miniMap.SetActive(false);
     }
 
@@ -234,6 +235,31 @@ public class UIManager : MonoBehaviour
         skillImage.color = Color.white;
     }
 
+    private void SetSkillImageUI()
+    {
+        skillD.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(0);
+        skillS.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(1);
+        skillS.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+        skillA.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(2);
+        skillA.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+    }
+
+    public void SetSkillImageColorUI(int num)
+    {
+        if (num == 1)
+        {
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    public void SetUltimateSkillImageUI(int num)
+    {
+        ultimateSkill.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.UltimateSkillImage;
+    }
     /* -------------- 아이템 관련 -------------- */
     public void ShowItemUI()
     {
@@ -374,7 +400,7 @@ public class UIManager : MonoBehaviour
             //SoundToggleUI.transform.GetChild(0).gameObject.name;
             SoundToggleUI.transform.GetChild(0).gameObject.SetActive(true);
             SoundToggleUI.transform.GetChild(1).gameObject.SetActive(false);
-        }    
+        }
     }
 
     public void SetGemeQuitUI()
@@ -395,7 +421,7 @@ public class UIManager : MonoBehaviour
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
-    
+
     /* ------- 플레이어 스코어 관현 함수 ------- */
     public void GameReStartButton()
     {
@@ -408,7 +434,7 @@ public class UIManager : MonoBehaviour
         gameScoreUI.SetActive(true);
         gameScoreUI.transform.GetChild(0).GetComponent<TMP_Text>().text = "Player Score : " + GameManager.instance.PlayerScore;
     }
-    
+
     /* ------------ 특성 관련 함수 ------------- */
     public void ShowTraitUI()
     {

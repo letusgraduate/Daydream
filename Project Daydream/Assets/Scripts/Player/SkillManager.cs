@@ -15,6 +15,12 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private GameObject[] ultimateSkills;
 
+    [Header("스킬 이미지")]
+    [SerializeField]
+    private List<Sprite> skillImages = new List<Sprite>();
+    [SerializeField]
+    private Sprite ultimateSkillImage;
+
     [Header("일반 스킬 쿨타임")]
     [SerializeField]
     private float skillACoolTime = 10f;
@@ -47,6 +53,12 @@ public class SkillManager : MonoBehaviour
         get { return ultimateSkillCoolTime; }
         set { ultimateSkillCoolTime = value; }
     }
+    /* 궁스킬 이미지 */
+    public Sprite UltimateSkillImage
+    {
+        get { return ultimateSkillImage; }
+        set { ultimateSkillImage = value; }
+    }
     public float SkillACoolTime { get { return skillACoolTime; } }
     public float SkillSCoolTime { get { return skillSCoolTime; } }
     public float SkillDCoolTime { get { return skillDCoolTime; } }
@@ -62,4 +74,10 @@ public class SkillManager : MonoBehaviour
     {
         return ultimateSkills[num];
     }
+
+    public Sprite SkillImages(int num)
+    {
+        return skillImages[num];
+    }
+
 }

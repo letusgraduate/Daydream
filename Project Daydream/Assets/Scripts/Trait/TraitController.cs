@@ -42,6 +42,7 @@ public class TraitController : MonoBehaviour
     public void SkillUP()
     {
         skillManager.SkillUpgrade += 1;
+        UIManager.instance.SetSkillImageColorUI(skillManager.SkillUpgrade);
     }
 
     public void DashUP()
