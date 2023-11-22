@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 7456621456007851824}
   - component: {fileID: 4163015553576706384}
   m_Layer: 9
-  m_Name: Enemy Blood King
+  m_Name: Boss Blood King
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
