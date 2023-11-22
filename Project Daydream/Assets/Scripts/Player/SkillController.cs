@@ -73,7 +73,7 @@ public class SkillController : MonoBehaviour
 
     public void SkillA()
     {
-        if (isSkillA || skillManager.SkillUpgrade < 2) // 스킬 사용중이 아닐 때
+        if (isSkillA || skillManager.SkillUpgrade < 1) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;
@@ -88,7 +88,7 @@ public class SkillController : MonoBehaviour
 
     public void SkillS()
     {
-        if (isSkillS || skillManager.SkillUpgrade < 1) // 스킬 사용중이 아닐 때
+        if (isSkillS || skillManager.SkillUpgrade < 2) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;
