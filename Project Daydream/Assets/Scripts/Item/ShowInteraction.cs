@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCHitBox : MonoBehaviour
+public class ShowInteraction : MonoBehaviour
 {
     private void Start()
     {
@@ -11,19 +11,17 @@ public class NPCHitBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Player"))
         {
             this.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Player"))
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
-
 }

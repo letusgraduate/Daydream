@@ -181,8 +181,15 @@ public class PlayerMain : MonoBehaviour
         //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
     }
 
-    private void OnDead()
+    public void OnDead()
     {
+        if (itemManager.Resurrection)
+        {
+            itemManager.UseResurrectionItem();
+            Hp = 100;
+            return;
+        }
+
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
