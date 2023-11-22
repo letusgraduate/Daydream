@@ -72,5 +72,4 @@ public class SkillManager : MonoBehaviour
     {
         return skillImages[num];
     }
-
 }

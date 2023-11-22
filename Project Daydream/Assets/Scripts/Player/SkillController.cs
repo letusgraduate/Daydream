@@ -24,7 +24,9 @@ public class SkillController : MonoBehaviour
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
-    private GameObject[] bulletPrefabs;
+    private GameObject[] normalBulletPrefabs;
+    [SerializeField]
+    private GameObject[] ultimateBulletPrefabs;
 
     [Header("설정")]
     [SerializeField, Range(1, 10)]
@@ -54,7 +56,7 @@ public class SkillController : MonoBehaviour
     }
 
     /* --------------- 외부 참조 --------------- */
-    public void UltimateSkill()
+    public void UltimateSkill(int skillNum)
     {
         if (ultimateSkillAnchor.childCount <= 0 || isUltimateSkill) // 스킬 사용중이 아니고 궁스킬이 있을 때
             return;
@@ -65,7 +67,7 @@ public class SkillController : MonoBehaviour
 
         ultimateSkillAnchor.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.gray; //스킬 이미지 회색으로 전환
 
-        StartCoroutine(DelayBullet(bulletPrefabs[2], 1.1f)); // 투사체 발사
+        StartCoroutine(DelayBullet(ultimateBulletPrefabs[skillNum], 1.1f)); // 투사체 발사
         StartCoroutine(UltimateSkillCoolOut(skillManager.UltimateSkillActiveTime, skillManager.UltimateSkillCoolTime));
 
         UIManager.instance.SetUltimateSkillCoolTimeUI();
@@ -81,7 +83,7 @@ public class SkillController : MonoBehaviour
         anim.SetTrigger("doSkillA");
         GetComponent<SoundController>().PlaySound(5);
 
-        StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f)); // 투사체 발사
+        StartCoroutine(DelayBullet(normalBulletPrefabs[0], 0.2f)); // 투사체 발사
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
 
         UIManager.instance.SetSkillACoolTimeUI();
@@ -97,7 +99,7 @@ public class SkillController : MonoBehaviour
         anim.SetTrigger("doSkillS");
         GetComponent<SoundController>().PlaySound(6);
 
-        StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f)); // 투사체 발사
+        StartCoroutine(DelayBullet(normalBulletPrefabs[1], 0.2f)); // 투사체 발사
         StartCoroutine(SkillSCoolOut(skillManager.SkillSActiveTime, skillManager.SkillSCoolTime));
 
         UIManager.instance.SetSkillSCoolTimeUI();
