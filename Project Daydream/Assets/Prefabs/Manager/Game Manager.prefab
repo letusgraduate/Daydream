@@ -52,13 +52,13 @@ MonoBehaviour:
   player: {fileID: 0}
   coinPrefab: {fileID: 6694122369876434448, guid: 54ce07995563ae2478667788fa88fdec, type: 3}
   moonRockPrefab: {fileID: 6694122369876434448, guid: da332cb823d53864cb04460587213552, type: 3}
-  stage1Portal: {fileID: 0}
-  stage1BossPortal: {fileID: 0}
-  stage2Portal: {fileID: 0}
-  stage2BossPortal: {fileID: 0}
-  coinPortal: {fileID: 0}
-  healPortal: {fileID: 0}
-  storePortal: {fileID: 0}
+  stage1Portal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage1BossPortal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage2Portal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage2BossPortal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  coinPortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
+  healPortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
+  storePortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
   maxMoonRock: 1000
   moonRock: 0
   maxPlayerScore: 9999
@@ -10517,7 +10517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6534134947162825054
 RectTransform:
   m_ObjectHideFlags: 0

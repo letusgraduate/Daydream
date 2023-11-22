@@ -79,6 +79,7 @@ public class SkillController : MonoBehaviour
         playerController.IsAttack = true;
         isSkillA = true;
         anim.SetTrigger("doSkillA");
+        GetComponent<SoundController>().PlaySound(5);
 
         StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f)); // 투사체 발사
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
@@ -94,6 +95,7 @@ public class SkillController : MonoBehaviour
         playerController.IsAttack = true;
         isSkillS = true;
         anim.SetTrigger("doSkillS");
+        GetComponent<SoundController>().PlaySound(6);
 
         StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f)); // 투사체 발사
         StartCoroutine(SkillSCoolOut(skillManager.SkillSActiveTime, skillManager.SkillSCoolTime));
@@ -109,7 +111,8 @@ public class SkillController : MonoBehaviour
         playerController.IsAttack = true;
         isSkillD = true;
         anim.SetTrigger("doSkillD");
-
+        GetComponent<SoundController>().PlaySound(0);
+        
         StartCoroutine(SkillDCoolOut(skillManager.SkillDActiveTime, skillManager.SkillDCoolTime));
 
         UIManager.instance.SetSkillDCoolTimeUI();

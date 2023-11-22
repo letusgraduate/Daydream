@@ -45,6 +45,7 @@ public class RangeEnemyController : ChaseEnemyController, IAttackRangeCheck
         anim.SetBool("isAttack", true);
 
         yield return new WaitForSeconds(shotTime); // 투사체 발사 대기 시간
+        soundController.PlaySound(0);
 
         /* 투사체 발사 */
         GameObject bullet = Instantiate(bulletPrefab, bulletPort.position, bulletPort.rotation);

@@ -145,7 +145,7 @@ public class PlayerMain : MonoBehaviour
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f); // 피격당했을 때 색 변경
         for (int i = 0; i < spriteLen; i++)
             spriteRenderers[i].color = new Color(1, 1, 1, 0.4f);
-
+        GetComponent<SoundController>().PlaySound(4);
         rigid.velocity = Vector2.zero; // 추가적인 속력 방지
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
@@ -193,7 +193,7 @@ public class PlayerMain : MonoBehaviour
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
-
+        GetComponent<SoundController>().PlaySound(3);
         GameManager.instance.GameOver();
     }
 
