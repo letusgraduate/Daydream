@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool item1Input;
     private bool item2Input;
     private bool item3Input;
+    private bool interactionInput;
 
     /* ------------ 동작 확인 변수 ------------- */
     private bool isMove = false;
@@ -59,28 +60,11 @@ public class PlayerController : MonoBehaviour
     private float dashChargeTime = 3f;
 
     /* ---------------- 프로퍼티 --------------- */
-    public bool IsHit
-    {
-        get { return isHit; }
-        set { isHit = value; }
-    }
-
-    public bool IsDead
-    {
-        get { return isDead; }
-        set { isDead = value; }
-    }
-
-    public bool IsAttack
-    {
-        get { return isAttack; }
-        set { isAttack = value; }
-    }
-    public float MoveSpeed
-    {
-        get { return moveSpeed; }
-        set { moveSpeed = value; }
-    }
+    public bool IsHit { get { return isHit; } set { isHit = value; } }
+    public bool IsDead { get { return isDead; } set { isDead = value; } }
+    public bool IsAttack { get { return isAttack; } set { isAttack = value; } }
+    public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
+    public bool InteractionInput { get { return InteractionInput; } }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
@@ -151,6 +135,7 @@ public class PlayerController : MonoBehaviour
         item1Input = Input.GetButtonDown("Item 1");
         item2Input = Input.GetButtonDown("Item 2");
         item3Input = Input.GetButtonDown("Item 3");
+        interactionInput = Input.GetButtonDown("Interaction");
     }
 
     /* ------------- 바닥 체크 함수 ------------- */

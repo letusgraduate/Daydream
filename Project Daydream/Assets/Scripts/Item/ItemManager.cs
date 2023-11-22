@@ -158,16 +158,17 @@ public class ItemManager : MonoBehaviour
     {
         playerMain.Hp += 20;
     }
+
     public void PoewrPotion()
     {
-        skillController.DamageMultiple += 5;
+        skillController.DamageMultiple += 2;
         StartCoroutine(PoewrPotionTime());
     }
 
     private IEnumerator PoewrPotionTime()
     {
-        yield return new WaitForSeconds(30f);
-        skillController.DamageMultiple -= 5;
+        yield return new WaitForSeconds(15f);
+        skillController.DamageMultiple -= 2;
     }
 
     public void MaxHPUpgrade(bool use)
@@ -181,10 +182,11 @@ public class ItemManager : MonoBehaviour
     public void PoewrUpgrade(bool use)
     {
         if (use)
-            skillController.DamageMultiple += 3;
+            skillController.DamageMultiple += 1;
         else
-            skillController.DamageMultiple -= 3;
+            skillController.DamageMultiple -= 1;
     }
+
     public void ResurrectionItem(bool use)
     {
         if (use)
@@ -192,6 +194,7 @@ public class ItemManager : MonoBehaviour
         else
             resurrection = false;
     }
+
     public void UseResurrectionItem()
     {
         ItemStock--;
@@ -199,4 +202,3 @@ public class ItemManager : MonoBehaviour
         RemoveItemList(itemNums.IndexOf(2));
     }
 }
-
