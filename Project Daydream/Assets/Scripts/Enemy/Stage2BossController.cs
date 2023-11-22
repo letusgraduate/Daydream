@@ -11,6 +11,9 @@ public class Stage2BossController : ChaseEnemyController, IAttackRangeCheck, IAn
     private int attackThink;
 
     /* ---------------- 인스펙터 --------------- */
+    [SerializeField]
+    private Collider2D hitbox;
+
     [Header("공격")]
     [SerializeField, Range(0f, 10f)]
     private float AttackCoolTime = 2f;
@@ -36,6 +39,7 @@ public class Stage2BossController : ChaseEnemyController, IAttackRangeCheck, IAn
         canMove = true;
 
         anim.SetBool("isDoubleSlash", false);
+        anim.SetBool("isDodgeAttack", false);
     }
 
     public void AnimShot()
@@ -60,7 +64,7 @@ public class Stage2BossController : ChaseEnemyController, IAttackRangeCheck, IAn
                 DoubleSlash();
                 break;
             case 1:
-                DoubleSlash();
+                DodgeAttack();
                 break;
         }
 
@@ -74,5 +78,10 @@ public class Stage2BossController : ChaseEnemyController, IAttackRangeCheck, IAn
     private void DoubleSlash()
     {
         anim.SetBool("isDoubleSlash", true);
+    }
+
+    private void DodgeAttack()
+    {
+        anim.SetBool("isDodgeAttack", true);
     }
 }
