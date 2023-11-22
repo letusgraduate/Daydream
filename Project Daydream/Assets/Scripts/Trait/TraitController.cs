@@ -9,16 +9,18 @@ public class TraitController : MonoBehaviour
     private PlayerMain playerMain;
     private PlayerController playerController;
     private ItemManager itemManager;
+    private SkillManager skillManager;
 
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
         player = GameManager.instance.Player;
         itemManager = GameManager.instance.ItemManager;
+        skillManager = GameManager.instance.SkillManager;
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
     }
-    
+
     /* ------------- 특성 업글 함수 ------------ */
     public void SpeedUP()
     {
@@ -35,9 +37,9 @@ public class TraitController : MonoBehaviour
 
     }
 
-    public void CoinUP()
+    public void SkillUP()
     {
-
+        skillManager.SkillUpgrade += 1;
     }
 
     public void DashUP()

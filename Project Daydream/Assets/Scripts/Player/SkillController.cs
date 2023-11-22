@@ -50,7 +50,7 @@ public class SkillController : MonoBehaviour
 
     public void SkillA()
     {
-        if (isSkillA) // 스킬 사용중이 아닐 때
+        if (isSkillA || skillManager.SkillUpgrade < 2) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;
@@ -59,13 +59,13 @@ public class SkillController : MonoBehaviour
 
         StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f)); // 투사체 발사
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
-        
+
         UIManager.instance.SetSkillACoolTimeUI();
     }
 
     public void SkillS()
     {
-        if (isSkillS) // 스킬 사용중이 아닐 때
+        if (isSkillS || skillManager.SkillUpgrade < 1) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;

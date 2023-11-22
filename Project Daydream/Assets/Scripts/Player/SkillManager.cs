@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    /* -------------- 스킬 특성-- -------------- */
+    private int skillUpgrade = 0;
+
     /* -------------- 스킬 쿨타임 -------------- */
     private float ultimateSkillCoolTime;
 
@@ -36,6 +39,12 @@ public class SkillManager : MonoBehaviour
     {
         get { return ultimateSkillCoolTime; }
         set { ultimateSkillCoolTime = value; }
+    }
+    /* 특성 */
+    public int SkillUpgrade
+    {
+        get { return skillUpgrade; }
+        set { skillUpgrade = value; }
     }
     public float SkillACoolTime { get { return skillACoolTime; } }
     public float SkillSCoolTime { get { return skillSCoolTime; } }

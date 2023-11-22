@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     private GameObject speedTrait;
     private GameObject maxHPTrait;
     private GameObject powerTrait;
-    private GameObject coinTrait;
+    private GameObject skillTrait;
     private GameObject dashTrait;
     private GameObject itemTrait;
 
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     private int speedLevel = 2;
     private int maxHPLevel = 2;
     private int powerLevel = 2;
-    private int coinLevel = 2;
+    private int skillLevel = 2;
     private int dashLevel = 2;
     private int itemLevel = 2;
 
@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
         speedTrait = traitUI.transform.GetChild(4).transform.GetChild(0).gameObject;
         maxHPTrait = traitUI.transform.GetChild(4).transform.GetChild(1).gameObject;
         powerTrait = traitUI.transform.GetChild(4).transform.GetChild(2).gameObject;
-        coinTrait = traitUI.transform.GetChild(4).transform.GetChild(3).gameObject;
+        skillTrait = traitUI.transform.GetChild(4).transform.GetChild(3).gameObject;
         dashTrait = traitUI.transform.GetChild(4).transform.GetChild(4).gameObject;
         itemTrait = traitUI.transform.GetChild(4).transform.GetChild(5).gameObject;
     }
@@ -466,19 +466,19 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().PowerUP();
     }
 
-    public void CoinUpgrade()
+    public void SkillUpgrade()
     {
-        if (coinLevel == coinTrait.transform.childCount)
+        if (skillLevel == skillTrait.transform.childCount)
             return;
 
-        coinTrait.transform.GetChild(coinLevel).gameObject.GetComponent<Button>().interactable = false;
-        coinTrait.transform.GetChild(coinLevel).gameObject.GetComponent<Image>().color = Color.yellow;
-        if (coinLevel + 1 < coinTrait.transform.childCount)
-            coinTrait.transform.GetChild(coinLevel + 1).gameObject.GetComponent<Button>().interactable = true;
+        skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Button>().interactable = false;
+        skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+        if (skillLevel + 1 < skillTrait.transform.childCount)
+            skillTrait.transform.GetChild(skillLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
-        coinLevel++;
+        skillLevel++;
 
-        trait.GetComponent<TraitController>().CoinUP();
+        trait.GetComponent<TraitController>().SkillUP();
     }
 
     public void DashUpgrade()
