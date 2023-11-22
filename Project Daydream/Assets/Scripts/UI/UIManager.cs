@@ -239,9 +239,9 @@ public class UIManager : MonoBehaviour
     {
         skillD.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(0);
         skillS.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(1);
-        skillS.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+        skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
         skillA.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(2);
-        skillA.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+        skillA.transform.GetChild(0).GetComponent<Image>().color = Color.black;
     }
 
     public void SetSkillImageColorUI(int num)
@@ -260,6 +260,7 @@ public class UIManager : MonoBehaviour
     {
         ultimateSkill.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.UltimateSkillImage;
     }
+
     /* -------------- 아이템 관련 -------------- */
     public void ShowItemUI()
     {
