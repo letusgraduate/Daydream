@@ -34,17 +34,18 @@ public class SkillManager : MonoBehaviour
     private float ultimateSkillActiveTime = 1.5f;
 
     /* ---------------- 프로퍼티 --------------- */
-    /* 쿨타임 */
-    public float UltimateSkillCoolTime
-    {
-        get { return ultimateSkillCoolTime; }
-        set { ultimateSkillCoolTime = value; }
-    }
     /* 특성 */
     public int SkillUpgrade
     {
         get { return skillUpgrade; }
         set { skillUpgrade = value; }
+    }
+
+    /* 쿨타임 */
+    public float UltimateSkillCoolTime
+    {
+        get { return ultimateSkillCoolTime; }
+        set { ultimateSkillCoolTime = value; }
     }
     public float SkillACoolTime { get { return skillACoolTime; } }
     public float SkillSCoolTime { get { return skillSCoolTime; } }

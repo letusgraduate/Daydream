@@ -10,5 +10,5 @@ public class DamageMain : MonoBehaviour
     private int damage = 10;
 
     /* ---------------- 프로퍼티 --------------- */
-    public int Damage { get { return damage; } private set { damage = value; } }
+    public int Damage { get { return damage; } set { damage = value; } }
 }

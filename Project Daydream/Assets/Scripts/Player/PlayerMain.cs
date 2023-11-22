@@ -31,7 +31,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0, 10)]
     private int maxDashStack = 1;
     [SerializeField, Range(0, 10)]
-    private int dashStack = 1; // 아이템/특성 추가 후 1로 수정
+    private int dashStack = 1;
 
     [Space(10f)]
     [SerializeField, Range(0, 10000)]
@@ -96,6 +96,7 @@ public class PlayerMain : MonoBehaviour
             UIManager.instance.SetDashStackUI();
         }
     }
+
     public int Coin
     {
         get { return coin; }

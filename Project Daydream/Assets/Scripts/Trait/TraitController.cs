@@ -10,6 +10,7 @@ public class TraitController : MonoBehaviour
     private PlayerController playerController;
     private ItemManager itemManager;
     private SkillManager skillManager;
+    private SkillController skillController;
 
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
@@ -19,6 +20,7 @@ public class TraitController : MonoBehaviour
         skillManager = GameManager.instance.SkillManager;
         playerMain = player.GetComponent<PlayerMain>();
         playerController = player.GetComponent<PlayerController>();
+        skillController = player.GetComponent<SkillController>();
     }
 
     /* ------------- 특성 업글 함수 ------------ */
@@ -34,7 +36,7 @@ public class TraitController : MonoBehaviour
 
     public void PowerUP()
     {
-
+        skillController.DamageMultiple += 1;
     }
 
     public void SkillUP()
