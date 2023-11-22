@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    /* -------------- 스킬 특성-- -------------- */
+    private int skillUpgrade = 0;
+
     /* -------------- 스킬 쿨타임 -------------- */
     private float ultimateSkillCoolTime;
 
@@ -11,6 +14,12 @@ public class SkillManager : MonoBehaviour
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject[] ultimateSkills;
+
+    [Header("스킬 이미지")]
+    [SerializeField]
+    private List<Sprite> skillImages = new List<Sprite>();
+    [SerializeField]
+    private Sprite ultimateSkillImage;
 
     [Header("일반 스킬 쿨타임")]
     [SerializeField]
@@ -31,12 +40,11 @@ public class SkillManager : MonoBehaviour
     private float ultimateSkillActiveTime = 1.5f;
 
     /* ---------------- 프로퍼티 --------------- */
+    /* 특성 */
+    public int SkillUpgrade { get { return skillUpgrade; } set { skillUpgrade = value; } }
+
     /* 쿨타임 */
-    public float UltimateSkillCoolTime
-    {
-        get { return ultimateSkillCoolTime; }
-        set { ultimateSkillCoolTime = value; }
-    }
+    public float UltimateSkillCoolTime { get { return ultimateSkillCoolTime; } set { ultimateSkillCoolTime = value; } }
     public float SkillACoolTime { get { return skillACoolTime; } }
     public float SkillSCoolTime { get { return skillSCoolTime; } }
     public float SkillDCoolTime { get { return skillDCoolTime; } }
@@ -47,9 +55,22 @@ public class SkillManager : MonoBehaviour
     public float SkillDActiveTime { get { return skillDActiveTime; } }
     public float UltimateSkillActiveTime { get { return ultimateSkillActiveTime; } }
 
+    /* 궁스킬 이미지 */
+    public Sprite UltimateSkillImage
+    {
+        get { return ultimateSkillImage; }
+        set { ultimateSkillImage = value; }
+    }
+
     /* --------------- 외부 참조 --------------- */
     public GameObject GetUltimateSkill(int num)
     {
         return ultimateSkills[num];
     }
+
+    public Sprite SkillImages(int num)
+    {
+        return skillImages[num];
+    }
+
 }

@@ -11,6 +11,8 @@ public class ItemManager : MonoBehaviour
     [Header("현재 아이템 수")]
     [SerializeField, Range(0, 3)]
     private int itemStock = 0;
+    [SerializeField, Range(0, 3)]
+    private int maxItemCount = 1;
     [SerializeField]
     private List<Sprite> itemImages = new List<Sprite>();
     [SerializeField]
@@ -26,6 +28,15 @@ public class ItemManager : MonoBehaviour
         {
             itemStock = value;
             UIManager.instance.ShowItemUI();
+        }
+    }
+    public int MaxItemCount
+    {
+        get { return maxItemCount; }
+        set
+        {
+            maxItemCount = value;
+            UIManager.instance.SetItemMaxUI();
         }
     }
 
@@ -51,13 +62,9 @@ public class ItemManager : MonoBehaviour
     public bool GetIsActiveItem(int num)
     {
         if (isActiveItems.Count > num)
-        {
             return isActiveItems[num];
-        }
         else
-        {
             return false;
-        }
     }
 
     /* --------------- 콜백 함수 --------------- */
@@ -131,13 +138,9 @@ public class ItemManager : MonoBehaviour
     public void MaxHPUpgrade(bool use)
     {
         if (use)
-        {
             playerMain.MaxHp += 20;
-        }
         else
-        {
             playerMain.MaxHp -= 20;
-        }
     }
 }
 

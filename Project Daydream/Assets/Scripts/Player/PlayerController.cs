@@ -76,6 +76,11 @@ public class PlayerController : MonoBehaviour
         get { return isAttack; }
         set { isAttack = value; }
     }
+    public float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
@@ -291,23 +296,23 @@ public class PlayerController : MonoBehaviour
         {
             skillController.SkillD();
         }
-        
+
         if (skillSInput)
         {
             skillController.SkillS();
         }
-        
+
         if (skillAInput)
         {
             skillController.SkillA();
         }
-        
+
         if (ultimateSkillInput)
         {
             skillController.UltimateSkill();
         }
     }
-    
+
     /* -------------- 아이템 함수 -------------- */
     private void SelectItem()
     {
