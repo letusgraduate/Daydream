@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3064094952513969921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.34533, y: -1.9610634, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950e60967655e5848a8cdcf713ea91ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: 
+  SceneName: Stage 1 Boss
 --- !u!70 &-5451091963016613885
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
