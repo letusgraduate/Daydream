@@ -125,7 +125,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameOver");
         Debug.Log("Player Score : " + PlayerScore);
 
-        //StartCoroutine(ReStart()); // 버튼으로 변경, 아이템/코인 초기화
+        PlayerScore = 0;
+        playerMain.Coin = 0;
+        playerMain.Hp = 100;
     }
 
     IEnumerator ReStart()

@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 135960737688940841}
   - component: {fileID: 7101228515162690201}
   m_Layer: 9
-  m_Name: Enemy_Tentacle_Cluster
+  m_Name: Boss Tentacle Cluster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 4583211649772021466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
