@@ -221,6 +221,8 @@ public class PlayerMain : MonoBehaviour
 
         skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
         skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
+        skillManager.SetUltimateSkillImage(skillNum);
+        UIManager.instance.SetUltimateSkillImageUI();
         GameObject skill = Instantiate(skillManager.GetUltimateSkill(skillNum), ultimateSkillAnchor); // 궁스킬 프리팹 소환
         skill.transform.localPosition = Vector3.zero;
 

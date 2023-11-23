@@ -52,13 +52,13 @@ MonoBehaviour:
   player: {fileID: 0}
   coinPrefab: {fileID: 6694122369876434448, guid: 54ce07995563ae2478667788fa88fdec, type: 3}
   moonRockPrefab: {fileID: 6694122369876434448, guid: da332cb823d53864cb04460587213552, type: 3}
-  stage1Portal: {fileID: 6925475760641032002, guid: 41ec0160a21632e46896618887ba6fb3, type: 3}
-  stage1BossPortal: {fileID: 3064094952513969921, guid: e44b38fb4584e514f8b8789596b8b166, type: 3}
-  stage2Portal: {fileID: 6925475760641032002, guid: 4029a94350a83c14db170ccbb1f215dc, type: 3}
-  stage2BossPortal: {fileID: 3064094952513969921, guid: 3664e1af0843c4e408d83620a8fd0452, type: 3}
-  coinPortal: {fileID: 7058736344583128124, guid: d5433cd6a8621514ea4031057e7aedb2, type: 3}
-  healPortal: {fileID: 3359039266350834651, guid: 66e28dd3b726ae849a7aaf89f658900a, type: 3}
-  storePortal: {fileID: 6262407440037512965, guid: 8e8d659d3b71e1c4e9649c8e0ec57ea1, type: 3}
+  stage1Portal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage1BossPortal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage2Portal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  stage2BossPortal: {fileID: 8536530665416120125, guid: 8f201805febcb6c47a68efb613c5c5a2, type: 3}
+  coinPortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
+  healPortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
+  storePortal: {fileID: 2560209744207716741, guid: d41d08b734a4e52429cbd01385e497af, type: 3}
   maxMoonRock: 1000
   moonRock: 0
   maxPlayerScore: 9999
@@ -19788,7 +19788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8348181bcd356e247aea0c26de144078, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7476fc20432726419514de68ff6b315, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19895,7 +19895,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7fa3b167949a1da44871bece5588a0f5, type: 2}
   - {fileID: 21300000, guid: 05ef0e1184dc633479b5dcfeb986d325, type: 2}
   - {fileID: 21300000, guid: c695813138dd76446806b46754bac953, type: 2}
-  ultimateSkillImages: []
+  ultimateSkillImages:
+  - {fileID: 21300000, guid: 9d1102a7764df514093a2e4a04023ca0, type: 3}
+  - {fileID: -181165097668975965, guid: 0d477c099928190428a16a408f830edc, type: 3}
   ultimateSkillImage: {fileID: 0}
   skillACoolTime: 4
   skillSCoolTime: 2

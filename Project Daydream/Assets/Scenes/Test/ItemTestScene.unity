@@ -1553,18 +1553,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4720881566441793388, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: ultimateSkillImages.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720881566441793388, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: ultimateSkillImages.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9d1102a7764df514093a2e4a04023ca0, type: 3}
-    - target: {fileID: 4720881566441793388, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: ultimateSkillImages.Array.data[1]
-      value: 
-      objectReference: {fileID: -181165097668975965, guid: 0d477c099928190428a16a408f830edc, type: 3}
     - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
       propertyPath: player
       value: 
