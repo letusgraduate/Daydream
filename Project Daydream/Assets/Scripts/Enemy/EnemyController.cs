@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected EnemyMain enemyMain;
+    protected SoundController soundController;
 
     /* ---------------- AI 변수 ---------------- */
     protected int moveDir;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         enemyMain = GetComponent<EnemyMain>();
+        soundController = GetComponent<SoundController>();
     }
 
     protected void Start()

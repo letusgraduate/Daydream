@@ -8,6 +8,7 @@ public class EnemyMain : MonoBehaviour
     protected Rigidbody2D rigid;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
+    protected SoundController soundController;
 
     /* --------------- 피격 관련 --------------- */
     protected bool isHit = false;
@@ -41,6 +42,7 @@ public class EnemyMain : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        soundController = GetComponent<SoundController>();
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -65,8 +67,10 @@ public class EnemyMain : MonoBehaviour
     protected void OnHit(Vector2 targetPos, int damage)
     {
         isHit = true;
-        gameObject.layer = 9; // Super Armor Layer
+        gameObject.layer = 13; // Super Armor Layer
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        soundController.PlaySound(2);
 
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBackPower, ForceMode2D.Impulse); // 튕겨나가기
@@ -83,7 +87,7 @@ public class EnemyMain : MonoBehaviour
     protected IEnumerator OffHit(float time)
     {
         yield return new WaitForSeconds(time);
-        gameObject.layer = 10; // Enemy Layer
+        gameObject.layer = 9; // Enemy Layer
         spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
         isHit = false;
@@ -91,6 +95,8 @@ public class EnemyMain : MonoBehaviour
 
     protected IEnumerator Dead()
     {
+        soundController.PlaySound(1);
+
         yield return new WaitForSeconds(0.35f);
 
         DropCurrency();

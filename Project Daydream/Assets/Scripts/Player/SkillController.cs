@@ -8,7 +8,9 @@ public class SkillController : MonoBehaviour
     private SkillManager skillManager;
     private Transform ultimateSkillAnchor;
     private Animator anim;
+    private PlayerMain playerMain;
     private PlayerController playerController;
+    private DamageMain SkillDDamageMain;
 
     /* ------------ 스킬 확인 변수 ------------- */
     private bool isUltimateSkill = false;
@@ -16,10 +18,28 @@ public class SkillController : MonoBehaviour
     private bool isSkillS = false;
     private bool isSkillD = false;
 
+    /* ------------ SKill D 공격력 ------------- */
+    private int skillDDamageOrigin; // 공격력 원본
+
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
     private GameObject[] bulletPrefabs;
+
+    [Header("설정")]
+    [SerializeField, Range(1, 10)]
+    private int damageMultiple = 1; // 공격력 배수
+
+    /* ---------------- 프로퍼티 --------------- */
+    public int DamageMultiple
+    {
+        get { return damageMultiple; }
+        set
+        {
+            damageMultiple = value;
+            SkillDDamageMain.Damage = skillDDamageOrigin * damageMultiple;
+        }
+    }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Start()
@@ -28,6 +48,9 @@ public class SkillController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
         ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
+
+        SkillDDamageMain = GetComponentInChildren<DamageMain>();
+        skillDDamageOrigin = SkillDDamageMain.Damage;
     }
 
     /* --------------- 외부 참조 --------------- */
@@ -50,27 +73,29 @@ public class SkillController : MonoBehaviour
 
     public void SkillA()
     {
-        if (isSkillA) // 스킬 사용중이 아닐 때
+        if (isSkillA || skillManager.SkillUpgrade < 1) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;
         isSkillA = true;
         anim.SetTrigger("doSkillA");
+        GetComponent<SoundController>().PlaySound(5);
 
         StartCoroutine(DelayBullet(bulletPrefabs[0], 0.2f)); // 투사체 발사
         StartCoroutine(SkillACoolOut(skillManager.SkillAActiveTime, skillManager.SkillACoolTime));
-        
+
         UIManager.instance.SetSkillACoolTimeUI();
     }
 
     public void SkillS()
     {
-        if (isSkillS) // 스킬 사용중이 아닐 때
+        if (isSkillS || skillManager.SkillUpgrade < 2) // 스킬 사용중이 아닐 때
             return;
 
         playerController.IsAttack = true;
         isSkillS = true;
         anim.SetTrigger("doSkillS");
+        GetComponent<SoundController>().PlaySound(6);
 
         StartCoroutine(DelayBullet(bulletPrefabs[1], 0.2f)); // 투사체 발사
         StartCoroutine(SkillSCoolOut(skillManager.SkillSActiveTime, skillManager.SkillSCoolTime));
@@ -86,7 +111,8 @@ public class SkillController : MonoBehaviour
         playerController.IsAttack = true;
         isSkillD = true;
         anim.SetTrigger("doSkillD");
-
+        GetComponent<SoundController>().PlaySound(0);
+        
         StartCoroutine(SkillDCoolOut(skillManager.SkillDActiveTime, skillManager.SkillDCoolTime));
 
         UIManager.instance.SetSkillDCoolTimeUI();
@@ -98,6 +124,8 @@ public class SkillController : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         GameObject bullet = Instantiate(prefab, transform.position, transform.rotation);
+        bullet.GetComponent<DamageMain>().Damage *= DamageMultiple;
+
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot((int)Mathf.Sign(transform.localScale.x));
     }

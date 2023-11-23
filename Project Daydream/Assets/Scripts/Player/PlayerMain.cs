@@ -29,7 +29,9 @@ public class PlayerMain : MonoBehaviour
     [SerializeField, Range(0, 100)]
     private int hp = 50;
     [SerializeField, Range(0, 10)]
-    private int dashStack = 3; // 아이템/특성 추가 후 1로 수정
+    private int maxDashStack = 1;
+    [SerializeField, Range(0, 10)]
+    private int dashStack = 1;
 
     [Space(10f)]
     [SerializeField, Range(0, 10000)]
@@ -76,8 +78,21 @@ public class PlayerMain : MonoBehaviour
         get { return dashStack; }
         set
         {
-            dashStack = value;
+            if (value > maxDashStack)
+                dashStack = maxDashStack;
+            else
+                dashStack = value;
 
+            UIManager.instance.SetDashStackUI();
+        }
+    }
+
+    public int MaxDashStack
+    {
+        get { return maxDashStack; }
+        set
+        {
+            maxDashStack = value;
             UIManager.instance.SetDashStackUI();
         }
     }
@@ -93,7 +108,7 @@ public class PlayerMain : MonoBehaviour
                 coin = maxCoin;
             else
                 coin = value;
-            
+
             UIManager.instance.SetCoinUI();
         }
     }
@@ -130,7 +145,7 @@ public class PlayerMain : MonoBehaviour
         //spriteRenderer.color = new Color(1, 1, 1, 0.4f); // 피격당했을 때 색 변경
         for (int i = 0; i < spriteLen; i++)
             spriteRenderers[i].color = new Color(1, 1, 1, 0.4f);
-
+        GetComponent<SoundController>().PlaySound(4);
         rigid.velocity = Vector2.zero; // 추가적인 속력 방지
         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1; // 피격시 튕겨나가는 방향 결정
         rigid.AddForce(new Vector2(dir, 1) * knockBack, ForceMode2D.Impulse); // 튕겨나가기
@@ -166,12 +181,19 @@ public class PlayerMain : MonoBehaviour
         //spriteRenderer.color = new Color(1, 1, 1, 1f); // 색 변경
     }
 
-    private void OnDead()
+    public void OnDead()
     {
+        if (itemManager.Resurrection)
+        {
+            itemManager.UseResurrectionItem();
+            Hp = 100;
+            return;
+        }
+
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
-
+        GetComponent<SoundController>().PlaySound(3);
         GameManager.instance.GameOver();
     }
 
@@ -201,7 +223,7 @@ public class PlayerMain : MonoBehaviour
 
     public void GetItem(GameObject gameObject)
     {
-        if (itemManager.ItemStock >= 3) // 아이템이 3보다 적으면 아이템 스톡 1 증가
+        if (itemManager.ItemStock >= itemManager.MaxItemCount) // 아이템이 3보다 적으면 아이템 스톡 1 증가
             return;
 
         itemMain = gameObject.GetComponent<ItemMain>();
@@ -212,7 +234,7 @@ public class PlayerMain : MonoBehaviour
             itemManager.PassiveItem(itemMain.ItemNum);
 
         UIManager.instance.SetItemUI();
-        
+
         Destroy(gameObject); //아이템 삭제
     }
 }

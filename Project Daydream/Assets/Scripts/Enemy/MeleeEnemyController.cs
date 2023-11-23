@@ -41,6 +41,7 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
     {
         canMove = false;
         anim.SetBool("isAttack", true);
+        soundController.PlaySound(0);
 
         yield return new WaitForSeconds(AttackActiveTime);
         if (attackArea != null)
@@ -51,7 +52,6 @@ public class MeleeEnemyController : ChaseEnemyController, IAttackRangeCheck
 
         if (attackArea != null)
             attackArea.SetActive(false);
-
         canMove = true;
 
         yield return new WaitForSeconds(time - AttackActiveTime - AttackActiveTime);
