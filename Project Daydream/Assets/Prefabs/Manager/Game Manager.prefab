@@ -19889,8 +19889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ultimateSkills:
-  - {fileID: 4546800279777462089, guid: 47fa43e6d90670345949405ae959a89f, type: 3}
-  - {fileID: 4546800279777462089, guid: 5c6cf15896c84014faa2f27563fdfca5, type: 3}
+  - {fileID: 1659835145712856022, guid: fa8f21b6620a16b40b4492b35e6aed33, type: 3}
+  - {fileID: 8354582147621345156, guid: fd1d73892ac9fa8428b4db4f0eacc127, type: 3}
   skillImages:
   - {fileID: 21300000, guid: 7fa3b167949a1da44871bece5588a0f5, type: 2}
   - {fileID: 21300000, guid: 05ef0e1184dc633479b5dcfeb986d325, type: 2}
