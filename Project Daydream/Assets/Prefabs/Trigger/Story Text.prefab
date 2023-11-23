@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8229632035544623781}
   - component: {fileID: 3763901715997911317}
   - component: {fileID: 8203220967148545116}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Story Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFile: {fileID: 0}
+  isRepeat: 0
