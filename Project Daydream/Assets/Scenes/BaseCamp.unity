@@ -595,6 +595,63 @@ Transform:
   - {fileID: 979495689}
   m_Father: {fileID: 1970756739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &327051227
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1636267438019526335, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_Name
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 45.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852203290098260245, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecd2c55489d36ba4c95aa1ffaa6aded4, type: 3}
 --- !u!1 &335960675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425337511969473850, guid: cbdefb422455c2a4aab364028b4b5e10, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425337511969473850, guid: cbdefb422455c2a4aab364028b4b5e10, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1766,6 +1823,10 @@ PrefabInstance:
     - target: {fileID: 4106967144069191874, guid: 7fc30cd74f5aa724387df7546e0f3d5b, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Training Dummy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106967144069191874, guid: 7fc30cd74f5aa724387df7546e0f3d5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11317,3 +11378,4 @@ SceneRoots:
   - {fileID: 604541810}
   - {fileID: 460787106}
   - {fileID: 1081369333}
+  - {fileID: 327051227}
