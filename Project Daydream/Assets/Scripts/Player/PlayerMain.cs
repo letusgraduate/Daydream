@@ -122,6 +122,8 @@ public class PlayerMain : MonoBehaviour
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();

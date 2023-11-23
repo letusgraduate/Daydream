@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 8419651702952514857, guid: c6ec41303841a6041936f1eb8870e5bf, type: 3}
+  isHit: 0
   isReflect: 0
   forceX: 8
   forceY: -0.3

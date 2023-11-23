@@ -93,7 +93,7 @@ public class EnemyMain : MonoBehaviour
         isHit = false;
     }
 
-    protected IEnumerator Dead()
+    protected virtual IEnumerator Dead()
     {
         soundController.PlaySound(1);
 

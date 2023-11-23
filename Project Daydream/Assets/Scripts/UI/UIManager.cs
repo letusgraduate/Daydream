@@ -426,8 +426,9 @@ public class UIManager : MonoBehaviour
     /* ------- 플레이어 스코어 관현 함수 ------- */
     public void GameReStartButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("BaseCamp");
         gameScoreUI.SetActive(false);
+        GameManager.instance.PlayerPosReset();
     }
 
     public void ShowGameScore()

@@ -125,15 +125,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameOver");
         Debug.Log("Player Score : " + PlayerScore);
 
-        //StartCoroutine(ReStart()); // 버튼으로 변경, 아이템/코인 초기화
-    }
-
-    IEnumerator ReStart()
-    {
-        yield return new WaitForSeconds(5f);
-
-        // 현재 씬 재시작 (나중에 수정)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerScore = 0;
+        playerMain.Coin = 0;
+        playerMain.Hp = 100;
     }
 
     public void StageClear()
@@ -206,5 +200,10 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void PlayerPosReset()
+    {
+        player.transform.position = Vector3.zero;
     }
 }
