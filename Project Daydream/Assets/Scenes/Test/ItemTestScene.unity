@@ -2388,6 +2388,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6962091718107307644, guid: 5d43465a9b697f94897885e827820b60, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 6962091718107307644, guid: 5d43465a9b697f94897885e827820b60, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3783,6 +3791,14 @@ PrefabInstance:
     - target: {fileID: 1805488902043994721, guid: ee40b6d46151679418204860690680e7, type: 3}
       propertyPath: m_Name
       value: ItemPrefab3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297368808548170227, guid: ee40b6d46151679418204860690680e7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 3297368808548170227, guid: ee40b6d46151679418204860690680e7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8829,6 +8845,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6170880993907644972, guid: 55259f3e0f84ecc4fa383cd2ecac15b5, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 6170880993907644972, guid: 55259f3e0f84ecc4fa383cd2ecac15b5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8935662335445087281, guid: 55259f3e0f84ecc4fa383cd2ecac15b5, type: 3}
       propertyPath: m_Name
       value: ItemPrefab2
@@ -11461,6 +11485,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill Item 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5359269861680983470, guid: f9a521bd299e10b4ea26aad33c610737, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 5359269861680983470, guid: f9a521bd299e10b4ea26aad33c610737, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8280633433449013229, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 5359269861680983470, guid: f9a521bd299e10b4ea26aad33c610737, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7926650093900116820, guid: f9a521bd299e10b4ea26aad33c610737, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11784,6 +11820,14 @@ PrefabInstance:
     - target: {fileID: 6324103427889227943, guid: 5d43465a9b697f94897885e827820b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962091718107307644, guid: 5d43465a9b697f94897885e827820b60, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 6962091718107307644, guid: 5d43465a9b697f94897885e827820b60, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13428,6 +13472,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 26231831}
     m_Modifications:
+    - target: {fileID: 1846596091041952826, guid: cd1b5cbf169b39a4e9786abdf7e99f91, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 1846596091041952826, guid: cd1b5cbf169b39a4e9786abdf7e99f91, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8280633433449013229, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 1846596091041952826, guid: cd1b5cbf169b39a4e9786abdf7e99f91, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971076710784992041, guid: cd1b5cbf169b39a4e9786abdf7e99f91, type: 3}
       propertyPath: m_Name
       value: Skill Item
