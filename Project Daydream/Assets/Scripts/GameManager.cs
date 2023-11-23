@@ -130,14 +130,6 @@ public class GameManager : MonoBehaviour
         playerMain.Hp = 100;
     }
 
-    IEnumerator ReStart()
-    {
-        yield return new WaitForSeconds(5f);
-
-        // 현재 씬 재시작 (나중에 수정)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     public void StageClear()
     {
         PlayerScore += 100;
@@ -208,5 +200,10 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void PlayerPosReset()
+    {
+        player.transform.position = Vector3.zero;
     }
 }

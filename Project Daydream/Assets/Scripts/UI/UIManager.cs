@@ -428,6 +428,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("BaseCamp");
         gameScoreUI.SetActive(false);
+        GameManager.instance.PlayerPosReset();
     }
 
     public void ShowGameScore()
