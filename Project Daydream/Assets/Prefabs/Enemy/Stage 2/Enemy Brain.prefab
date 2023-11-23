@@ -558,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2552782744031539326}
   - component: {fileID: 1201707743548543162}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Bullet Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
