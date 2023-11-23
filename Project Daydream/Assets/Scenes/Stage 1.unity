@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 9431922}
   - component: {fileID: 9431924}
   - component: {fileID: 9431923}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -15171,7 +15171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155473886}
   - component: {fileID: 155473887}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -18775,7 +18775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 228088066}
   - component: {fileID: 228088067}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -18921,7 +18921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237114673}
   - component: {fileID: 237114674}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -21065,7 +21065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349268078}
   - component: {fileID: 349268077}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -25591,7 +25591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478353179}
   - component: {fileID: 478353180}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -33377,7 +33377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498416012}
   - component: {fileID: 498416013}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -34197,7 +34197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 539303131}
   - component: {fileID: 539303132}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -48251,7 +48251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778009341}
   - component: {fileID: 778009342}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -48876,7 +48876,7 @@ GameObject:
   - component: {fileID: 801484076}
   - component: {fileID: 801484078}
   - component: {fileID: 801484077}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -49708,7 +49708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869853755}
   - component: {fileID: 869853756}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -57625,7 +57625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027428745}
   - component: {fileID: 1027428746}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -58753,7 +58753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078382262}
   - component: {fileID: 1078382263}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -74162,7 +74162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1454991101}
   - component: {fileID: 1454991102}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -83149,7 +83149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1535361006}
   - component: {fileID: 1535361007}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -84291,7 +84291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599853133}
   - component: {fileID: 1599853134}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -96801,7 +96801,7 @@ GameObject:
   - component: {fileID: 1843740105}
   - component: {fileID: 1843740107}
   - component: {fileID: 1843740106}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -97452,7 +97452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882958064}
   - component: {fileID: 1882958065}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot Out
   m_TagString: MapPivotOut
   m_Icon: {fileID: 0}
@@ -105217,7 +105217,7 @@ GameObject:
   - component: {fileID: 2059843933}
   - component: {fileID: 2059843935}
   - component: {fileID: 2059843934}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -105680,7 +105680,7 @@ GameObject:
   - component: {fileID: 2081965975}
   - component: {fileID: 2081965977}
   - component: {fileID: 2081965976}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pivot In
   m_TagString: MapPivotIn
   m_Icon: {fileID: 0}
@@ -113061,6 +113061,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1294438651}
     m_Modifications:
+    - target: {fileID: 856813684011347568, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
+      propertyPath: m_Name
+      value: Portal Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 6913179252021418104, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100.2
@@ -113100,10 +113104,6 @@ PrefabInstance:
     - target: {fileID: 6913179252021418104, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 856813684011347568, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
-      propertyPath: m_Name
-      value: Portal Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
