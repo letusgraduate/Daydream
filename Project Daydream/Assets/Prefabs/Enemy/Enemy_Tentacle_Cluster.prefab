@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 8, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &4339805023437774550
 MonoBehaviour:
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 135960737688940841}
   - component: {fileID: 7101228515162690201}
   m_Layer: 9
-  m_Name: Enemy Tentacle Cluster
+  m_Name: Enemy_Tentacle_Cluster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,6 @@ Transform:
   - {fileID: 3418158543983432507}
   - {fileID: 2540668538634325485}
   - {fileID: 941367389707162657}
-  - {fileID: 4241680072632406126}
   - {fileID: 194480503971880286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,8 +224,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07}
-  m_Size: {x: 1.5, y: 0.85}
+  m_Offset: {x: 0.28130615, y: 0.7176574}
+  m_Size: {x: 5.2384114, y: 2.425342}
   m_Direction: 1
 --- !u!114 &2015750272169018459
 MonoBehaviour:
@@ -240,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54d8700be8a18d4e9665ffa000e4e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
+  hp: 100
   knockBackPower: 3
   superArmorTime: 0.5
   enemyScore: 10
@@ -256,12 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01acca82ae591d444a94ef655f1530e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2.5
   rayDis: 1
-  attackArea: {fileID: 7840032066613186960}
-  AttackActiveTime: 0
-  AttackEndTime: 0.5
-  AttackCoolTime: 3
+  hitbox: {fileID: 4682638067155183470}
+  AttackCoolTime: 2
 --- !u!114 &135960737688940841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +299,7 @@ GameObject:
   - component: {fileID: 5310401527677512867}
   - component: {fileID: 2000943322577588304}
   m_Layer: 0
-  m_Name: CatHit
+  m_Name: TentacleClusterHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,9 +330,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 23459b27ae4d3e34fbe452df175127c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2e192a87a788c5645b954f772879cfaa, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -520,7 +517,7 @@ GameObject:
   - component: {fileID: 896992805465326760}
   - component: {fileID: 1892564393272817431}
   m_Layer: 0
-  m_Name: CatDeath
+  m_Name: TentacleClusterDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,9 +548,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2dc9d27155d7fed4b9bca6ae4200f1a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e34d2232eff6676489a0f87a0ec8ed68, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -664,12 +661,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840032066613186960}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0999999, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6561203363809545422}
+  m_Father: {fileID: 3418158543983432507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8884524743550863558
 CircleCollider2D:
@@ -782,8 +779,9 @@ GameObject:
   - component: {fileID: 3418158543983432507}
   - component: {fileID: 299935533824764262}
   - component: {fileID: 4031275554426845836}
+  - component: {fileID: 3222766312906425881}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,10 +796,11 @@ Transform:
   m_GameObject: {fileID: 8278680408689291444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.88, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4241680072632406126}
   m_Father: {fileID: 6561203363809545422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &299935533824764262
@@ -866,7 +865,7 @@ Animator:
   m_GameObject: {fileID: 8278680408689291444}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71161f4b3989be14a90048a78d9ceecd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 778bb344c8afd0e46ad6b0ca3889160d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -877,6 +876,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3222766312906425881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278680408689291444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915b7e952eb4fc8479ba68d912e9903e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8421044485304993617
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,7 +899,7 @@ GameObject:
   - component: {fileID: 6164606180546736682}
   - component: {fileID: 8905303386171955539}
   m_Layer: 0
-  m_Name: CatAttack
+  m_Name: TentacleClusterAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -919,9 +930,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e10d0f861fe69dc46930ea33b51aa276, type: 3}
+  m_audioClip: {fileID: 8300000, guid: beb358e25dd3fd240afad26dd569f25d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
