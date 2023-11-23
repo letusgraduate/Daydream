@@ -450,8 +450,10 @@ public class UIManager : MonoBehaviour
 
     public void SpeedUpgrade()
     {
-        if (speedLevel == speedTrait.transform.childCount)
+        if (speedLevel == speedTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         speedTrait.transform.GetChild(speedLevel).gameObject.GetComponent<Button>().interactable = false;
         speedTrait.transform.GetChild(speedLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -465,8 +467,10 @@ public class UIManager : MonoBehaviour
 
     public void MaxHPUpgrade()
     {
-        if (maxHPLevel == maxHPTrait.transform.childCount)
+        if (maxHPLevel == maxHPTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         maxHPTrait.transform.GetChild(maxHPLevel).gameObject.GetComponent<Button>().interactable = false;
         maxHPTrait.transform.GetChild(maxHPLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -480,8 +484,10 @@ public class UIManager : MonoBehaviour
 
     public void PowerUpgrade()
     {
-        if (powerLevel == powerTrait.transform.childCount)
+        if (powerLevel == powerTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         powerTrait.transform.GetChild(powerLevel).gameObject.GetComponent<Button>().interactable = false;
         powerTrait.transform.GetChild(powerLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -495,8 +501,10 @@ public class UIManager : MonoBehaviour
 
     public void SkillUpgrade()
     {
-        if (skillLevel == skillTrait.transform.childCount)
+        if (skillLevel == skillTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Button>().interactable = false;
         skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -510,8 +518,10 @@ public class UIManager : MonoBehaviour
 
     public void DashUpgrade()
     {
-        if (dashLevel == dashTrait.transform.childCount)
+        if (dashLevel == dashTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         dashTrait.transform.GetChild(dashLevel).gameObject.GetComponent<Button>().interactable = false;
         dashTrait.transform.GetChild(dashLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -525,8 +535,10 @@ public class UIManager : MonoBehaviour
 
     public void ItemUpgrade()
     {
-        if (itemLevel == itemTrait.transform.childCount)
+        if (itemLevel == itemTrait.transform.childCount || GameManager.instance.MoonRock < 1)
             return;
+
+        GameManager.instance.MoonRock--;
 
         itemTrait.transform.GetChild(itemLevel).gameObject.GetComponent<Button>().interactable = false;
         itemTrait.transform.GetChild(itemLevel).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -537,4 +549,5 @@ public class UIManager : MonoBehaviour
 
         trait.GetComponent<TraitController>().ItemUP();
     }
+
 }
