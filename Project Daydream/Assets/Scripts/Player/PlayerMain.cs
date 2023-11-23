@@ -16,6 +16,9 @@ public class PlayerMain : MonoBehaviour
     /* --------------- 피격 관련 --------------- */
     private int spriteLen = 0; // 하위 스프라이트 목록
 
+    /* ---------------- 궁 스킬 ---------------- */
+    private int skillNum;
+
     /* ---------------- 인스펙터 --------------- */
     [Header("오브젝트 연결")]
     [SerializeField]
@@ -114,6 +117,7 @@ public class PlayerMain : MonoBehaviour
     }
 
     public Transform UltimateSkillAnchor { get { return ultimateSkillAnchor; } }
+    public int SkillNum { get { return skillNum; } }
 
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
@@ -213,7 +217,7 @@ public class PlayerMain : MonoBehaviour
         if (ultimateSkillAnchor.childCount != 0) //현재 가지고 있는 궁스킬 삭제
             Destroy(ultimateSkillAnchor.GetChild(0).gameObject);
 
-        int skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
+        skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
         skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
         GameObject skill = Instantiate(skillManager.GetUltimateSkill(skillNum), ultimateSkillAnchor); // 궁스킬 프리팹 소환
         skill.transform.localPosition = Vector3.zero;

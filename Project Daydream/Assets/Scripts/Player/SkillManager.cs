@@ -19,6 +19,8 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private List<Sprite> skillImages = new List<Sprite>();
     [SerializeField]
+    private Sprite[] ultimateSkillImages;
+    [SerializeField]
     private Sprite ultimateSkillImage;
 
     [Header("일반 스킬 쿨타임")]
@@ -73,4 +75,8 @@ public class SkillManager : MonoBehaviour
         return skillImages[num];
     }
 
+    public void SetUltimateSkillImage(int num)
+    {
+        UltimateSkillImage = ultimateSkillImages[num];
+    }
 }

@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
 
         if (ultimateSkillInput)
         {
-            skillController.UltimateSkill();
+            skillController.UltimateSkill(playerMain.SkillNum);
         }
     }
 

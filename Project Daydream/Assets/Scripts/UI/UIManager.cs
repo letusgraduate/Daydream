@@ -256,7 +256,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetUltimateSkillImageUI(int num)
+    public void SetUltimateSkillImageUI()
     {
         ultimateSkill.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.UltimateSkillImage;
     }
