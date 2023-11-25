@@ -482,6 +482,7 @@ public class UIManager : MonoBehaviour
             if (i + 1 < speedTrait.transform.childCount)
                 speedTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             SpeedLevel++;
+        trait.GetComponent<TraitController>().SpeedUP();
         }
     }
 
@@ -513,6 +514,7 @@ public class UIManager : MonoBehaviour
             if (i + 1 < maxHPTrait.transform.childCount)
                 maxHPTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             MaxHPLevel++;
+        trait.GetComponent<TraitController>().MaxHpUP();
         }
     }
     public void PowerUpgrade()
@@ -543,6 +545,7 @@ public class UIManager : MonoBehaviour
             if (i + 1 < powerTrait.transform.childCount)
                 powerTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             PowerLevel++;
+        trait.GetComponent<TraitController>().PowerUP();
         }
     }
     public void SkillUpgrade()
@@ -573,6 +576,8 @@ public class UIManager : MonoBehaviour
             if (i + 1 < skillTrait.transform.childCount)
                 skillTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             SkillLevel++;
+
+            trait.GetComponent<TraitController>().SkillUP();
         }
     }
     public void DashUpgrade()
@@ -603,6 +608,7 @@ public class UIManager : MonoBehaviour
             if (i + 1 < dashTrait.transform.childCount)
                 dashTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             DashLevel++;
+        trait.GetComponent<TraitController>().DashUP();
         }
     }
     public void ItemUpgrade()
@@ -633,6 +639,7 @@ public class UIManager : MonoBehaviour
             if (i + 1 < itemTrait.transform.childCount)
                 itemTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
             ItemLevel++;
+        trait.GetComponent<TraitController>().ItemUP();
         }
     }
 }
