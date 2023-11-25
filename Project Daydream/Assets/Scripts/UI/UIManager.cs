@@ -475,7 +475,7 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
             speedTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             speedTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -507,7 +507,7 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
             maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -538,7 +538,7 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
             powerTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             powerTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -569,8 +569,9 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
+            Debug.Log(i);
             skillTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             skillTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
             if (i + 1 < skillTrait.transform.childCount)
@@ -601,7 +602,7 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
@@ -632,7 +633,7 @@ public class UIManager : MonoBehaviour
     {
         if(num == 2)
             return;
-        for (int i = 2; i <= num; i++)
+        for (int i = 2; i < num; i++)
         {
             itemTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             itemTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
