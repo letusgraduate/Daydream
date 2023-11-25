@@ -473,6 +473,8 @@ public class UIManager : MonoBehaviour
 
     public void ForSpeedUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             speedTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
@@ -502,6 +504,8 @@ public class UIManager : MonoBehaviour
 
     public void ForMaxHPUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
@@ -530,6 +534,8 @@ public class UIManager : MonoBehaviour
 
     public void ForPowerUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             powerTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
@@ -558,6 +564,8 @@ public class UIManager : MonoBehaviour
 
     public void ForSkillUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             skillTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
@@ -586,6 +594,8 @@ public class UIManager : MonoBehaviour
 
     public void ForDashUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
@@ -614,6 +624,8 @@ public class UIManager : MonoBehaviour
 
     public void ForItemUpgrade(int num)
     {
+        if(num == 2)
+            return;
         for (int i = 2; i <= num; i++)
         {
             itemTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
