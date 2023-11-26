@@ -97,6 +97,12 @@ public class UIManager : MonoBehaviour
     public int ItemSelect { get { return itemSelect; } }
     public GameObject SubtitleUI { get { return subtitleUI; } }
 
+    public int SpeedLevel { get { return speedLevel; } set { speedLevel = value; } }
+    public int MaxHPLevel { get { return maxHPLevel; } set { maxHPLevel = value; } }
+    public int PowerLevel { get { return powerLevel; } set { powerLevel = value; } }
+    public int SkillLevel { get { return skillLevel; } set { skillLevel = value; } }
+    public int DashLevel { get { return dashLevel; } set { dashLevel = value; } }
+    public int ItemLevel { get { return itemLevel; } set { itemLevel = value; } }
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
     {
@@ -460,10 +466,24 @@ public class UIManager : MonoBehaviour
         speedTrait.transform.GetChild(speedLevel).gameObject.GetComponent<Image>().color = Color.yellow;
         if (speedLevel + 1 < speedTrait.transform.childCount)
             speedTrait.transform.GetChild(speedLevel + 1).gameObject.GetComponent<Button>().interactable = true;
-
-        speedLevel++;
+        SpeedLevel++;
 
         trait.GetComponent<TraitController>().SpeedUP();
+    }
+
+    public void ForSpeedUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            speedTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            speedTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < speedTrait.transform.childCount)
+                speedTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            SpeedLevel++;
+        trait.GetComponent<TraitController>().SpeedUP();
+        }
     }
 
     public void MaxHPUpgrade()
@@ -483,6 +503,20 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().MaxHpUP();
     }
 
+    public void ForMaxHPUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < maxHPTrait.transform.childCount)
+                maxHPTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            MaxHPLevel++;
+        trait.GetComponent<TraitController>().MaxHpUP();
+        }
+    }
     public void PowerUpgrade()
     {
         if (powerLevel == powerTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -500,6 +534,20 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().PowerUP();
     }
 
+    public void ForPowerUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            powerTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            powerTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < powerTrait.transform.childCount)
+                powerTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            PowerLevel++;
+        trait.GetComponent<TraitController>().PowerUP();
+        }
+    }
     public void SkillUpgrade()
     {
         if (skillLevel == skillTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -517,6 +565,22 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().SkillUP();
     }
 
+    public void ForSkillUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            Debug.Log(i);
+            skillTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            skillTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < skillTrait.transform.childCount)
+                skillTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            SkillLevel++;
+
+            trait.GetComponent<TraitController>().SkillUP();
+        }
+    }
     public void DashUpgrade()
     {
         if (dashLevel == dashTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -534,6 +598,20 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().DashUP();
     }
 
+    public void ForDashUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            dashTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            dashTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < dashTrait.transform.childCount)
+                dashTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            DashLevel++;
+        trait.GetComponent<TraitController>().DashUP();
+        }
+    }
     public void ItemUpgrade()
     {
         if (itemLevel == itemTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -551,4 +629,18 @@ public class UIManager : MonoBehaviour
         trait.GetComponent<TraitController>().ItemUP();
     }
 
+    public void ForItemUpgrade(int num)
+    {
+        if(num == 2)
+            return;
+        for (int i = 2; i < num; i++)
+        {
+            itemTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
+            itemTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+            if (i + 1 < itemTrait.transform.childCount)
+                itemTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+            ItemLevel++;
+        trait.GetComponent<TraitController>().ItemUP();
+        }
+    }
 }

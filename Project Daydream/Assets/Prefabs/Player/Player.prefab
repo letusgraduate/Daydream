@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalBulletPrefabs:
-  - {fileID: 7972352107403979994, guid: 702fa5fb2515fbf46ba0af2bb1350fb4, type: 3}
   - {fileID: 9030700091464140301, guid: 5572986f77403a54aa3267d65f66cf49, type: 3}
+  - {fileID: 7972352107403979994, guid: 702fa5fb2515fbf46ba0af2bb1350fb4, type: 3}
   ultimateBulletPrefabs:
   - {fileID: 5147422036854430789, guid: caf8816b2f76b5a4ca6677e42b5dd1e5, type: 3}
   - {fileID: 7979981791878844236, guid: 77ea88e04a322254b92af9caf7d92721, type: 3}

@@ -158,7 +158,12 @@ public class PlayerMain : MonoBehaviour
 
         Hp -= damage;
 
-        if (Hp <= 0)
+        if (Hp <= 0 && itemManager.Resurrection)
+        {
+            itemManager.UseResurrectionItem();
+            Hp = 100;
+        }
+        else if (Hp <= 0)
         {
             OnDead();
             return;
@@ -189,12 +194,6 @@ public class PlayerMain : MonoBehaviour
 
     public void OnDead()
     {
-        if (itemManager.Resurrection)
-        {
-            itemManager.UseResurrectionItem();
-            Hp = 100;
-            return;
-        }
 
         anim.SetTrigger("doDie");
         playerController.IsDead = true;
