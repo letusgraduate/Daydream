@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6322683906715732847}
   - component: {fileID: 2242567342778704787}
   - component: {fileID: 8743472324440372279}
-  - component: {fileID: 623652173143209176}
-  - component: {fileID: -7786811523093351984}
+  - component: {fileID: 5039559365236635017}
+  - component: {fileID: 8138170967205587858}
   m_Layer: 0
-  m_Name: StagePortal 2
+  m_Name: Stage Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &623652173143209176
+--- !u!114 &5039559365236635017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950e60967655e5848a8cdcf713ea91ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Stage 2
---- !u!70 &-7786811523093351984
+  SceneName: Stage 1
+--- !u!70 &8138170967205587858
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

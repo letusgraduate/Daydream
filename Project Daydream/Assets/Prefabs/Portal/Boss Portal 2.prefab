@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2097875276032832327}
   - component: {fileID: 7720501440078157265}
   - component: {fileID: -8971935281384718736}
-  - component: {fileID: -5451091963016613885}
+  - component: {fileID: 7363104306666538775}
   m_Layer: 0
-  m_Name: BossPortal
+  m_Name: Boss Portal 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950e60967655e5848a8cdcf713ea91ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Stage 1 Boss
---- !u!70 &-5451091963016613885
+  SceneName: Stage 2 Boss
+--- !u!70 &7363104306666538775
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
