@@ -63,7 +63,7 @@ public class PrintSubtitle : MonoBehaviour
             textUI.text = currentText + writeText; // 텍스트 UI에 텍스트 표시
 
             //yield return null;
-            yield return new WaitForSeconds(0.15f); // 글자마다 딜레이
+            yield return new WaitForSeconds(0.1f); // 글자마다 딜레이
 
             typingCount++;
 
