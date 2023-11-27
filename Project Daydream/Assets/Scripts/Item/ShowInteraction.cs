@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShowInteraction : MonoBehaviour
 {
+    /* -------------- 이벤트 함수 -------------- */
     private void Start()
     {
         this.transform.GetChild(0).gameObject.SetActive(false);

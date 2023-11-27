@@ -17,8 +17,13 @@ public class ItemMain : MonoBehaviour
     [SerializeField]
     private bool isActiveItem;
 
+    [Header("아이템 가격")]
+    [SerializeField, Range(0, 100)]
+    private int itemPrice = 0;
+
     /* ---------------- 프로퍼티 --------------- */
     public Sprite ItemImage { get { return itemImage; } }
     public int ItemNum { get { return itemNum; } }
     public bool IsActiveItem { get { return isActiveItem; } }
+    public int ItemPrice { get { return itemPrice; } }
 }

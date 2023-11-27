@@ -493,6 +493,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 521180761843661825, guid: ff96bb460fdcdb34b93be5634dd15a6b, type: 3}
+      propertyPath: portalSpawner
+      value: 
+      objectReference: {fileID: 1148094066}
     - target: {fileID: 5850318976661982145, guid: ff96bb460fdcdb34b93be5634dd15a6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8
@@ -846,10 +850,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5064669934148106075, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6761275583312525614, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -896,6 +896,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7494197217122459011, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845672981883255417, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8280633433449013229, guid: 7778de743e6011c43a2aff25dfa74456, type: 2}
+    - target: {fileID: 7845672981883255417, guid: fb66509f52686df4c90587cc23293bb1, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2481,6 +2489,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
+--- !u!1 &1148094066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 856813684011347568, guid: d3b7f2c7b4f04dd40886e705809ac2c0, type: 3}
+  m_PrefabInstance: {fileID: 1148094065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1154821266
 PrefabInstance:
   m_ObjectHideFlags: 0
