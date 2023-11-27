@@ -215,25 +215,30 @@ public class PlayerMain : MonoBehaviour
 
     public void GetUltimateSkill(GameObject gameObject)
     {
-        if (ultimateSkillAnchor.childCount != 0) //현재 가지고 있는 궁스킬 삭제
+        if (ultimateSkillAnchor.childCount != 0) // 현재 가지고 있는 궁스킬 삭제
             Destroy(ultimateSkillAnchor.GetChild(0).gameObject);
 
         skillNum = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillNum; // 먹은 스킬 아이템의 종류 파악
-        skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; //궁스킬 쿨타임 설정
+        skillManager.GetComponent<SkillManager>().UltimateSkillCoolTime = gameObject.GetComponent<UltimateSkillMain>().UltimateSkillCoolTime; // 궁스킬 쿨타임 설정
         skillManager.SetUltimateSkillImage(skillNum);
         UIManager.instance.SetUltimateSkillImageUI();
         GameObject skill = Instantiate(skillManager.GetUltimateSkill(skillNum), ultimateSkillAnchor); // 궁스킬 프리팹 소환
         skill.transform.localPosition = Vector3.zero;
 
-        Destroy(gameObject); //스킬 아이템 삭제
+        Destroy(gameObject); // 스킬 아이템 삭제
     }
 
     public void GetItem(GameObject gameObject)
     {
-        if (itemManager.ItemStock >= itemManager.MaxItemCount) // 아이템이 3보다 적으면 아이템 스톡 1 증가
+        if (itemManager.ItemStock >= itemManager.MaxItemCount)
             return;
 
         itemMain = gameObject.GetComponent<ItemMain>();
+
+        if (itemMain.ItemPrice > Coin)
+            return;
+
+        Coin -= itemMain.ItemPrice;
         itemManager.ItemList(itemManager.ItemStock, itemMain.ItemImage, itemMain.IsActiveItem, itemMain.ItemNum);
         itemManager.ItemStock++;
 
