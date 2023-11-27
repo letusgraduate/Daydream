@@ -49,7 +49,7 @@ public class PrintSubtitle : MonoBehaviour
 
     IEnumerator TextPrint(Text textUI, string textValue)
     {
-        int typingCount = 0; // 줄당 글자 수
+        //int typingCount = 0; // 줄당 글자 수
 
         string writeText = "";  // 이번 턴에 출력할 텍스트
         string currentText = ""; // 현재 출력된 텍스트
@@ -65,14 +65,14 @@ public class PrintSubtitle : MonoBehaviour
             //yield return null;
             yield return new WaitForSeconds(0.1f); // 글자마다 딜레이
 
-            typingCount++;
+            //typingCount++;
 
             currentText += writeText;
 
-            if (typingCount >= 30/* || writeText.Contains("\n")*/)
+            if (/*typingCount >= 30 || */ writeText.Contains("\n"))
             {
-                currentText += "\n"; // 한 줄 완성 후 줄 바꿈
-                typingCount = 0;
+                //currentText += "\n"; // 한 줄 완성 후 줄 바꿈
+                //typingCount = 0;
                 yield return new WaitForSeconds(0.15f); // 줄 바꾼 후 딜레이
             }
         }
