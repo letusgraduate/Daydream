@@ -107,15 +107,21 @@ public class UIManager : MonoBehaviour
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
     {
-        if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
+        if (instance == null) // instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
-            instance = this; //내자신을 instance로 넣어줍니다.
+            instance = this; // 내자신을 instance로 넣어줍니다.
         }
         else
         {
-            if (instance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
-                Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+            Destroy(UIManager.instance.gameObject);
+
+            instance = this; // 내자신을 instance로 넣어줍니다.
         }
+        //else
+        //{
+        //    if (instance != this) // instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
+        //        Destroy(this.gameObject); // 둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+        //}
 
         skillA = normalSkill.transform.GetChild(0).gameObject;
         skillS = normalSkill.transform.GetChild(1).gameObject;
@@ -337,6 +343,9 @@ public class UIManager : MonoBehaviour
 
     public void SetItemMaxUI()
     {
+        if (itemManager == null)
+            return;
+
         switch (itemManager.MaxItemCount)
         {
             case 1:
@@ -436,9 +445,10 @@ public class UIManager : MonoBehaviour
     /* ------- 플레이어 스코어 관현 함수 ------- */
     public void GameReStartButton()
     {
+        Destroy(player);
         SceneManager.LoadScene("BaseCamp");
-        gameScoreUI.SetActive(false);
-        GameManager.instance.PlayerPosReset();
+        //gameScoreUI.SetActive(false);
+        //GameManager.instance.PlayerPosReset();
     }
 
     public void ShowGameScore()
