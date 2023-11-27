@@ -9520,6 +9520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8203220967148545116, guid: af17641f4da1a56408e4176a2b417419, type: 3}
+      propertyPath: textFile
+      value: 
+      objectReference: {fileID: 4900000, guid: a4f1430731f9768439897462b743018a, type: 3}
     - target: {fileID: 9201936815658976508, guid: af17641f4da1a56408e4176a2b417419, type: 3}
       propertyPath: m_Name
       value: Story Text
