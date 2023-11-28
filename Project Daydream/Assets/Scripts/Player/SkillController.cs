@@ -39,7 +39,10 @@ public class SkillController : MonoBehaviour
         set
         {
             if (skillDDamageMain == null)
-                return;
+            {
+                skillDDamageMain = GetComponentInChildren<DamageMain>();
+                skillDDamageOrigin = skillDDamageMain.Damage;
+            }
 
             damageMultiple = value;
             skillDDamageMain.Damage = skillDDamageOrigin * damageMultiple;
