@@ -662,6 +662,7 @@ public class UIManager : MonoBehaviour
 
         for (int i = 2; i < num; i++)
         {
+            Debug.Log(num);
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
 
