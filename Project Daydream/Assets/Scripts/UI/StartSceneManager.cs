@@ -13,7 +13,10 @@ public class StartSceneManager : MonoBehaviour
 
     public void GameEndButton()
     {
-        Application.Quit();
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

@@ -182,6 +182,9 @@ public class UIManager : MonoBehaviour
     /* ------------ UI 콜백 함수 ------------- */
     public void SetHpUI()
     {
+        if (playerMain == null)
+            return;
+
         hpUI.GetComponent<Slider>().maxValue = (float)playerMain.MaxHp;
         hpUI.GetComponent<Slider>().value = (float)playerMain.Hp;
         hpUI.transform.GetChild(4).GetComponent<TMP_Text>().text = playerMain.Hp + " / " + playerMain.MaxHp;
@@ -255,9 +258,22 @@ public class UIManager : MonoBehaviour
     {
         skillD.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(0);
         skillS.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(1);
-        skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
         skillA.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(2);
-        skillA.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+        if(skillLevel == 2)
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+        }
+        else if(skillLevel == 3)
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
     }
 
     public void SetSkillImageColorUI(int num)
@@ -438,8 +454,11 @@ public class UIManager : MonoBehaviour
 
     public void GameEndButton()
     {
-        Application.Quit();
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     /* ------- 플레이어 스코어 관현 함수 ------- */
