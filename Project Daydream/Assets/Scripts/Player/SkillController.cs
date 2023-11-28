@@ -125,7 +125,7 @@ public class SkillController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        GameObject bullet = Instantiate(prefab, transform.position, transform.rotation);
+        GameObject bullet = Instantiate(prefab, transform.position, Quaternion.identity);
         bullet.GetComponent<DamageMain>().Damage *= DamageMultiple;
 
         BulletController bulletController = bullet.GetComponent<BulletController>();

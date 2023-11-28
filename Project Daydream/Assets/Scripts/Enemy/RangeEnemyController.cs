@@ -48,7 +48,7 @@ public class RangeEnemyController : ChaseEnemyController, IAttackRangeCheck
         soundController.PlaySound(0);
 
         /* 투사체 발사 */
-        GameObject bullet = Instantiate(bulletPrefab, bulletPort.position, bulletPort.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, bulletPort.position, Quaternion.identity);
         BulletController bulletController = bullet.GetComponent<BulletController>();
         bulletController.Shot(moveDir);
 
