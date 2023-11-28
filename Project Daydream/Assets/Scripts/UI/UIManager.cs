@@ -255,9 +255,22 @@ public class UIManager : MonoBehaviour
     {
         skillD.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(0);
         skillS.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(1);
-        skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
         skillA.transform.GetChild(0).GetComponent<Image>().sprite = skillManager.SkillImages(2);
-        skillA.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+        if(skillLevel == 2)
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+        }
+        else if(skillLevel == 3)
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            skillS.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            skillA.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
     }
 
     public void SetSkillImageColorUI(int num)
