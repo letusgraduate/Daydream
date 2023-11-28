@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageClearTest : MonoBehaviour
+public class StageClearTrigger : MonoBehaviour
 {
     /* ---------------- 인스펙터 --------------- */
     [Header("포탈 스포너")]

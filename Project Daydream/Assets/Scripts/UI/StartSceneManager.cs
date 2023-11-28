@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void GameStartButton()
     {
-        
+        SceneManager.LoadScene("BaseCamp");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameEndButton()
     {
-        
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
