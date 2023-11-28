@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoreMap.unity
     guid: f472eced02493564f9ff7dc72f0a1d9a
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: 4f756962b76dd2f48b1d4038a765db87
   m_configObjects: {}
