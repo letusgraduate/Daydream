@@ -10,7 +10,7 @@ public class SkillController : MonoBehaviour
     private Animator anim;
     private PlayerMain playerMain;
     private PlayerController playerController;
-    private DamageMain SkillDDamageMain;
+    private DamageMain skillDDamageMain;
 
     /* ------------ 스킬 확인 변수 ------------- */
     private bool isUltimateSkill = false;
@@ -38,8 +38,11 @@ public class SkillController : MonoBehaviour
         get { return damageMultiple; }
         set
         {
+            if (skillDDamageMain == null)
+                return;
+
             damageMultiple = value;
-            SkillDDamageMain.Damage = skillDDamageOrigin * damageMultiple;
+            skillDDamageMain.Damage = skillDDamageOrigin * damageMultiple;
         }
     }
 
@@ -51,8 +54,8 @@ public class SkillController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         ultimateSkillAnchor = GetComponent<PlayerMain>().UltimateSkillAnchor;
 
-        SkillDDamageMain = GetComponentInChildren<DamageMain>();
-        skillDDamageOrigin = SkillDDamageMain.Damage;
+        skillDDamageMain = GetComponentInChildren<DamageMain>();
+        skillDDamageOrigin = skillDDamageMain.Damage;
     }
 
     /* --------------- 외부 참조 --------------- */
@@ -125,7 +128,7 @@ public class SkillController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        GameObject bullet = Instantiate(prefab, transform.position, transform.rotation);
+        GameObject bullet = Instantiate(prefab, transform.position, Quaternion.identity);
         bullet.GetComponent<DamageMain>().Damage *= DamageMultiple;
 
         BulletController bulletController = bullet.GetComponent<BulletController>();

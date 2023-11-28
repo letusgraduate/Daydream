@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Portal : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            UIManager.instance.SubtitleUI.GetComponent<Text>().text = "";
             SceneManager.LoadScene(SceneName);
             GameManager.instance.PlayerPosReset();
         }

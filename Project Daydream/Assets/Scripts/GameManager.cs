@@ -137,6 +137,20 @@ public class GameManager : MonoBehaviour
         playerMain.Hp = 100;
     }
 
+    public int getGameClearScore()
+    {
+        dataManager.Save(); // 세이브 파일 저장 (월석 저장)
+        PlayerScore += playerMain.Coin; // 남은 코인 점수로
+
+        int score = PlayerScore;
+
+        PlayerScore = 0;
+        playerMain.Coin = 0;
+        playerMain.Hp = 100;
+
+        return score;
+    }
+
     public void StageClear()
     {
         PlayerScore += 100;
