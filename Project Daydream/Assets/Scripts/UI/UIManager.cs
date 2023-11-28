@@ -451,8 +451,11 @@ public class UIManager : MonoBehaviour
 
     public void GameEndButton()
     {
-        Application.Quit();
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     /* ------- 플레이어 스코어 관현 함수 ------- */
