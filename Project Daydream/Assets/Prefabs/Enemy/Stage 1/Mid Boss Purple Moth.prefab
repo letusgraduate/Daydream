@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff458122bee0484cacf6d51cde52651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
+  hp: 300
   knockBackPower: 3
   superArmorTime: 0.5
   enemyScore: 10
