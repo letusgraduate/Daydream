@@ -103,18 +103,25 @@ public class UIManager : MonoBehaviour
     public int SkillLevel { get { return skillLevel; } set { skillLevel = value; } }
     public int DashLevel { get { return dashLevel; } set { dashLevel = value; } }
     public int ItemLevel { get { return itemLevel; } set { itemLevel = value; } }
+
     /* -------------- 이벤트 함수 -------------- */
     private void Awake()
     {
-        if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
+        if (instance == null) // instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
-            instance = this; //내자신을 instance로 넣어줍니다.
+            instance = this; // 내자신을 instance로 넣어줍니다.
         }
         else
         {
-            if (instance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
-                Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+            Destroy(UIManager.instance.gameObject);
+
+            instance = this; // 내자신을 instance로 넣어줍니다.
         }
+        //else
+        //{
+        //    if (instance != this) // instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
+        //        Destroy(this.gameObject); // 둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+        //}
 
         skillA = normalSkill.transform.GetChild(0).gameObject;
         skillS = normalSkill.transform.GetChild(1).gameObject;
@@ -192,6 +199,9 @@ public class UIManager : MonoBehaviour
 
     public void SetDashStackUI()
     {
+        if (playerMain == null)
+            return;
+
         for (int i = 0; i < 3; i++)
         {
             dashStackUI.transform.GetChild(i).gameObject.SetActive(false);
@@ -333,6 +343,9 @@ public class UIManager : MonoBehaviour
 
     public void SetItemMaxUI()
     {
+        if (itemManager == null)
+            return;
+
         switch (itemManager.MaxItemCount)
         {
             case 1:
@@ -432,9 +445,10 @@ public class UIManager : MonoBehaviour
     /* ------- 플레이어 스코어 관현 함수 ------- */
     public void GameReStartButton()
     {
+        Destroy(player);
         SceneManager.LoadScene("BaseCamp");
-        gameScoreUI.SetActive(false);
-        GameManager.instance.PlayerPosReset();
+        //gameScoreUI.SetActive(false);
+        //GameManager.instance.PlayerPosReset();
     }
 
     public void ShowGameScore()
@@ -449,6 +463,7 @@ public class UIManager : MonoBehaviour
         traitUI.SetActive(true);
         Time.timeScale = 0;
     }
+
     public void CloseTraitUI()
     {
         traitUI.SetActive(false);
@@ -464,8 +479,10 @@ public class UIManager : MonoBehaviour
 
         speedTrait.transform.GetChild(speedLevel).gameObject.GetComponent<Button>().interactable = false;
         speedTrait.transform.GetChild(speedLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (speedLevel + 1 < speedTrait.transform.childCount)
             speedTrait.transform.GetChild(speedLevel + 1).gameObject.GetComponent<Button>().interactable = true;
+
         SpeedLevel++;
 
         trait.GetComponent<TraitController>().SpeedUP();
@@ -473,16 +490,20 @@ public class UIManager : MonoBehaviour
 
     public void ForSpeedUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
             speedTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             speedTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < speedTrait.transform.childCount)
                 speedTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             SpeedLevel++;
-        trait.GetComponent<TraitController>().SpeedUP();
+
+            trait.GetComponent<TraitController>().SpeedUP();
         }
     }
 
@@ -495,6 +516,7 @@ public class UIManager : MonoBehaviour
 
         maxHPTrait.transform.GetChild(maxHPLevel).gameObject.GetComponent<Button>().interactable = false;
         maxHPTrait.transform.GetChild(maxHPLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (maxHPLevel + 1 < maxHPTrait.transform.childCount)
             maxHPTrait.transform.GetChild(maxHPLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
@@ -505,18 +527,23 @@ public class UIManager : MonoBehaviour
 
     public void ForMaxHPUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
             maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             maxHPTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < maxHPTrait.transform.childCount)
                 maxHPTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             MaxHPLevel++;
-        trait.GetComponent<TraitController>().MaxHpUP();
+
+            trait.GetComponent<TraitController>().MaxHpUP();
         }
     }
+
     public void PowerUpgrade()
     {
         if (powerLevel == powerTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -526,6 +553,7 @@ public class UIManager : MonoBehaviour
 
         powerTrait.transform.GetChild(powerLevel).gameObject.GetComponent<Button>().interactable = false;
         powerTrait.transform.GetChild(powerLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (powerLevel + 1 < powerTrait.transform.childCount)
             powerTrait.transform.GetChild(powerLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
@@ -536,18 +564,23 @@ public class UIManager : MonoBehaviour
 
     public void ForPowerUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
             powerTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             powerTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < powerTrait.transform.childCount)
                 powerTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             PowerLevel++;
-        trait.GetComponent<TraitController>().PowerUP();
+
+            trait.GetComponent<TraitController>().PowerUP();
         }
     }
+
     public void SkillUpgrade()
     {
         if (skillLevel == skillTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -557,6 +590,7 @@ public class UIManager : MonoBehaviour
 
         skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Button>().interactable = false;
         skillTrait.transform.GetChild(skillLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (skillLevel + 1 < skillTrait.transform.childCount)
             skillTrait.transform.GetChild(skillLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
@@ -567,20 +601,23 @@ public class UIManager : MonoBehaviour
 
     public void ForSkillUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
-            Debug.Log(i);
             skillTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             skillTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < skillTrait.transform.childCount)
                 skillTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             SkillLevel++;
 
             trait.GetComponent<TraitController>().SkillUP();
         }
     }
+
     public void DashUpgrade()
     {
         if (dashLevel == dashTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -590,6 +627,7 @@ public class UIManager : MonoBehaviour
 
         dashTrait.transform.GetChild(dashLevel).gameObject.GetComponent<Button>().interactable = false;
         dashTrait.transform.GetChild(dashLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (dashLevel + 1 < dashTrait.transform.childCount)
             dashTrait.transform.GetChild(dashLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
@@ -600,18 +638,24 @@ public class UIManager : MonoBehaviour
 
     public void ForDashUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
+            Debug.Log(num);
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             dashTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < dashTrait.transform.childCount)
                 dashTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             DashLevel++;
-        trait.GetComponent<TraitController>().DashUP();
+
+            trait.GetComponent<TraitController>().DashUP();
         }
     }
+
     public void ItemUpgrade()
     {
         if (itemLevel == itemTrait.transform.childCount || GameManager.instance.MoonRock < 1)
@@ -621,6 +665,7 @@ public class UIManager : MonoBehaviour
 
         itemTrait.transform.GetChild(itemLevel).gameObject.GetComponent<Button>().interactable = false;
         itemTrait.transform.GetChild(itemLevel).gameObject.GetComponent<Image>().color = Color.yellow;
+
         if (itemLevel + 1 < itemTrait.transform.childCount)
             itemTrait.transform.GetChild(itemLevel + 1).gameObject.GetComponent<Button>().interactable = true;
 
@@ -631,16 +676,20 @@ public class UIManager : MonoBehaviour
 
     public void ForItemUpgrade(int num)
     {
-        if(num == 2)
+        if (num == 2)
             return;
+
         for (int i = 2; i < num; i++)
         {
             itemTrait.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = false;
             itemTrait.transform.GetChild(i).gameObject.GetComponent<Image>().color = Color.yellow;
+
             if (i + 1 < itemTrait.transform.childCount)
                 itemTrait.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
+
             ItemLevel++;
-        trait.GetComponent<TraitController>().ItemUP();
+
+            trait.GetComponent<TraitController>().ItemUP();
         }
     }
 }
