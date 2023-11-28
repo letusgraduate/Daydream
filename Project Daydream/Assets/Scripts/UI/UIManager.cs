@@ -182,6 +182,9 @@ public class UIManager : MonoBehaviour
     /* ------------ UI 콜백 함수 ------------- */
     public void SetHpUI()
     {
+        if (playerMain == null)
+            return;
+
         hpUI.GetComponent<Slider>().maxValue = (float)playerMain.MaxHp;
         hpUI.GetComponent<Slider>().value = (float)playerMain.Hp;
         hpUI.transform.GetChild(4).GetComponent<TMP_Text>().text = playerMain.Hp + " / " + playerMain.MaxHp;
